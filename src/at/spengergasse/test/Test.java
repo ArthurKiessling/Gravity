@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.game;
+package at.spengergasse.test;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -10,31 +10,25 @@ import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 /**
- * @author Arthur Kiessling
- *
+ * Hold down an arrow key to have your hero move around the screen.
+ * Hold down the shift key to have the hero run.
  */
-public class Player{
+public class Test extends Application {
 
     private static final double W = 600, H = 400;
 
     private static final String HERO_IMAGE_LOC =
             "http://icons.iconarchive.com/icons/raindropmemory/legendora/64/Hero-icon.png";
 
-    private static Image heroImage;
-    private static Node  hero;
+    private Image heroImage;
+    private Node  hero;
 
-    static boolean running;
+    boolean running, goNorth, goSouth, goEast, goWest;
 
-	static boolean goNorth;
-
-	static boolean goSouth;
-
-	static boolean goEast;
-
-	static boolean goWest;
-
-    public static void move() throws Exception {
+    @Override
+    public void start(Stage stage) throws Exception {
         heroImage = new Image(HERO_IMAGE_LOC);
         hero = new ImageView(heroImage);
 
@@ -70,6 +64,8 @@ public class Player{
             }
         });
 
+        stage.setScene(scene);
+        stage.show();
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -88,7 +84,7 @@ public class Player{
         timer.start();
     }
 
-    private static void moveHeroBy(int dx, int dy) {
+    private void moveHeroBy(int dx, int dy) {
         if (dx == 0 && dy == 0) return;
 
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
@@ -100,7 +96,7 @@ public class Player{
         moveHeroTo(x, y);
     }
 
-    private static void moveHeroTo(double x, double y) {
+    private void moveHeroTo(double x, double y) {
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
         final double cy = hero.getBoundsInLocal().getHeight() / 2;
 
@@ -112,6 +108,7 @@ public class Player{
         }
     }
 
-
-
+    public static void main(String[] args) { launch(args); }
 }
+
+

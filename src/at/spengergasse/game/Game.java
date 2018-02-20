@@ -10,10 +10,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 public class Game extends Application{
 	
-	 public void start(Stage primaryStage) {
+	 public void start(Stage primaryStage) throws Exception {
 	        primaryStage.setTitle("Jump and Run");
 	        Group root = new Group();
 	        Scene scene = new Scene(root, 800, 800, Color.WHITE);
+	        Player.move();
 	        
 	        Rectangle rectangle = new Blocks().newBlock(100, 200);
 	  
