@@ -70,7 +70,6 @@ public class Test extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-            	System.out.println(now);
                 int dx = 0, dy = 0;
 
                 if (goNorth) dy -= 1;

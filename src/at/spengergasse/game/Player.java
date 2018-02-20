@@ -31,7 +31,7 @@ public class Player{
         heroImage = new Image(HERO_IMAGE_LOC);
         hero = new ImageView(heroImage);
         root.getChildren().add(hero);
-        moveHeroTo(0,700);
+        moveHeroTo(0);
 
 
     }		
@@ -58,8 +58,7 @@ public class Player{
   		running  = false;
   	}
     public static void handle(long now) {
-        int dx = 0;
-
+        int dx = 0; 
          if (goEast)  dx += 1;
          if (goWest)  dx -= 1;
          if (running) { dx *= 3;}
@@ -69,17 +68,16 @@ public class Player{
 
 
     private static void moveHeroBy(int dx) {
-        if (dx == 0 ) return;
+        if (dx == 0) return;
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
         double x = cx + hero.getLayoutX() + dx;
-        moveHeroTo(x,700);
+        moveHeroTo(x);
     }
 
-    private static void moveHeroTo(double x,double y) {
+    private static void moveHeroTo(double x) {
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        final double cy = hero.getBoundsInLocal().getHeight()  / 2;
-        if (x - cx >= 0 && x + cx <= 800&&y - cy >= 0 && y + cy <= 800) {
-            hero.relocate(x - cx, y - cy);
+        if (x - cx >= 0 && x + cx <= 800) {
+            hero.relocate(x - cx,0);
         }
     }
 
