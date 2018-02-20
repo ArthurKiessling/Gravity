@@ -17,24 +17,22 @@ import javafx.stage.Stage;
 public class Player{
 
 
-    private static final String HERO_IMAGE_LOC =
-            "http://icons.iconarchive.com/icons/raindropmemory/legendora/64/Hero-icon.png";
+    private static final String HERO_IMAGE_LOC =  "http://icons.iconarchive.com/icons/raindropmemory/legendora/64/Hero-icon.png";
 
     private static Image heroImage;
-    private static Node  hero;
+    private static Node hero;
 
     static boolean x;
-    
-    	static boolean goEast;
-
+    static boolean goEast;
 	static boolean goWest;
+	static boolean running;
 
     public static void move(Group root) throws Exception {
         heroImage = new Image(HERO_IMAGE_LOC);
         hero = new ImageView(heroImage);
         root.getChildren().add(hero);
-        moveHeroTo(0);
-        hero.intersects();
+        moveHeroTo(0,700);
+
 
     }		
     
@@ -52,11 +50,19 @@ public class Player{
     public static void leftStop() {
 		goWest  = false;
 	}
+    public static void runningStart() {
+  		running = true;
+  	}
+
+      public static void runningStop() {
+  		running  = false;
+  	}
     public static void handle(long now) {
         int dx = 0;
 
          if (goEast)  dx += 1;
          if (goWest)  dx -= 1;
+         if (running) { dx *= 3;}
            moveHeroBy(dx);
           }
         
@@ -66,13 +72,14 @@ public class Player{
         if (dx == 0 ) return;
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
         double x = cx + hero.getLayoutX() + dx;
-        moveHeroTo(x);
+        moveHeroTo(x,700);
     }
 
-    private static void moveHeroTo(double x) {
+    private static void moveHeroTo(double x,double y) {
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        if (x - cx >= 0 && x + cx <= 1000) {
-            hero.relocate(x - cx, 0);
+        final double cy = hero.getBoundsInLocal().getHeight()  / 2;
+        if (x - cx >= 0 && x + cx <= 800&&y - cy >= 0 && y + cy <= 800) {
+            hero.relocate(x - cx, y - cy);
         }
     }
 

@@ -28,6 +28,7 @@ public class Game extends Application {
                 switch (event.getCode()) {
                     case LEFT:  Player.leftStart(); break;
                     case RIGHT: Player.rightStart(); break;
+                    case SHIFT: Player.runningStart( ); break;
                 }
             }
         });
@@ -37,6 +38,7 @@ public class Game extends Application {
                 switch (event.getCode()) {
                     case LEFT:  Player.leftStop(); break;
                     case RIGHT: Player.rightStop(); break;
+                    case SHIFT: Player.runningStop(); break;
                 }
             }
         });
@@ -46,7 +48,7 @@ public class Game extends Application {
 				Player.handle(now);
 			}
 		}.start();
-		// add line
+
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
