@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.game;
+package at.spengergasse.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -32,8 +32,7 @@ public class Player{
         hero = new ImageView(heroImage);
         root.getChildren().add(hero);
         moveHeroTo(0);
-
-
+       
     }		
     
     public static void rightStart() {
