@@ -1,8 +1,8 @@
 /**
  * 
  */
-package at.spengergasse.*;
-import javafx.animation.AnimationTimer;
+package at.spengergasse.game;
+import  javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.*;
@@ -57,11 +57,13 @@ public class Player{
   		running  = false;
   	}
     public static void handle(long now) {
+    	
         int dx = 0; 
          if (goEast)  dx += 1;
          if (goWest)  dx -= 1;
          if (running) { dx *= 3;}
            moveHeroBy(dx);
+    	
           }
         
 
@@ -71,6 +73,7 @@ public class Player{
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
         double x = cx + hero.getLayoutX() + dx;
         moveHeroTo(x);
+        
     }
 
     private static void moveHeroTo(double x) {

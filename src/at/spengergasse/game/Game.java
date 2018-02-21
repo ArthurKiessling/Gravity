@@ -14,15 +14,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-
+	static Rectangle rectangle;
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
 		Group root = new Group();
 		Scene scene = new Scene(root, 800, 800, Color.WHITE);
 		
-		Rectangle rectangle= Blocks.newBlock(100, 100);
+		rectangle= Blocks.newBlock(100, 100);
 		root.getChildren().addAll(rectangle);
-		
 		Player.move(root);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override

@@ -34,7 +34,7 @@ public class Test extends Application {
 
         Group dungeon = new Group(hero);
 
-        moveHeroTo(W / 2, H / 2);
+        moveHeroTo(W / 2, H/2);
 
         Scene scene = new Scene(dungeon, W, H, Color.FORESTGREEN);
 
@@ -42,7 +42,7 @@ public class Test extends Application {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                    case UP:    goNorth = true; break;
+                    case SPACE:    goNorth = true; break;
                     case DOWN:  goSouth = true; break;
                     case LEFT:  goWest  = true; break;
                     case RIGHT: goEast  = true; break;
@@ -55,7 +55,7 @@ public class Test extends Application {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                    case UP:    goNorth = false; break;
+                    case SPACE:    goNorth = false; break;
                     case DOWN:  goSouth = false; break;
                     case LEFT:  goWest  = false; break;
                     case RIGHT: goEast  = false; break;

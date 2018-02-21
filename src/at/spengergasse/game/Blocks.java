@@ -3,7 +3,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 public class Blocks {
 	
-	 public static void Rectangle newBlock(int x, int y) {
+	 public static Rectangle newBlock(int x, int y) {
 	 Rectangle rectangle = new Rectangle();
      rectangle.setX(600);
      rectangle.setY(0);
