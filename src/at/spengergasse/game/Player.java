@@ -59,8 +59,8 @@ public class Player{
     public static void handle(long now) {
     	
         int dx = 0; 
-         if (goEast)  dx += 1;
-         if (goWest)  dx -= 1;
+         if (goEast)  dx += 3;
+         if (goWest)  dx -= 3;
          if (running) { dx *= 3;}
            moveHeroBy(dx);
     	
@@ -78,7 +78,7 @@ public class Player{
 
     private static void moveHeroTo(double x) {
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        if (x - cx >= 0 && x + cx <= 800) {
+        if (x - cx >= 0 && x + cx <= Game.W) {
             hero.relocate(x - cx,0);
         }
     }

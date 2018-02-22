@@ -1,5 +1,7 @@
 package at.spengergasse.game;
 
+import java.util.ArrayList;
+
 import at.spengergasse.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -14,14 +16,17 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-	static Rectangle rectangle;
+	static ArrayList<Rectangle> rectangle;
+	static double W=800;
+	static double H=800;
+	static Group root ;
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
-		Group root = new Group();
-		Scene scene = new Scene(root, 800, 800, Color.WHITE);
-		
-		rectangle= Blocks.newBlock(100, 100);
-		root.getChildren().addAll(rectangle);
+		root = new Group();
+		Scene scene = new Scene(root, W, H, Color.WHITE);
+		rectangle= new ArrayList<Rectangle>();
+		Blocks.generate();
+	//	root.getChildren().addAll(rectangle);
 		Player.move(root);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -47,6 +52,7 @@ public class Game extends Application {
 			@Override
 			public void handle(long now) {
 				Player.handle(now);
+				Blocks.handle(now);
 			}
 		}.start();
 		primaryStage.setScene(scene);
