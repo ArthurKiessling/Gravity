@@ -28,9 +28,11 @@ public class Blocks {
 	    }	
 	    
 	 public static void generate() {
-			for(int idx=0, h=-120; idx<=6;idx++,h+=160){
+		 Rectangle r;
+			for(int idx=0, h=0; idx<=5;idx++,h+=200){
 				for(int x=0, w=0;x<3;x++,w+=310) {
-					Rectangle r= newBlock(180,20,w,h);
+					if(x==1)r= newBlock(180,20,w,h+80);
+					else r= newBlock(180,20,w,h);
 					Game.root.getChildren().addAll(r);
 					Game.rectangle.add(r);
 				}
@@ -38,14 +40,14 @@ public class Blocks {
 		}
 	 public static void down() {
 		 for(int idx=0; idx<Game.rectangle.size();idx++){
-			 double h= Game.rectangle.get(idx).getY()+0.5;
+			 double h= Game.rectangle.get(idx).getY()+1;
 			 Game.rectangle.get(idx).setY(h);
 		 }
 	 }
 	 public static void check() {
 		 for(int idx=0; idx<Game.rectangle.size();idx++){
 			 if(Game.rectangle.get(idx).getY()>=980) {
-				 Game.rectangle.get(idx).setY(-120);
+				 Game.rectangle.get(idx).setY(-200);
 			 }
 		 }
 	 }

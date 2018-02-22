@@ -71,12 +71,12 @@ public class Player{
     	 down=false;
      }
     public static void handle(long now) {
-        double dx = 0, dy=0, x=0; 
+        double dx = 0, dy=0, x=2;
          if (goEast)  dx += 3;
          if (goWest)  dx -= 3;
-         if(up) 	dy-=3;
+         if(up&&!checkBoundsUp()) dy-=5;
+         if(checkBoundsDown())x=0.5;
          if (running) { dx *= 2;dy*=2;}
-         if(!checkBounds()) {x=1;}
            moveHeroBy(dx,dy+x);
           }
     
@@ -85,9 +85,9 @@ public class Player{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case LEFT:  Player.leftStart(); break;
-                case RIGHT: Player.rightStart(); break;
-                case UP:  Player.jumpStart(); break;
+                case A:  Player.leftStart(); break;
+                case D: Player.rightStart(); break;
+                case W:  Player.jumpStart(); break;
                 case SHIFT: Player.runningStart( ); break;
             }
         }
@@ -96,9 +96,9 @@ public class Player{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case LEFT:  Player.leftStop(); break;
-                case RIGHT: Player.rightStop(); break;
-                case UP:  Player.jumpStop(); break;
+                case A:  Player.leftStop(); break;
+                case D: Player.rightStop(); break;
+                case W:  Player.jumpStop(); break;
                 case SHIFT: Player.runningStop(); break;
             }
         }
@@ -122,15 +122,27 @@ public class Player{
             hero.relocate(x - cx,y-cy);}
     }
     
-	 private static boolean checkBounds() {
-		 for(int idx =0; idx <Game.rectangle.size();idx++) {
-		 if (hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent())) {
-	    	   return true;      //collision
-		 } else {
+	private static boolean checkBoundsDown() {
+		int n;
+		for(int idx =0; idx <Game.rectangle.size();idx++) {
+			if(idx-4<0) {n=Game.rectangle.size()-idx-4;}else n=idx-4;
+			if (hero.getBoundsInParent().getMaxY() ==Game.rectangle.get(idx).getBoundsInParent().getMinY()&&
+					hero.getBoundsInParent().getMinX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()) {
+					
+				 return true;      //collision
+			 } else {
 			 return false;    //no collision
 		 }
-		 } return false;
-	 }
-
-
+			 
+		} return false;
+		}
+	
+	 public static boolean checkBoundsUp() {
+		 for(int idx =0; idx <Game.rectangle.size();idx++) {
+	        if(hero.getBoundsInParent().getMinY() <= Game.rectangle.get(idx).getBoundsInParent().getMaxY() &&
+	           hero.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()+1)return true;
+	        else return false;
+		 }
+		return false;}
+	 
 }
