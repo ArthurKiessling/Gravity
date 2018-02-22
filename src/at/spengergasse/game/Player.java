@@ -17,10 +17,10 @@ import javafx.stage.Stage;
 public class Player{
 
 
-    private static final String HERO_IMAGE_LOC =  "http://icons.iconarchive.com/icons/raindropmemory/legendora/64/Hero-icon.png";
+    private static final String HERO_IMAGE_LOC =  "Hero-icon.png";
 
     private static Image heroImage;
-    private static Node hero;
+    static Node hero;
 
     static boolean x;
     static boolean up;
@@ -28,7 +28,6 @@ public class Player{
     static boolean goEast;
 	static boolean goWest;
 	static boolean running;
-
     public static void move(Group root) throws Exception {
         heroImage = new Image(HERO_IMAGE_LOC);
         hero = new ImageView(heroImage);
@@ -71,19 +70,19 @@ public class Player{
     	 down=false;
      }
     public static void handle(long now) {
-        int dx = 0, dy=0; 
+        double dx = 0, dy=0, x=0; 
          if (goEast)  dx += 3;
          if (goWest)  dx -= 3;
          if(up) 	dy-=3;
-         if(down)	dy+=3;
          if (running) { dx *= 2;dy*=2;}
-           moveHeroBy(dx,dy+1);
+         if(!checkBounds()) {x=1;}
+           moveHeroBy(dx,dy+x);
     	
           }
         
 
 
-    private static void moveHeroBy(int dx,int dy) {
+    private static void moveHeroBy(double dx,double dy) {
         if (dx == 0&& dy==0) return;
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
         double x = cx + hero.getLayoutX() + dx;
@@ -100,7 +99,16 @@ public class Player{
             hero.relocate(x - cx,y-cy);
         }
     }
-
+	 private static boolean checkBounds() {
+		 for(int idx =0; idx <Game.rectangle.size();idx++) {
+		 if (hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent())) {
+	    	   return true;      //collision
+		 } else {
+			 return false;    //no collision
+		 }
+		 }
+		 return false;
+	 }
 
 
 }

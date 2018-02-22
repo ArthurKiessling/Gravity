@@ -22,12 +22,14 @@ public class Game extends Application {
 	static Group root ;
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
+		
 		root = new Group();
 		Scene scene = new Scene(root, W, H, Color.WHITE);
 		rectangle= new ArrayList<Rectangle>();
+		
 		Blocks.generate();
-	//	root.getChildren().addAll(rectangle);
 		Player.move(root);
+		
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -35,7 +37,6 @@ public class Game extends Application {
                     case LEFT:  Player.leftStart(); break;
                     case RIGHT: Player.rightStart(); break;
                     case UP:  Player.jumpStart(); break;
-                    case DOWN: Player.downStart(); break;
                     case SHIFT: Player.runningStart( ); break;
                 }
             }
@@ -47,7 +48,6 @@ public class Game extends Application {
                     case LEFT:  Player.leftStop(); break;
                     case RIGHT: Player.rightStop(); break;
                     case UP:  Player.jumpStop(); break;
-                    case DOWN: Player.downStop(); break;
                     case SHIFT: Player.runningStop(); break;
                 }
             }

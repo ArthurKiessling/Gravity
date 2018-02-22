@@ -13,13 +13,20 @@ public class Blocks {
      return rectangle;
 	 }
 
-	 private static boolean checkBounds(Rectangle block) {
-		 if (block.getBoundsInParent().intersects(block.getBoundsInParent())) {
-	    	   return true;      //collision
+	 public static void checkBounds() {
+		 for(int idx =0; idx <Game.rectangle.size();idx++) {
+		 if (Player.hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent())) {
+	    	  //return true;      //collision
+	    	  System.out.println("Collide ============= Collide");
 		 } else {
-			 return false;    //no collision
+			//return false;    //no collision
+			 System.out.println("00");
 		 }
+		 }
+		 //return false;
+		 System.out.println("00");
 	    }	
+	    
 	 public static void generate() {
 			for(int idx=0, h=-120; idx<=6;idx++,h+=160){
 				for(int x=0, w=0;x<3;x++,w+=310) {
@@ -31,7 +38,7 @@ public class Blocks {
 		}
 	 public static void down() {
 		 for(int idx=0; idx<Game.rectangle.size();idx++){
-			 double h= Game.rectangle.get(idx).getY()+1;
+			 double h= Game.rectangle.get(idx).getY()+0.5;
 			 Game.rectangle.get(idx).setY(h);
 		 }
 	 }
@@ -45,5 +52,6 @@ public class Blocks {
 	 public static void handle(long now) {
 		 down();
 		 check();
+		// checkBounds();
 	 }
    }
