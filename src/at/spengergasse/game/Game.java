@@ -34,6 +34,8 @@ public class Game extends Application {
                 switch (event.getCode()) {
                     case LEFT:  Player.leftStart(); break;
                     case RIGHT: Player.rightStart(); break;
+                    case UP:  Player.jumpStart(); break;
+                    case DOWN: Player.downStart(); break;
                     case SHIFT: Player.runningStart( ); break;
                 }
             }
@@ -44,6 +46,8 @@ public class Game extends Application {
                 switch (event.getCode()) {
                     case LEFT:  Player.leftStop(); break;
                     case RIGHT: Player.rightStop(); break;
+                    case UP:  Player.jumpStop(); break;
+                    case DOWN: Player.downStop(); break;
                     case SHIFT: Player.runningStop(); break;
                 }
             }

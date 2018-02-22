@@ -23,6 +23,8 @@ public class Player{
     private static Node hero;
 
     static boolean x;
+    static boolean up;
+    static boolean down;
     static boolean goEast;
 	static boolean goWest;
 	static boolean running;
@@ -31,7 +33,7 @@ public class Player{
         heroImage = new Image(HERO_IMAGE_LOC);
         hero = new ImageView(heroImage);
         root.getChildren().add(hero);
-        moveHeroTo(0);
+        moveHeroTo(0,0);
        
     }		
     
@@ -56,30 +58,46 @@ public class Player{
       public static void runningStop() {
   		running  = false;
   	}
+     public static void jumpStart() {
+    	 up=true;
+     }
+     public static void downStart() {
+    	 down=true;
+     }
+     public static void jumpStop() {
+    	 up=false;
+     }
+     public static void downStop() {
+    	 down=false;
+     }
     public static void handle(long now) {
-    	
-        int dx = 0; 
+        int dx = 0, dy=0; 
          if (goEast)  dx += 3;
          if (goWest)  dx -= 3;
-         if (running) { dx *= 3;}
-           moveHeroBy(dx);
+         if(up) 	dy-=3;
+         if(down)	dy+=3;
+         if (running) { dx *= 2;dy*=2;}
+           moveHeroBy(dx,dy+1);
     	
           }
         
 
 
-    private static void moveHeroBy(int dx) {
-        if (dx == 0) return;
+    private static void moveHeroBy(int dx,int dy) {
+        if (dx == 0&& dy==0) return;
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
         double x = cx + hero.getLayoutX() + dx;
-        moveHeroTo(x);
+        final double cy = hero.getBoundsInLocal().getHeight()  / 2;
+        double y = cy + hero.getLayoutY() + dy;
+        moveHeroTo(x,y);
         
     }
 
-    private static void moveHeroTo(double x) {
+    private static void moveHeroTo(double x,double y) {
         final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        if (x - cx >= 0 && x + cx <= Game.W) {
-            hero.relocate(x - cx,0);
+        final double cy = hero.getBoundsInLocal().getHeight()  / 2;
+        if (x - cx >= 0 && x + cx <= Game.W&&y- cy >= 0 && y + cy <= Game.H) {
+            hero.relocate(x - cx,y-cy);
         }
     }
 
