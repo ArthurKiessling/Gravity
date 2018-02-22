@@ -20,38 +20,18 @@ public class Game extends Application {
 	static double W=800;
 	static double H=800;
 	static Group root ;
+	static Scene scene;
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
 		
 		root = new Group();
-		Scene scene = new Scene(root, W, H, Color.WHITE);
+		scene = new Scene(root, W, H, Color.WHITE);
 		rectangle= new ArrayList<Rectangle>();
 		
 		Blocks.generate();
 		Player.move(root);
-		
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case LEFT:  Player.leftStart(); break;
-                    case RIGHT: Player.rightStart(); break;
-                    case UP:  Player.jumpStart(); break;
-                    case SHIFT: Player.runningStart( ); break;
-                }
-            }
-        });
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case LEFT:  Player.leftStop(); break;
-                    case RIGHT: Player.rightStop(); break;
-                    case UP:  Player.jumpStop(); break;
-                    case SHIFT: Player.runningStop(); break;
-                }
-            }
-        });
+		Player.Scene();
+     
 		new AnimationTimer() {
 			@Override
 			public void handle(long now) {
