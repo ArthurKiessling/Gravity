@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @author Arthur Kiessling
  *
  */
-public class Player1{
+public class Player{
 
 
     private static final String HERO_IMAGE_LOC =  "Hero-icon.png";
@@ -85,10 +85,10 @@ public class Player1{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case A:  Player1.leftStart(); break;
-                case D: Player1.rightStart(); break;
-                case W:  Player1.jumpStart(); break;
-                case SHIFT: Player1.runningStart( ); break;
+                case A:  Player.leftStart(); break;
+                case D: Player.rightStart(); break;
+                case W:  Player.jumpStart(); break;
+                case SHIFT: Player.runningStart( ); break;
             }
         }
     });
@@ -96,10 +96,10 @@ public class Player1{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case A:  Player1.leftStop(); break;
-                case D: Player1.rightStop(); break;
-                case W:  Player1.jumpStop(); break;
-                case SHIFT: Player1.runningStop(); break;
+                case A:  Player.leftStop(); break;
+                case D: Player.rightStop(); break;
+                case W:  Player.jumpStop(); break;
+                case SHIFT: Player.runningStop(); break;
             }
         }
     });

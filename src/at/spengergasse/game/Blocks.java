@@ -15,7 +15,7 @@ public class Blocks {
 
 	 public static void checkBounds() {
 		 for(int idx =0; idx <Game.rectangle.size();idx++) {
-		 if (Player1.hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent())) {
+		 if (Player.hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent())) {
 	    	  //return true;      //collision
 	    	  System.out.println("Collide ============= Collide");
 		 } else {

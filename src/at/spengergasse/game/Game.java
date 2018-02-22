@@ -29,13 +29,13 @@ public class Game extends Application {
 		rectangle= new ArrayList<Rectangle>();
 		
 		Blocks.generate();
-		Player1.move(root);
-		Player1.Scene();
+		Player.move(root);
+		Player.Scene();
      
 		new AnimationTimer() {
 			@Override
 			public void handle(long now) {
-				Player1.handle(now);
+				Player.handle(now);
 				Blocks.handle(now);
 			}
 		}.start();
