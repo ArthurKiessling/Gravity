@@ -123,25 +123,22 @@ public class Player{
     }
     
 	private static boolean checkBoundsDown() {
-	//	int n;
-		for(int idx =0; idx <Game.rectangle.size();idx++) {
-			//if(idx-4<0) {n=Game.rectangle.size()-idx-4;}else n=idx-4;
-			if (hero.getBoundsInParent().getMaxY() <=Game.rectangle.get(idx).getBoundsInParent().getMinY()&&
-				hero.getBoundsInParent().getMinY() >=(Game.rectangle.get(idx).getBoundsInParent().getMinY()-hero.getBoundsInParent().getMinY()-1)&&
-				hero.getBoundsInParent().getMinX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()) {
+		for(int idx=0; idx <Game.rectangle.size();idx++) {
+			if (hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY()-1, 180, 20)&&
+				hero.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()) {
 					
 				 return true;      //collision
 			 } else {
-			 return false;    //no collision
-		 }
-			 
-		} return false;
-		}
+				 return false;    //no collision
+			 	}	 
+		} 
+		return false;
+	}
 	
 	 public static boolean checkBoundsUp() {
 		 for(int idx =0; idx <Game.rectangle.size();idx++) {
-	        if(hero.getBoundsInParent().getMinY() <= Game.rectangle.get(idx).getBoundsInParent().getMaxY() &&
-	           hero.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()+1)return true;
+	        if(hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY()-1, 180, 20)&&
+	           hero.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX())return true;
 	        else return false;
 		 }
 		return false;}
