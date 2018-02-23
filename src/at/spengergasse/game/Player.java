@@ -15,14 +15,11 @@ import javafx.stage.Stage;
  *
  */
 public class Player{
+	private static final String PLAYER_IMAGE_LOC ="Hero-icon.png";
 
+    private static Image playerImage;
+    static Node player;
 
-    private static final String HERO_IMAGE_LOC =  "Hero-icon.png";
-
-    private static Image heroImage;
-    static Node hero;
-
-    static boolean x;
     static boolean up;
     static boolean down;
     static boolean goEast;
@@ -30,9 +27,9 @@ public class Player{
 	static boolean running;
 	
     public static void move(Group root) throws Exception {
-        heroImage = new Image(HERO_IMAGE_LOC);
-        hero = new ImageView(heroImage);
-        root.getChildren().add(hero);
+        playerImage = new Image(PLAYER_IMAGE_LOC);
+        player = new ImageView(playerImage);
+        root.getChildren().add(player);
         moveHeroTo(0,0);
        
     }		
@@ -108,38 +105,35 @@ public class Player{
 
     private static void moveHeroBy(double dx,double dy) {
         if (dx == 0&& dy==0) return;
-        final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        double x = cx + hero.getLayoutX() + dx;
-        final double cy = hero.getBoundsInLocal().getHeight()  / 2;
-        double y = cy + hero.getLayoutY() + dy;
+        final double cx = player.getBoundsInLocal().getWidth()  / 2;
+        double x = cx + player.getLayoutX() + dx;
+        final double cy = player.getBoundsInLocal().getHeight()  / 2;
+        double y = cy + player.getLayoutY() + dy;
         moveHeroTo(x,y);
     }
 
     private static void moveHeroTo(double x,double y) {
-        final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        final double cy = hero.getBoundsInLocal().getHeight()  / 2;
+        final double cx = player.getBoundsInLocal().getWidth()  / 2;
+        final double cy = player.getBoundsInLocal().getHeight()  / 2;
         if (x - cx >= 0 && x + cx <= Game.W&&y- cy >= 0 && y + cy <= Game.H) {
-            hero.relocate(x - cx,y-cy);}
+            player.relocate(x - cx,y-cy);}
     }
     
 	private static boolean checkBoundsDown() {
 		for(int idx=0; idx <Game.rectangle.size();idx++) {
-			if (hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY()-1, 180, 20)&&
-				hero.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()) {
-					
+			if (player.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
+				player.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()) {
 				 return true;      //collision
-			 } else {
-				 return false;    //no collision
-			 	}	 
+			 } 
 		} 
 		return false;
 	}
 	
 	 public static boolean checkBoundsUp() {
 		 for(int idx =0; idx <Game.rectangle.size();idx++) {
-	        if(hero.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY()-1, 180, 20)&&
-	           hero.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX())return true;
-	        else return false;
+	        if(player.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY()+1, 180, 20)&&
+	            player.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX())
+	          return true;
 		 }
 		return false;}
 	 
