@@ -68,10 +68,10 @@ public class Player{
     	 down=false;
      }
     public static void handle(long now) {
-        double dx = 0, dy=0, x=2;
+        double dx = 0, dy=0, x=4;
          if (goEast)  dx += 3;
          if (goWest)  dx -= 3;
-         if(up&&!checkBoundsUp()) dy-=5;
+         if(up/**&&!checkBoundsUp()**/) dy-=8;
          if(checkBoundsDown())x=1;
          if (running) { dx *= 2;dy*=2;}
            moveHeroBy(dx,dy+x);
@@ -120,9 +120,10 @@ public class Player{
     }
     
 	private static boolean checkBoundsDown() {
-		for(int idx=0; idx <Game.rectangle.size();idx++) {
-			if (player.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
-				player.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX()) {
+		for(int idx=0; idx <Game.block.size();idx++) {
+			if (player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent().getMinX() , Game.block.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
+				player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMaxX()&&
+			    player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX()) {
 				 return true;      //collision
 			 } 
 		} 
@@ -130,11 +131,13 @@ public class Player{
 	}
 	
 	 public static boolean checkBoundsUp() {
-		 for(int idx =0; idx <Game.rectangle.size();idx++) {
-	        if(player.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent().getMinX() , Game.rectangle.get(idx).getBoundsInParent().getMinY()+1, 180, 20)&&
-	            player.getBoundsInParent().getMaxX() <= Game.rectangle.get(idx).getBoundsInParent().getMaxX())
+		 for(int idx =0; idx <Game.block.size();idx++) {
+	        if(player.getBoundsInParent().getMinY()< Game.block.get(idx).getBoundsInParent().getMaxY()&&
+	            player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMaxX()&&
+	            player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX())
 	          return true;
 		 }
-		return false;}
+		return false;
+	}
 	 
 }

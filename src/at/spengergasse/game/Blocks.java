@@ -14,8 +14,8 @@ public class Blocks {
 	 }
 
 	 public static void checkBounds() {
-		 for(int idx =0; idx <Game.rectangle.size();idx++) {
-		 if (Player.player.getBoundsInParent().intersects(Game.rectangle.get(idx).getBoundsInParent())) {
+		 for(int idx =0; idx <Game.block.size();idx++) {
+		 if (Player.player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent())) {
 	    	  //return true;      //collision
 	    	  System.out.println("Collide ============= Collide");
 		 } else {
@@ -34,20 +34,20 @@ public class Blocks {
 					if(x==1)r= newBlock(180,20,w,h+80);
 					else r= newBlock(180,20,w,h);
 					Game.root.getChildren().addAll(r);
-					Game.rectangle.add(r);
+					Game.block.add(r);
 				}
 			}
 		}
 	 public static void down() {
-		 for(int idx=0; idx<Game.rectangle.size();idx++){
-			 double h= Game.rectangle.get(idx).getY()+1;
-			 Game.rectangle.get(idx).setY(h);
+		 for(int idx=0; idx<Game.block.size();idx++){
+			 double h= Game.block.get(idx).getY()+1;
+			 Game.block.get(idx).setY(h);
 		 }
 	 }
 	 public static void check() {
-		 for(int idx=0; idx<Game.rectangle.size();idx++){
-			 if(Game.rectangle.get(idx).getY()>=980) {
-				 Game.rectangle.get(idx).setY(-200);
+		 for(int idx=0; idx<Game.block.size();idx++){
+			 if(Game.block.get(idx).getY()>=980) {
+				 Game.block.get(idx).setY(-200);
 			 }
 		 }
 	 }

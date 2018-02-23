@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -16,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-	static ArrayList<Rectangle> rectangle;
+	static ArrayList<Rectangle> block;
 	static double W=800;
 	static double H=800;
 	static Group root ;
@@ -26,7 +27,7 @@ public class Game extends Application {
 		
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
-		rectangle= new ArrayList<Rectangle>();
+		block= new ArrayList<Rectangle>();
 		
 		Blocks.generate();
 		Player.move(root);
