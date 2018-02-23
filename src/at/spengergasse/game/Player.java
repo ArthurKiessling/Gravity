@@ -31,7 +31,7 @@ public class Player{
         player = new ImageView(playerImage);
         root.getChildren().add(player);
         moveHeroTo(0,0);
-       
+        Game.setP1Life(5);
     }		
     
     public static void rightStart() {
@@ -71,9 +71,10 @@ public class Player{
         double dx = 0, dy=0, x=4;
          if (goEast)  dx += 3;
          if (goWest)  dx -= 3;
-         if(up/**&&!checkBoundsUp()**/) dy-=8;
+         if(up&&!checkBoundsUp()) dy-=10;
          if(checkBoundsDown())x=1;
-         if (running) { dx *= 2;dy*=2;}
+         if (running) { dx *= 2;}
+         if(player.getBoundsInParent().getMaxY()>=Game.H-4) {player.relocate(190,0);if(Game.p1Life>1) {Game.setP1Life(Game.p1Life-1);}else{Game.setWinner("Player2");System.out.println("Winner : "+Game.Winner);}}
            moveHeroBy(dx,dy+x);
           }
     
@@ -122,6 +123,7 @@ public class Player{
 	private static boolean checkBoundsDown() {
 		for(int idx=0; idx <Game.block.size();idx++) {
 			if (player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent().getMinX() , Game.block.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
+				player.getBoundsInParent().getMaxY() < Game.block.get(idx).getBoundsInParent().getMaxY()&&
 				player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMaxX()&&
 			    player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX()) {
 				 return true;      //collision
@@ -132,7 +134,8 @@ public class Player{
 	
 	 public static boolean checkBoundsUp() {
 		 for(int idx =0; idx <Game.block.size();idx++) {
-	        if(player.getBoundsInParent().getMinY()< Game.block.get(idx).getBoundsInParent().getMaxY()&&
+	        if(player.getBoundsInParent().getMinY()>= Game.block.get(idx).getBoundsInParent().getMaxY()&&
+	        	player.getBoundsInParent().getMinY()<= Game.block.get(idx).getBoundsInParent().getMaxY()+5&&
 	            player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMaxX()&&
 	            player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX())
 	          return true;

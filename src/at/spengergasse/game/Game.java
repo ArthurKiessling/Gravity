@@ -22,6 +22,9 @@ public class Game extends Application {
 	static double H=800;
 	static Group root ;
 	static Scene scene;
+	public static int p1Life;
+	public static int p2Life;
+	public static String Winner;
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
 		
@@ -48,4 +51,47 @@ public class Game extends Application {
 		launch(args);
 
 	}
+
+	/**
+	 * @return the p1Life
+	 */
+	public static int getP1Life() {
+		return p1Life;
+	}
+
+	/**
+	 * @param p1Life the p1Life to set
+	 */
+	public static void setP1Life(int p1Life) {
+		Game.p1Life = p1Life;
+	}
+
+	/**
+	 * @return the p2Life
+	 */
+	public static int getP2Life() {
+		return p2Life;
+	}
+
+	/**
+	 * @param p2Life the p2Life to set
+	 */
+	public static void setP2Life(int p2Life) {
+		Game.p2Life = p2Life;
+	}
+
+	/**
+	 * @return the winner
+	 */
+	public static String getWinner() {
+		return Winner;
+	}
+
+	/**
+	 * @param winner the winner to set
+	 */
+	public static void setWinner(String winner) {
+		Winner = winner;
+	}
+	
 }
