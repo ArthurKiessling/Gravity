@@ -51,7 +51,7 @@ public class Physiks {
 		 for(int idx =0; idx <Game.block.size();idx++) {
 	        if(player.getBoundsInParent().getMaxY()<= Game.block.get(idx).getBoundsInParent().getMaxY()+player.getBoundsInParent().getHeight()&&
 	        	player.getBoundsInParent().getMinY()>= Game.block.get(idx).getBoundsInParent().getMinY()-player.getBoundsInParent().getHeight()&&
-	        	player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent().getMinX() , Game.block.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
+	        	player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent().getMinX() ,Game.block.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
 	            player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMinX()&&
 	            player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX()-player.getBoundsInParent().getWidth())
 	          return true;

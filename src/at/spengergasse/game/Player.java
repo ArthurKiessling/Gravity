@@ -25,7 +25,8 @@ public class Player{
    private static boolean goEast;
    private	static boolean goWest;
    private static boolean running;
-   private static int jump=0;
+   private static int jump;
+   private static float multi=1;
 	
     public static void move(Group root) throws Exception {
         playerImage = new Image(PLAYER_IMAGE_LOC);
@@ -68,14 +69,15 @@ public class Player{
     	 down=false;
      }
     public static void handle(long now) {
-        double dx = 0, dy=0, x=4;
+        float dx = 0, dy=0, x=4;
         if(Physiks.checkBoundsUp(player))jump=0;
-        if(jump>0&&jump<45&&!Physiks.checkBoundsUp(player)) {dy-=8;jump++;	if(jump==44) {jump=0;}  }
+        if(jump>0&&jump<70&&!Physiks.checkBoundsUp(player)) {dy-=10*multi;jump++;multi-=0.01;if(jump==69) {jump=0;multi=1;}  }
          if (goEast&&!Physiks.checkBoundsRight(player))  dx += 3;
          if (goWest&&!Physiks.checkBoundsLeft(player))  dx -= 3;
-         if(up&&jump==0&&Physiks.checkBoundsDown(player)) {dy-=8;jump++;}
-         if(Physiks.checkBoundsDown(player)) {x=0.6;}
+         if(up&&jump==0&&Physiks.checkBoundsDown(player)) {dy-=10;jump++;}
+         if(Physiks.checkBoundsDown(player)) {x=(float) 0.6;}
          if (running) { dx *= 2;}
+         if(player.getBoundsInParent().getMinY()>Game.H-player.getBoundsInParent().getHeight()-4) {player.relocate(200, 0);}
            Physiks.moveHeroBy(dx,dy+x,player);
           }
     
