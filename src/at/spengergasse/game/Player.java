@@ -40,13 +40,13 @@ public class Player{
     public static boolean leftStart() {
 		return goWest  = true;
 	}
+    public static void leftStop() {
+		goWest  = false;
+	}
     public static void rightStop() {
 		goEast  = false;
 	}
 
-    public static void leftStop() {
-		goWest  = false;
-	}
     public static void runningStart() {
   		running = true;
   	}
