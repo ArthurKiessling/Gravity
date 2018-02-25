@@ -25,6 +25,7 @@ public class Player{
    private static boolean goEast;
    private	static boolean goWest;
    private static boolean running;
+   private static int jump=0;
 	
     public static void move(Group root) throws Exception {
         playerImage = new Image(PLAYER_IMAGE_LOC);
@@ -70,8 +71,8 @@ public class Player{
         double dx = 0, dy=0, x=4;
          if (goEast&&!Physiks.checkBoundsRight(player))  dx += 3;
          if (goWest&&!Physiks.checkBoundsLeft(player))  dx -= 3;
-         if(up&&!Physiks.checkBoundsUp(player)) dy-=10;
-         if(Physiks.checkBoundsDown(player))x=1;
+         if(up&&!Physiks.checkBoundsUp(player)&&jump<45) {dy-=8;jump++;}
+         if(Physiks.checkBoundsDown(player)) {x=0.6;jump=0;}
          if (running) { dx *= 2;}
            Physiks.moveHeroBy(dx,dy+x,player);
           }
@@ -81,8 +82,8 @@ public class Player{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case A:  Player.leftStart(); break;
-                case D: Player.rightStart(); break;
+                case LEFT:  Player.leftStart(); break;
+                case RIGHT: Player.rightStart(); break;
                 case SPACE:  Player.jumpStart(); break;
                 case SHIFT: Player.runningStart( ); break;
             }
@@ -92,8 +93,8 @@ public class Player{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case A:  Player.leftStop(); break;
-                case D: Player.rightStop(); break;
+                case LEFT:  Player.leftStop(); break;
+                case RIGHT: Player.rightStop(); break;
                 case SPACE:  Player.jumpStop(); break;
                 case SHIFT: Player.runningStop(); break;
             }

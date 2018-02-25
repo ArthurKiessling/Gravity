@@ -37,7 +37,7 @@ public class Blocks {
 	 }
 	 public static void down() {
 		 for(int idx=0; idx<Game.block.size();idx++){
-			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+1;
+			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+0.6;
 			 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),h);
 		 }
 	 }
