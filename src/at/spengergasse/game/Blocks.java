@@ -6,11 +6,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 public class Blocks {
-	private static final String BACKGROUND_IMAGE_LOC ="Background.png";
+	private static final String BACKGROUND_IMAGE_LOC ="img/Background.png";
 
     private static Image backgroundImage;
     public static Node background;
-	private static final String BLOCK_IMAGE_LOC ="block.png";
+	private static final String BLOCK_IMAGE_LOC ="img/block.png";
 	
 	 public static Node newBlock(int x, int y) {
 	 Image blockImg= new Image(BLOCK_IMAGE_LOC);
