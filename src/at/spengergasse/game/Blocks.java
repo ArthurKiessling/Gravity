@@ -27,17 +27,18 @@ public class Blocks {
 				}
 			}
 		}
-	 public static void down() {
-		 for(int idx=0; idx<Game.block.size();idx++){
-			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+1;
-			 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),h);
-		 }
-	 }
+
 	 public static void check() {
 		 for(int idx=0; idx<Game.block.size();idx++){
 			 if(Game.block.get(idx).getBoundsInParent().getMinY()>=980) {
 				 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),-200);
 			 }
+		 }
+	 }
+	 public static void down() {
+		 for(int idx=0; idx<Game.block.size();idx++){
+			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+1;
+			 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),h);
 		 }
 	 }
 	 public static void handle(long now) {
