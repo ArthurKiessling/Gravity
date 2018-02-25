@@ -69,10 +69,12 @@ public class Player{
      }
     public static void handle(long now) {
         double dx = 0, dy=0, x=4;
+        if(Physiks.checkBoundsUp(player))jump=0;
+        if(jump>0&&jump<45&&!Physiks.checkBoundsUp(player)) {dy-=8;jump++;	if(jump==44) {jump=0;}  }
          if (goEast&&!Physiks.checkBoundsRight(player))  dx += 3;
          if (goWest&&!Physiks.checkBoundsLeft(player))  dx -= 3;
-         if(up&&!Physiks.checkBoundsUp(player)&&jump<45) {dy-=8;jump++;}
-         if(Physiks.checkBoundsDown(player)) {x=0.6;jump=0;}
+         if(up&&jump==0&&Physiks.checkBoundsDown(player)) {dy-=8;jump++;}
+         if(Physiks.checkBoundsDown(player)) {x=0.6;}
          if (running) { dx *= 2;}
            Physiks.moveHeroBy(dx,dy+x,player);
           }
