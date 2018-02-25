@@ -1,11 +1,15 @@
 package at.spengergasse.game;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 public class Blocks {
-	
+	private static final String BACKGROUND_IMAGE_LOC ="Background.png";
+
+    private static Image backgroundImage;
+    public static Node background;
 	private static final String BLOCK_IMAGE_LOC ="block.png";
 	
 	 public static Node newBlock(int x, int y) {
@@ -46,4 +50,10 @@ public class Blocks {
 		 check();
 		// checkBounds();
 	 }
+	 static void Background(Group root) {
+			backgroundImage = new Image(BACKGROUND_IMAGE_LOC);
+	        background = new ImageView(backgroundImage);
+			root.getChildren().addAll(background);
+			background.relocate(0, 0);
+		}
    }

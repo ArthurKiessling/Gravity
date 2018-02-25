@@ -2,6 +2,8 @@ package at.spengergasse.game;
 
 import java.util.ArrayList;
 
+import com.sun.prism.Image;
+
 import at.spengergasse.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -10,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -22,13 +25,15 @@ public class Game extends Application {
 	static double H=800;
 	static Group root ;
 	static Scene scene;
+
+
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
 		block= new ArrayList<Node>();
+		Blocks.Background(root);
 		Blocks.generate();
-		
 		Player.Scene();
 		Player.move(root);
 		new AnimationTimer() {
@@ -46,4 +51,5 @@ public class Game extends Application {
 		launch(args);
 
 	}
+	
 }
