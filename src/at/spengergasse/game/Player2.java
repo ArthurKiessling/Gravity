@@ -15,63 +15,63 @@ import javafx.stage.Stage;
  *
  */
 public class Player2{
-	private static final String PLAYER2_IMAGE_LOC ="Hero-icon.png";
+	private static final String PLAYER_IMAGE_LOC ="img/Hero-icon.png";
+    private static Image playerImage;
+    public static Node player2;
 
-    private static Image playerImage2;
-    static Node player2;
-
-    private static boolean up2;
-    private static boolean down2;
-    private static boolean goEast2;
-	private static boolean goWest2;
-	private static boolean running2;
+   private static boolean up;
+   private static boolean goEast;
+   private	static boolean goWest;
+   private static boolean running;
+   private static int jump;
+   private static float multi=1;
+   public static int life=5;
 	
-    public static void move() throws Exception {
-        playerImage2 = new Image(PLAYER2_IMAGE_LOC);
-        player2 = new ImageView(playerImage2);
+    public static void move(Group root) throws Exception {
+        playerImage = new Image(PLAYER_IMAGE_LOC);
+        player2 = new ImageView(playerImage);
         Physiks.moveHeroTo(0,0,player2);
+        Scene();
+		root.getChildren().addAll(player2);
     }		
     
-    public static void rightStart2() {
-		goEast2  = true;
+    public static void rightStart() {
+		goEast  = true;
 	}
 
-    public static boolean leftStart2() {
-		return goWest2  = true;
+    public static boolean leftStart() {
+		return goWest  = true;
 	}
-    public static void rightStop2() {
-		goEast2  = false;
+    public static void leftStop() {
+		goWest  = false;
+	}
+    public static void rightStop() {
+		goEast  = false;
 	}
 
-    public static void leftStop2() {
-		goWest2  = false;
-	}
-    public static void runningStart2() {
-  		running2 = true;
+    public static void runningStart() {
+  		running = true;
   	}
 
-      public static void runningStop2() {
-  		running2  = false;
+      public static void runningStop() {
+  		running  = false;
   	}
-     public static void jumpStart2() {
-    	 up2=true;
+     public static void jumpStart() {
+    	 up=true;
      }
-     public static void downStart2() {
-    	 down2=true;
-     }
-     public static void jumpStop2() {
-    	 up2=false;
-     }
-     public static void downStop2() {
-    	 down2=false;
+     public static void jumpStop() {
+    	 up=false;
      }
     public static void handle(long now) {
-        double dx = 0, dy=0, x=4;
-         if (goEast2&&!Physiks.checkBoundsRight(player2))  dx += 3;
-         if (goWest2&&!Physiks.checkBoundsLeft(player2))  dx -= 3;
-         if(up2&&!Physiks.checkBoundsUp(player2)) dy-=10;
-         if(Physiks.checkBoundsDown(player2))x=1;
-         if (running2) { dx *= 2;}
+        float dx = 0, dy=0, x=4;
+        if(Physiks.checkBoundsUp(player2))jump=0;
+        if(jump>0&&jump<80&&!Physiks.checkBoundsUp(player2)) {dy-=9*multi;jump++;multi-=0.012;if(jump==72) {jump=0;multi=1;}  }
+         if (goEast&&!Physiks.checkBoundsRight(player2))  dx += 3;
+         if (goWest&&!Physiks.checkBoundsLeft(player2))  dx -= 3;
+         if(up&&jump==0&&Physiks.checkBoundsDown(player2)) {dy-=9;jump++;}
+         if(Physiks.checkBoundsDown(player2)) {x=(float) 0.6;if(multi<0.9) {multi=1;}}
+         if (running) { dx *= 2;}
+         if(player2.getBoundsInParent().getMinY()>Game.H-player2.getBoundsInParent().getHeight()-4) {player2.relocate(200, 0); life--;}
            Physiks.moveHeroBy(dx,dy+x,player2);
           }
     
@@ -80,10 +80,10 @@ public class Player2{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case LEFT:  Player2.leftStart2(); break;
-                case RIGHT: Player2.rightStart2(); break;
-                case UP:  Player2.jumpStart2(); break;
-                case ENTER: Player2.runningStart2( ); break;
+                case A:  Player2.leftStart(); break;
+                case D: Player2.rightStart(); break;
+                case W:  Player2.jumpStart(); break;
+                case Q: Player2.runningStart( ); break;
             }
         }
     });
@@ -91,10 +91,10 @@ public class Player2{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case LEFT:  Player2.leftStop2(); break;
-                case RIGHT: Player2.rightStop2(); break;
-                case UP:  Player2.jumpStop2(); break;
-                case ENTER: Player2.runningStop2(); break;
+                case A:  Player2.leftStop(); break;
+                case D: Player2.rightStop(); break;
+                case W:  Player2.jumpStop(); break;
+                case Q: Player2.runningStop(); break;
             }
         }
     });

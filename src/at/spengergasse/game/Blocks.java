@@ -11,6 +11,7 @@ public class Blocks {
     private static Image backgroundImage;
     public static Node background;
 	private static final String BLOCK_IMAGE_LOC ="img/block.png";
+
 	
 	 public static Node newBlock(int x, int y) {
 	 Image blockImg= new Image(BLOCK_IMAGE_LOC);
@@ -50,10 +51,11 @@ public class Blocks {
 		 check();
 		// checkBounds();
 	 }
-	 static void Background(Group root) {
+	 public static void Background(Group root) {
 			backgroundImage = new Image(BACKGROUND_IMAGE_LOC);
 	        background = new ImageView(backgroundImage);
 			root.getChildren().addAll(background);
 			background.relocate(0, 0);
 		}
+
    }
