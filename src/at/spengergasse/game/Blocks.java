@@ -11,7 +11,7 @@ public class Blocks {
     public static Node background;
     
 	private static final String BLOCK_IMAGE_LOC ="img/block.png";
-	private static Node[] lifes;
+	public static int[] lifes;
 	
 	 public static Node newBlock(int x, int y) {
 	 Image blockImg= new Image(BLOCK_IMAGE_LOC);
@@ -58,27 +58,26 @@ public class Blocks {
 			background.relocate(0, 0);
 		}
 	 public static void heart(Group root) {
-		 lifes = new Node[10];
+		 lifes = new int[10];
 		 Node balken = new Rectangle(800,40,Color.GREY);
 		 root.getChildren().add(balken);
 		 balken.relocate(0, 0);
 		 for(int i = 0; i< 5;i++) {
 			 Image heartimage = new Image("img/heart.png",32,32,false,false);
 			 Node heart = new ImageView(heartimage);
+			 lifes[i]=root.getChildren().size();
 			 root.getChildren().add(heart);
-			 lifes[i]=heart;
 			 heart.relocate(i*30, 5);
 			 
 		 }
 		 for(int i = 0; i< 5;i++) {
 			 Image heartimage = new Image("img/heart.png",32,32,false,false);
 			 Node heart = new ImageView(heartimage);
+			 lifes[5+i]=root.getChildren().size();
 			 root.getChildren().add(heart);
-			 lifes[5+i]=heart;
 			 heart.relocate(650+i*30, 5);
 		 }
-
-			
-		
+	}
 	 
-}}
+	
+}
