@@ -58,4 +58,4 @@ public class Blocks {
 			background.relocate(0, 0);
 		}
 
-   }
+}
