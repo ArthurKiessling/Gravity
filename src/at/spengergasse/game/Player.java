@@ -19,50 +19,49 @@ public class Player{
     private static Image playerImage;
     public static Node player;
 
-   private static boolean up;
-   private static boolean goEast;
-   private	static boolean goWest;
-   private static boolean running;
-   private static int jump;
-   private static float multi=1;
-   public static int life=5;
+   private  boolean up;
+   private boolean goEast;
+   private	 boolean goWest;
+   private boolean running;
+   private int jump;
+   private  float multi=1;
+   public int life=5;
 	
-    public static void move(Group root) throws Exception {
+    public  void move(Group root) throws Exception {
         playerImage = new Image(PLAYER_IMAGE_LOC);
         player = new ImageView(playerImage);
         Physiks.moveHeroTo(0,0,player);
-		Scene();
         root.getChildren().addAll(player);
     }		
     
-    public static void rightStart() {
+    public void rightStart() {
 		goEast  = true;
 	}
 
-    public static boolean leftStart() {
+    public boolean leftStart() {
 		return goWest  = true;
 	}
-    public static void leftStop() {
+    public  void leftStop() {
 		goWest  = false;
 	}
-    public static void rightStop() {
+    public void rightStop() {
 		goEast  = false;
 	}
 
-    public static void runningStart() {
+    public  void runningStart() {
   		running = true;
   	}
 
-      public static void runningStop() {
+      public  void runningStop() {
   		running  = false;
   	}
-     public static void jumpStart() {
+     public  void jumpStart() {
     	 up=true;
      }
-     public static void jumpStop() {
+     public void jumpStop() {
     	 up=false;
      }
-    public static void handle(long now) {
+    public void handle(long now) {
         float dx = 0, dy=0, x=4;
         if(Physiks.checkBoundsUp(player))jump=0;
         if(jump>0&&jump<80&&!Physiks.checkBoundsUp(player)) {dy-=9*multi;jump++;multi-=0.012;if(jump==72) {jump=0;multi=1;}  }
@@ -75,15 +74,15 @@ public class Player{
            Physiks.moveHeroBy(dx,dy+x,player);
           }
     
-    public static void Scene() {
+    public void Scene() {
     Game.scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case LEFT:  Player.leftStart(); break;
-                case RIGHT: Player.rightStart(); break;
-                case SPACE:  Player.jumpStart(); break;
-                case SHIFT: Player.runningStart( ); break;
+                case LEFT:  leftStart(); break;
+                case RIGHT: rightStart(); break;
+                case SPACE: jumpStart(); break;
+                case SHIFT: runningStart( ); break;
             }
         }
     });
@@ -91,10 +90,10 @@ public class Player{
         @Override
         public void handle(KeyEvent event) {
             switch (event.getCode()) {
-                case LEFT:  Player.leftStop(); break;
-                case RIGHT: Player.rightStop(); break;
-                case SPACE:  Player.jumpStop(); break;
-                case SHIFT: Player.runningStop(); break;
+                case LEFT:  leftStop(); break;
+                case RIGHT: rightStop(); break;
+                case SPACE: jumpStop(); break;
+                case SHIFT: runningStop(); break;
             }
         }
     });

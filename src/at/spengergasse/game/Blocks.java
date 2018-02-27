@@ -6,10 +6,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 public class Blocks {
-	private static final String BACKGROUND_IMAGE_LOC ="img/Background.png";
-
+	private static String BACKGROUND_IMAGE_LOC ="img/Background.png";
     private static Image backgroundImage;
     public static Node background;
+    
 	private static final String BLOCK_IMAGE_LOC ="img/block.png";
 
 	

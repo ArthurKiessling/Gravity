@@ -25,26 +25,30 @@ public class Game extends Application {
 	static double H=800;
 	static Group root ;
 	static Scene scene;
-
+	private Player player;
+	private Player2 player2;
 
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
 		block= new ArrayList<Node>();
-		
+		player= new Player();
+		player2= new Player2();
 		Blocks.Background(root);
 		Blocks.generate();
+		player.Scene();
+		player2.Scene();
+		player.move(root);
+		player2.move(root);
 		
-		Player2.move(root);
-		Player.move(root);
 		new AnimationTimer() {
 			@Override
 			public void handle(long now){
-				Player.handle(now);
-				Player2.handle(now);
+				player.handle(now);
+				player2.handle(now);
 				Blocks.handle(now);
-				if(Player.life==0||Player2.life==0)primaryStage.close();
+				if(player.life==0||player2.life==0)primaryStage.close();
 			}
 		}.start();
 		primaryStage.setScene(scene);
@@ -53,8 +57,6 @@ public class Game extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-
-
 	}
 	
 }
