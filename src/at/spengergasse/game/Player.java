@@ -72,7 +72,7 @@ public class Player{
          if(up&&jump==0&&Physiks.checkBoundsDown(player)) {dy-=9;jump++;}
          if(Physiks.checkBoundsDown(player)) {x=(float) 0.6;if(multi<0.9) {multi=1;}}
          if (running) { dx *= 2;}
-         if(player.getBoundsInParent().getMinY()>Game.H-player.getBoundsInParent().getHeight()-4) {player.relocate(200, 0); life--;}
+         if(player.getBoundsInParent().getMinY()>Game.H-player.getBoundsInParent().getHeight()-4) {player.relocate(200, 46); life--;}
            Physiks.moveHeroBy(dx,dy+x,player);
           }
     
