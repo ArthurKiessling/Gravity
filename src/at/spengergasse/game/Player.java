@@ -31,7 +31,7 @@ public class Player{
     public  void move(Group root) throws Exception {
         playerImage = new Image(PLAYER_IMAGE_LOC);
         player = new ImageView(playerImage);
-        Physiks.moveHeroTo(0,0,player);
+        player.relocate(0, 50);
         root.getChildren().addAll(player);
     }		
     

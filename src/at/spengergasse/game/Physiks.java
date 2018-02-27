@@ -72,7 +72,7 @@ public class Physiks {
 	    public static void moveHeroTo(double x,double y, Node player) {
 	        final double cx = player.getBoundsInLocal().getWidth()  / 2;
 	        final double cy = player.getBoundsInLocal().getHeight()  / 2;
-	        if (x - cx >= 0 && x + cx <= Game.W&&y- cy >= 0 && y + cy <= Game.H) {
+	        if (x - cx >= 0 && x + cx <= Game.W&&y- cy >= 40 && y + cy <= Game.H) {
 	            player.relocate(x - cx,y-cy);}
 	    }
 	    

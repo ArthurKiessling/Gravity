@@ -58,9 +58,11 @@ public class Blocks {
 			background.relocate(0, 0);
 		}
 	 public static void heart(Group root) {
-			Image heartImage= new Image("img/heart.png",32,32,false,false);
-	        Node heart= new ImageView(heartImage);
-			root.getChildren().addAll(heart);
-			heart.relocate(200, 0);
-		}
-}
+		 Node balken = new Rectangle(800,40,Color.GREY);
+		 root.getChildren().add(balken);
+		 balken.relocate(0, 0);
+
+			
+		
+	 
+}}
