@@ -40,8 +40,8 @@ public class Game extends Application {
 		Blocks.generate();
 		player.Scene(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, KeyCode.SHIFT);
 		player2.Scene(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.Q);
-		player.move(root);
-		player2.move(root);
+		player.move(root,0);
+		player2.move(root,730);
 		Blocks.heart(root);
 		
 		new AnimationTimer() {

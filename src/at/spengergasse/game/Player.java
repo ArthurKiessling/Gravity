@@ -28,11 +28,12 @@ public class Player{
    private float multi=1;
    public int life=5;
 	
-    public  void move(Group root) throws Exception {
+    public  void move(Group root,int x) throws Exception {
         playerImage = new Image(PLAYER_IMAGE_LOC);
         player = new ImageView(playerImage);
-        player.relocate(0, 50);
+        player.relocate(x, 50);
         root.getChildren().addAll(player);
+        
     }		
     
     public void rightStart() {
