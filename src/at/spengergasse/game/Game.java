@@ -13,6 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -37,8 +38,8 @@ public class Game extends Application {
 		player2= new Player();
 		Blocks.Background(root);
 		Blocks.generate();
-		player.Scene();
-		player2.Scene();
+		player.Scene(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, KeyCode.SHIFT);
+		player2.Scene(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.Q);
 		player.move(root);
 		player2.move(root);
 		

@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -74,27 +75,36 @@ public class Player{
            Physiks.moveHeroBy(dx,dy+x,player);
           }
     
-    public void Scene() {
-    Game.scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    public void Scene(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode runKey) {
+        Game.scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            switch (event.getCode()) {
-                case LEFT:  leftStart(); break;
-                case RIGHT: rightStart(); break;
-                case SPACE: jumpStart(); break;
-                case SHIFT: runningStart( ); break;
-            }
+        	KeyCode code = event.getCode();
+    		
+			if (code == leftKey)
+				leftStart();
+			else if (code == rightKey)
+				rightStart();
+			else if (code == jumpKey)
+				jumpStart();
+			else if (code == runKey) {
+				runningStart( );
+			}
         }
     });
-    Game.scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+    Game.scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            switch (event.getCode()) {
-                case LEFT:  leftStop(); break;
-                case RIGHT: rightStop(); break;
-                case SPACE: jumpStop(); break;
-                case SHIFT: runningStop(); break;
-            }
+            KeyCode code = event.getCode();
+			if (code == leftKey) {
+				leftStop();
+			} else if (code == rightKey) {
+				rightStop();
+			} else if (code == jumpKey) {
+				jumpStop();
+			} else if (code == runKey) {
+				runningStop();
+			}
         }
     });
     }
