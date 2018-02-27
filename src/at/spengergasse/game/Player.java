@@ -15,16 +15,16 @@ import javafx.stage.Stage;
  *
  */
 public class Player{
-	private static final String PLAYER_IMAGE_LOC ="img/Hero-icon.png";
-    private static Image playerImage;
-    public static Node player;
+	private final String PLAYER_IMAGE_LOC ="img/Hero-icon.png";
+    private Image playerImage;
+    public  Node player;
 
-   private  boolean up;
+   private boolean up;
    private boolean goEast;
-   private	 boolean goWest;
+   private boolean goWest;
    private boolean running;
    private int jump;
-   private  float multi=1;
+   private float multi=1;
    public int life=5;
 	
     public  void move(Group root) throws Exception {

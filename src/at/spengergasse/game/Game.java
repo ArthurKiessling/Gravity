@@ -26,7 +26,7 @@ public class Game extends Application {
 	static Group root ;
 	static Scene scene;
 	private Player player;
-	private Player2 player2;
+	private Player player2;
 
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Jump and Run");
@@ -34,7 +34,7 @@ public class Game extends Application {
 		scene = new Scene(root, W, H, Color.WHITE);
 		block= new ArrayList<Node>();
 		player= new Player();
-		player2= new Player2();
+		player2= new Player();
 		Blocks.Background(root);
 		Blocks.generate();
 		player.Scene();
