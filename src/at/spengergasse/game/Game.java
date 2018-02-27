@@ -36,13 +36,13 @@ public class Game extends Application {
 		Blocks.Background(root);
 		Blocks.generate();
 		
+		Player2.move(root);
 		Player.move(root);
-		//Player2.move(root);
 		new AnimationTimer() {
 			@Override
 			public void handle(long now){
 				Player.handle(now);
-				//Player2.handle(now);
+				Player2.handle(now);
 				Blocks.handle(now);
 				if(Player.life==0||Player2.life==0)primaryStage.close();
 			}
