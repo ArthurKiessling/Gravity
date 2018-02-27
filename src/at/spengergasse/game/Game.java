@@ -42,6 +42,7 @@ public class Game extends Application {
 		player2.Scene(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.Q);
 		player.move(root);
 		player2.move(root);
+		Blocks.heart(root);
 		
 		new AnimationTimer() {
 			@Override

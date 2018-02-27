@@ -57,5 +57,10 @@ public class Blocks {
 			root.getChildren().addAll(background);
 			background.relocate(0, 0);
 		}
-
+	 public static void heart(Group root) {
+			Image heartImage= new Image("img/heart.png",32,32,false,false);
+	        Node heart= new ImageView(heartImage);
+			root.getChildren().addAll(heart);
+			heart.relocate(200, 0);
+		}
 }
