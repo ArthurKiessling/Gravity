@@ -59,7 +59,7 @@ public class Blocks {
 		}
 	 public static void heart(Group root) {
 		 lifes = new int[10];
-		 Node balken = new Rectangle(800,40,Color.GREY);
+		 Node balken = new Rectangle(800,40,Color.BLACK);
 		 root.getChildren().add(balken);
 		 balken.relocate(0, 0);
 		 for(int i = 0; i< 5;i++) {
