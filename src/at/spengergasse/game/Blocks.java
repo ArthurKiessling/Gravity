@@ -91,17 +91,20 @@ public class Blocks {
 		 }
 	}
 	 public static void weaponsDown() {
-		 double h = 0;
-		 for(int i = 0; i<2;i++) {
-		 if(checkWeapons(weapons[i])==1||Game.player.weapon) {
-			 weapons[i].relocate(Game.player.player.getBoundsInParent().getMaxX()-20,Game.player.player.getBoundsInParent().getMinY()+10);
+		 if(checkWeapons(weapons[0])==1) {
+			 weapons[0].relocate(Game.player.player.getBoundsInParent().getMaxX()-20,Game.player.player.getBoundsInParent().getMinY()+10);
 		 }
-		 if(checkWeapons(weapons[i])==2||Game.player2.weapon) {
-			 weapons[i].relocate(Game.player2.player.getBoundsInParent().getMinX()-20,Game.player2.player.getBoundsInParent().getMinY()+10);
+		 if(checkWeapons(weapons[0])==2) {
+			 weapons[0].relocate(Game.player2.player.getBoundsInParent().getMinX()-20,Game.player2.player.getBoundsInParent().getMinY()+10);
+		 }
+		 if(checkWeapons(weapons[1])==1) {
+			 weapons[1].relocate(Game.player.player.getBoundsInParent().getMaxX()-20,Game.player.player.getBoundsInParent().getMinY()+10);
+		 }
+		 if(checkWeapons(weapons[1])==2) {
+			 weapons[1].relocate(Game.player2.player.getBoundsInParent().getMinX()-20,Game.player2.player.getBoundsInParent().getMinY()+10);
 		 }
 	 }
 	
-}
 	
 	  public static int checkWeapons(Node weapon) {
 				 if(weapon.getBoundsInParent().intersects(Game.player.player.getBoundsInParent().getWidth(), Game.player.player.getBoundsInParent().getHeight(),Game.player.player.getBoundsInParent().getMinX(),Game.player.player.getBoundsInParent().getMinY())) {
