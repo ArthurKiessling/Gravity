@@ -13,6 +13,8 @@ public class Blocks {
 	private static final String BLOCK_IMAGE_LOC ="img/block.png";
 	public static int[] lifes;
 	
+	private static Node[] weapons;
+	
 	 public static Node newBlock(int x, int y) {
 	 Image blockImg= new Image(BLOCK_IMAGE_LOC);
 	 Node block=new ImageView(blockImg);
@@ -45,10 +47,12 @@ public class Blocks {
 			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+0.6;
 			 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),h);
 		 }
+	
 	 }
 	 public static void handle(long now) {
 		 down();
 		 check();
+		// weaponsDown();
 		// checkBounds();
 	 }
 	 public static void Background(Group root) {
@@ -79,5 +83,20 @@ public class Blocks {
 		 }
 	}
 	 
-	
+	 public static void weapons(Group root) {
+		 weapons =new Node[2];
+		 for(int i = 0; i<2;i++) {
+			 Image weaponsimage = new Image("img/weapons2.png",48,48,false,false);
+			 Node weapons = new ImageView(weaponsimage);
+			 root.getChildren().add(weapons);
+			 Blocks.weapons[i]=weapons;
+			 weapons.relocate(20*i, 60);
+		 }
+	}
+	 public static void weaponsDown() {
+	 for(int idx=0; idx<weapons.length;idx++){
+		 double h= weapons[idx].getBoundsInParent().getMinY()+0.6;
+		 weapons[idx].relocate(weapons[idx].getBoundsInParent().getMinX(),h);
+	 	}
+	 }
 }
