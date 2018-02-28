@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 public class Blocks {
+	public static float speed=0.6f;
 	private static String BACKGROUND_IMAGE_LOC ="img/Background.png";
     private static Image backgroundImage;
     public static Node background;
@@ -44,7 +45,7 @@ public class Blocks {
 	 }
 	 public static void down() {
 		 for(int idx=0; idx<Game.block.size();idx++){
-			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+0.6;
+			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+speed;
 			 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),h);
 		 }
 	
@@ -52,8 +53,7 @@ public class Blocks {
 	 public static void handle(long now) {
 		 down();
 		 check();
-		// weaponsDown();
-		// checkBounds();
+		weaponsDown();
 	 }
 	 public static void Background(Group root) {
 			backgroundImage = new Image(BACKGROUND_IMAGE_LOC);
@@ -86,16 +86,22 @@ public class Blocks {
 	 public static void weapons(Group root) {
 		 weapons =new Node[2];
 		 for(int i = 0; i<2;i++) {
-			 Image weaponsimage = new Image("img/weapons2.png",48,48,false,false);
+			 Image weaponsimage = new Image("img/weapon2.png");
 			 Node weapons = new ImageView(weaponsimage);
 			 root.getChildren().add(weapons);
 			 Blocks.weapons[i]=weapons;
-			 weapons.relocate(20*i, 60);
+			 weapons.relocate(630*i, 60);
 		 }
 	}
 	 public static void weaponsDown() {
+		 double h = 0;
 	 for(int idx=0; idx<weapons.length;idx++){
-		 double h= weapons[idx].getBoundsInParent().getMinY()+0.6;
+		 if(Physics.checkBoundsDown(weapons[idx])) { 
+			  h= weapons[idx].getBoundsInParent().getMinY()+speed;
+			}
+		if(!Physics.checkBoundsDown(weapons[idx])) { 
+			  h= weapons[idx].getBoundsInParent().getMinY()+4;
+			}
 		 weapons[idx].relocate(weapons[idx].getBoundsInParent().getMinX(),h);
 	 	}
 	 }
