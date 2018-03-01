@@ -1,10 +1,13 @@
 package at.spengergasse.game;
+import java.awt.geom.AffineTransform;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 public class Blocks {
 	public static float speed=0.6f;
 	private static String BACKGROUND_IMAGE_LOC ="img/blocks/Background.png";
@@ -13,7 +16,7 @@ public class Blocks {
     
 	private static final String BLOCK_IMAGE_LOC ="img/blocks/block.png";
 	public static int[] lifes;
-	
+	public static Image icon ;
 	static Node[] weapons;
 	
 	 public static Node newBlock(int x, int y) {
@@ -34,6 +37,7 @@ public class Blocks {
 					Game.block.add(r);
 				}
 			}
+			icon=new Image("img/playerSkins/icon.png");
 		}
 
 	 public static void check() {
@@ -84,35 +88,22 @@ public class Blocks {
 		 weapons =new Node[2];
 		 for(int i = 0; i<2;i++) {
 			 Image weaponsimage = new Image("img/weapons/weapon2.png");
-			 Node weapons = new ImageView(weaponsimage);
-			 root.getChildren().add(weapons);
-			 Blocks.weapons[i]=weapons;
-			 weapons.relocate(630*i, 60);
+			 Node weapon = new ImageView(weaponsimage);
+			 if(i==1)weapon.setRotate(180);Game.player2.setWeapon(weapon);
+			 Game.player.setWeapon(weapon);
+			 root.getChildren().add(weapon);
+			 Blocks.weapons[i]=weapon;
+			 weapon.relocate(630*i, 200);
 		 }
 	}
 	 public static void weaponsDown() {
-		 if(checkWeapons(weapons[0])==1) {
-			 weapons[0].relocate(Game.player.player.getBoundsInParent().getMaxX()-20,Game.player.player.getBoundsInParent().getMinY()+10);
-		 }
-		 if(checkWeapons(weapons[0])==2) {
-			 weapons[0].relocate(Game.player2.player.getBoundsInParent().getMinX()-20,Game.player2.player.getBoundsInParent().getMinY()+10);
-		 }
-		 if(checkWeapons(weapons[1])==1) {
-			 weapons[1].relocate(Game.player.player.getBoundsInParent().getMaxX()-20,Game.player.player.getBoundsInParent().getMinY()+10);
-		 }
-		 if(checkWeapons(weapons[1])==2) {
+		 weapons[0].relocate(Game.player.player.getBoundsInParent().getMaxX()-30,Game.player.player.getBoundsInParent().getMinY()+10);
 			 weapons[1].relocate(Game.player2.player.getBoundsInParent().getMinX()-20,Game.player2.player.getBoundsInParent().getMinY()+10);
-		 }
+	 }
+	 public static void rotateItem(Node item) {
+		item.setRotationAxis(Rotate.Y_AXIS);
+		 item.setRotate(180);
 	 }
 	
 	
-	  public static int checkWeapons(Node weapon) {
-				 if(weapon.getBoundsInParent().intersects(Game.player.player.getBoundsInParent().getWidth(), Game.player.player.getBoundsInParent().getHeight(),Game.player.player.getBoundsInParent().getMinX(),Game.player.player.getBoundsInParent().getMinY())) {
-					 return 1;
-				 }else
-				 if(weapon.getBoundsInParent().intersects(Game.player2.player.getBoundsInParent().getWidth(), Game.player2.player.getBoundsInParent().getHeight(),Game.player2.player.getBoundsInParent().getMinX(),Game.player2.player.getBoundsInParent().getMinY())) {
-					 return 2;
-				 }
-			return 3; 
-		}
 }
