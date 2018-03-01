@@ -17,7 +17,6 @@ public class Blocks {
 	private static final String BLOCK_IMAGE_LOC ="img/blocks/block.png";
 	public static int[] lifes;
 	public static Image icon ;
-	static Node[] weapons;
 	
 	 public static Node newBlock(int x, int y) {
 	 Image blockImg= new Image(BLOCK_IMAGE_LOC);
@@ -57,7 +56,6 @@ public class Blocks {
 	 public static void handle(long now) {
 		 down();
 		 check();
-		weaponsDown();
 	 }
 	 public static void Background(Group root) {
 			backgroundImage = new Image(BACKGROUND_IMAGE_LOC);
@@ -84,26 +82,6 @@ public class Blocks {
 		 }
 	}
 
-	 public static void weapons(Group root) {
-		 weapons =new Node[2];
-		 for(int i = 0; i<2;i++) {
-			 Image weaponsimage = new Image("img/weapons/weapon2.png");
-			 Node weapon = new ImageView(weaponsimage);
-			 if(i==1)weapon.setRotate(180);Game.player2.setWeapon(weapon);
-			 Game.player.setWeapon(weapon);
-			 root.getChildren().add(weapon);
-			 Blocks.weapons[i]=weapon;
-			 weapon.relocate(630*i, 200);
-		 }
-	}
-	 public static void weaponsDown() {
-		 weapons[0].relocate(Game.player.player.getBoundsInParent().getMaxX()-30,Game.player.player.getBoundsInParent().getMinY()+10);
-			 weapons[1].relocate(Game.player2.player.getBoundsInParent().getMinX()-20,Game.player2.player.getBoundsInParent().getMinY()+10);
-	 }
-	 public static void rotateItem(Node item) {
-		item.setRotationAxis(Rotate.Y_AXIS);
-		 item.setRotate(180);
-	 }
-	
+
 	
 }
