@@ -3,7 +3,11 @@
  */
 package at.spengergasse.game;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -22,11 +26,13 @@ public class Weapon {
 	private static ArrayList<Node>bullets;
 	private static ArrayList<Boolean>bulletsLeft;
 	private static int[] count;
+
 	 public static void handle(long now) {
 		 weaponsDown();	 
-		 shoot();
-		 if(count[0]>0||count[1]>0)bulletControl();
+		 if(count[0]>40||count[1]>40) shoot();
+		 bulletControl();
 		 bulletHit();
+		 count[0]++;count[1]++;
 	 }
 	 
 	 public static void genWeapons(Group root) {
@@ -61,15 +67,21 @@ public class Weapon {
 	 
 	 public static void shoot() {
 		 for(int idx=0;idx<2;idx++) {
-		 if(Game.player[idx].shoot&&count[idx]%20==0) {
+		 if(Game.player[idx].shoot) {
 				 if(Game.player[idx].lastLeft) {
 					 newBullet(Game.player[idx].player.getBoundsInParent().getMinX()-50,Game.player[idx].player.getBoundsInParent().getMinY()+10,true);	bulletsLeft.add(false);}
 				 else {
 					 newBullet(Game.player[idx].player.getBoundsInParent().getMaxX()+70,Game.player[idx].player.getBoundsInParent().getMinY()+10,false);bulletsLeft.add(true);	} 
-				 count[idx]++;
+				 try {
+					Sound.playSound("src/sound/laser.wav");
+				} catch (LineUnavailableException | InterruptedException | IOException
+						| UnsupportedAudioFileException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		 }
-		 count[idx]++;
 	 }
+		 count[0]=0;count[1]=0;
 }
 	 
 	 public static Node newBullet(double x, double y,boolean left) {
