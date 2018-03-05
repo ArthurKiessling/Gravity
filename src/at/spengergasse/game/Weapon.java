@@ -66,7 +66,7 @@ public class Weapon {
 	 }
 	 
 	 public static void shoot() {
-		 for(int idx=0;idx<2;idx++) {
+		 for(int idx=0;idx<Game.player.length;idx++) {
 		 if(Game.player[idx].shoot) {
 				 if(Game.player[idx].lastLeft) {
 					 newBullet(Game.player[idx].player.getBoundsInParent().getMinX()-50,Game.player[idx].player.getBoundsInParent().getMinY()+10,true);	bulletsLeft.add(false);}
@@ -107,7 +107,7 @@ public class Weapon {
 	 }
 	 
 	 public static void bulletHit() {
-		 for(int id=0; id<2;id++) {
+		 for(int id=0; id<Game.player.length;id++) {
 			 for(int idx=0;idx<bullets.size();idx++) {
 				 if(Physics.checkTwo(Game.player[id].player,bullets.get(idx))){
 					 Game.player[id].loseLife();
