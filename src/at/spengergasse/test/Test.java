@@ -2,7 +2,9 @@
  * 
  */
 package at.spengergasse.test;
-import at.spengergasse.game.*;
+
+import at.spengergasse.game.Game;
+
 /**
  * @author Arthur Kiessling
  *

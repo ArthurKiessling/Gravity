@@ -9,7 +9,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
 /**
@@ -21,15 +20,20 @@ public class Weapon {
 	private static Image weaponsImage2 = new Image("img/weapons/weapon2.png");
 	private static Image bulletImg=new Image("img/weapons/bullet.png",40,20,false,false);
 	private static ArrayList<Node>bullets;
-	private static boolean go=true;
+	private static ArrayList<Boolean>bulletsLeft;
+	private static int[] count;
 	 public static void handle(long now) {
-		 weaponsDown();
+		 weaponsDown();	 
 		 shoot();
+		 if(count[0]>0||count[1]>0)bulletControl();
+		 bulletHit();
 	 }
 	 
 	 public static void genWeapons(Group root) {
 		 weaponsNb=new int[2];
+		 count=new int[2];
 		 bullets= new ArrayList<Node>();
+		 bulletsLeft=new ArrayList<Boolean>();
 		 for(int i = 0; i<2;i++) {
 			 Image weaponsimage = new Image("img/weapons/weapon2.png");
 			 Node weapon = new ImageView(weaponsimage);
@@ -56,48 +60,50 @@ public class Weapon {
 	 }
 	 
 	 public static void shoot() {
-		 for(int idx=0;idx<1;idx++) {
-			 if(Game.player[idx].shoot==true) {
-				 if(bullets.size()<5) {
+		 for(int idx=0;idx<2;idx++) {
+		 if(Game.player[idx].shoot&&count[idx]%20==0) {
 				 if(Game.player[idx].lastLeft) {
-					 	for(int idx2=0;idx<5;idx++) {
-					 		bullets.add(newBullet(Game.player[idx].player.getBoundsInParent().getMinX()-10*idx2,Game.player[idx].player.getBoundsInParent().getMinY()+10));	
-					 	}
-				 	}
+					 newBullet(Game.player[idx].player.getBoundsInParent().getMinX()-50,Game.player[idx].player.getBoundsInParent().getMinY()+10,true);	bulletsLeft.add(false);}
 				 else {
-					 for(int idx2=0;idx<5;idx++) {
-					 bullets.add(newBullet(Game.player[idx].player.getBoundsInParent().getMinX()+1*idx2,Game.player[idx].player.getBoundsInParent().getMinY()+10));
-					 }
-				 } 
-			 }
-			 }
-
+					 newBullet(Game.player[idx].player.getBoundsInParent().getMaxX()+70,Game.player[idx].player.getBoundsInParent().getMinY()+10,false);bulletsLeft.add(true);	} 
+				 count[idx]++;
 		 }
+		 count[idx]++;
 	 }
+}
 	 
-	 public static Node newBullet(double x, double y) {
+	 public static Node newBullet(double x, double y,boolean left) {
 		 Node bullet=new ImageView(bulletImg);
+		 bullet.setRotationAxis(Rotate.Y_AXIS);
+		 if(left)bullet.setRotate(180);
+		 bullets.add(bullet);
 		 Game.root.getChildren().addAll(bullet);
 		 bullet.relocate(x, y);
 		 return bullet;
 	 }
 	 
 	 public static void bulletControl() {
-		 for(int idx=0;idx<1;idx++) {
-			 if(Game.player[idx].lastShootLeft) {
-				 for(int idx2=0; idx<5; idx++) {
-					bullets.get(idx2).relocate(bullets.get(idx2).getBoundsInParent().getMinX()+2,bullets.get(idx2).getBoundsInParent().getMinY()) ;
-				 }
+		 for(int idx=0;idx<bullets.size();idx++) {
+			 if(bullets.get(idx).getBoundsInParent().getMinX()>Game.W||bullets.get(idx).getBoundsInParent().getMinY()>Game.H) {
+				 Game.root.getChildren().removeAll(bullets.get(idx));
 			 }
-			 else {
-				 for(int idx2=0; idx<5; idx++) {
-					 bullets.get(idx2).relocate(bullets.get(idx2).getBoundsInParent().getMinX()+2,bullets.get(idx2).getBoundsInParent().getMinY());
-				 }
+			 if(bulletsLeft.get(idx)) {
+				 bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()+5, bullets.get(idx).getBoundsInParent().getMinY()+Blocks.speed);
 			 }
+			 else bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()-5, bullets.get(idx).getBoundsInParent().getMinY()+Blocks.speed);
 		 }
 	 }
 	 
 	 public static void bulletHit() {
-		 
+		 for(int id=0; id<2;id++) {
+			 for(int idx=0;idx<bullets.size();idx++) {
+				 if(Physics.checkTwo(Game.player[id].player,bullets.get(idx))){
+					 Game.player[id].loseLife();
+					 Game.root.getChildren().remove(Game.root.getChildren().indexOf(bullets.get(idx)));
+					 bullets.remove(idx);
+					 bulletsLeft.remove(idx);
+				 }  
+			 }
+		 }
 	 }
 }

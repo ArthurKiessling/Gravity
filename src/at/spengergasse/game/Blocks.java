@@ -1,13 +1,11 @@
 package at.spengergasse.game;
-import java.awt.geom.AffineTransform;
+
 
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
+
 public class Blocks {
 	public static float speed=0.6f;
 	private static String BACKGROUND_IMAGE_LOC ="img/blocks/Background.png";
