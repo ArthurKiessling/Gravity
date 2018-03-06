@@ -51,8 +51,7 @@ public class Game extends Application {
 				Weapon.handle(now);
 				if(player[0].life==0||player[1].life==0) {try {
 					Sound.playSound("src/sound/gameover.wav");
-				} catch (LineUnavailableException | InterruptedException | IOException
-						| UnsupportedAudioFileException e) {
+				} catch (LineUnavailableException | InterruptedException | IOException| UnsupportedAudioFileException e) {
 					e.printStackTrace();
 				}primaryStage.close();}
 			}
