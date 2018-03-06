@@ -14,7 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
+//nfspgnsi
 public class StartMenu extends Application {
 	static double W=800;
 	static double H=800;
