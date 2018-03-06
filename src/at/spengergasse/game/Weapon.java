@@ -2,7 +2,7 @@
  * 
  */
 package at.spengergasse.game;
-import at.spengergasse.Scenes.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

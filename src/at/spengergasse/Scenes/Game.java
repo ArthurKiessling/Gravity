@@ -1,5 +1,4 @@
  package at.spengergasse.Scenes;
-import at.spengergasse.game.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,12 +20,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-	static ArrayList<Node> block;
-	static double W=800;
-	static double H=800;
-	static Group root ;
+	public static ArrayList<Node> block;
+	public static double W=800;
+	public static double H=800;
+	public static Group root ;
 	static Scene scene;
-	static Player[] player;
+	public static Player[] player;
 	
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("SpaceJump");

@@ -2,18 +2,17 @@
  * 
  */
 package at.spengergasse.game;
-import at.spengergasse.Scenes.*;
+
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import at.spengergasse.Scenes.Game;
-import javafx.event.EventHandler;
+
 import javafx.scene.*;
 import javafx.scene.image.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+
 /**
  * @author Arthur Kiessling
  *

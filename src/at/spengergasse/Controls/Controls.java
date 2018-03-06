@@ -5,7 +5,6 @@ package at.spengergasse.Controls;
 
 import at.spengergasse.Scenes.Game;
 import at.spengergasse.game.Player;
-import at.spengergasse.game.Weapon;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
