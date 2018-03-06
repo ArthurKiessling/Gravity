@@ -53,7 +53,13 @@ public class Game extends Application {
 					Sound.playSound("src/sound/gameover.wav");
 				} catch (LineUnavailableException | InterruptedException | IOException| UnsupportedAudioFileException e) {
 					e.printStackTrace();
-				}primaryStage.close();}
+				}DeathScreen d = new DeathScreen();
+				try {
+					d.start(primaryStage);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}}
 			}
 		}.start();
 		primaryStage.setScene(scene);
