@@ -1,11 +1,16 @@
- package at.spengergasse.game;
-
+ package at.spengergasse.Scenes;
+import at.spengergasse.game.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import at.spengergasse.Controls.Controls;
+import at.spengergasse.game.Blocks;
+import at.spengergasse.game.Player;
+import at.spengergasse.game.Sound;
+import at.spengergasse.game.Weapon;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -29,6 +34,7 @@ public class Game extends Application {
 		scene = new Scene(root, W, H, Color.WHITE);
 		block= new ArrayList<Node>();
 		player= new Player[2];
+		Controls cont=new Controls();
 		Player player1= new Player();   
 		Player player2= new Player();
 		player[0]=(player1);
@@ -36,8 +42,8 @@ public class Game extends Application {
 		Blocks.Background(root);
 		Blocks.generate();
 		primaryStage.getIcons().addAll(Blocks.icon);
-		player[0].Scene(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE);
-		player[1].Scene(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.ENTER);
+		cont.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,scene,player[0]);
+		cont.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.ENTER,scene,player[1]);
 		player[0].move(root,1);
 		player[1].move(root,2);
 		Blocks.heart(root); 

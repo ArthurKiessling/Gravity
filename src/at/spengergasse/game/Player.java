@@ -2,12 +2,13 @@
  * 
  */
 package at.spengergasse.game;
-
+import at.spengergasse.Scenes.*;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import at.spengergasse.Scenes.Game;
 import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.image.*;
@@ -22,9 +23,9 @@ public class Player{
    public  Node player;
    public int ID;
 
-   private boolean up;
-   private boolean goEast;
-   private boolean goWest;
+   public boolean up;
+   public boolean goEast;
+   public boolean goWest;
    private int jump;
    private float multi=1;
    public int life=5;
@@ -43,37 +44,7 @@ public class Player{
         setID(ID);
     }		
     
-    public void rightStart() {
-		goEast  = true;
-		if(lastLeft==true) {lastLeft=false;
-		Weapon.rotateItem(ID,true,weapon);}
-	}
-
-    public void leftStart() {
-		 goWest  = true;
-		 if(lastLeft==false) {lastLeft=true;
-		 Weapon.rotateItem(ID,false,weapon);}
-	}
-    public  void leftStop() {
-		goWest  = false;
-	}
-    public void rightStop() {
-		goEast  = false;
-	}
-
-     public  void jumpStart() {
-    	 up=true;
-     }
-     public void jumpStop() {
-    	 up=false;
-     }
-     
-     public void shootStart() {
-		 shoot = true;
-	}
-    public  void shootStop() {
-		shoot  = false;
-	}
+  
     public void handle(long now) {
         float dx = 0, dy=0, x=4;
         if(Physics.checkBoundsUp(player))jump=0;
@@ -103,39 +74,7 @@ public class Player{
 		 } 
 	}
   
-    public void Scene(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey) {
-        Game.scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-        	KeyCode code = event.getCode();
-			if (code == leftKey)
-				leftStart();
-			else if (code == rightKey)
-				rightStart();
-			else if (code == jumpKey)
-				jumpStart();
-			else if (code == shootKey) {
-				shootStart();
-			}
-        }
-    });
-    Game.scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            KeyCode code = event.getCode();
-			if (code == leftKey) {
-				leftStop();
-			} else if (code == rightKey) {
-				rightStop();
-			} else if (code == jumpKey) {
-				jumpStop();
-			} else if (code == shootKey) {
-				shootStop();
-			}
-        }
-    });
-    
-    }
+
     
 
 	/**
@@ -165,5 +104,35 @@ public class Player{
 	public void setID(int iD) {
 		ID = iD;
 	}
-    
+	  public void rightStart() {
+			goEast  = true;
+			if(lastLeft==true) {lastLeft=false;
+			Weapon.rotateItem(ID,true,weapon);}
+		}
+
+	    public void leftStart() {
+			 goWest  = true;
+			 if(lastLeft==false) {lastLeft=true;
+			 Weapon.rotateItem(ID,false,weapon);}
+		}
+	    public  void leftStop() {
+			goWest  = false;
+		}
+	    public void rightStop() {
+			goEast  = false;
+		}
+
+	     public  void jumpStart() {
+	    	 up=true;
+	     }
+	     public void jumpStop() {
+	    	 up=false;
+	     }
+	     
+	     public void shootStart() {
+			 shoot = true;
+		}
+	    public  void shootStop() {
+			shoot  = false;
+		}
 }  

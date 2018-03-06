@@ -2,7 +2,7 @@
  * 
  */
 package at.spengergasse.game;
-
+import at.spengergasse.Scenes.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ public class Sound {
 
 
 	}
-	static void playSound(String File) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+	public static void playSound(String File) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		File Sound = new File(File);
 		   Clip clip =AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Sound));

@@ -1,4 +1,6 @@
-package at.spengergasse.game;
+
+package at.spengergasse.Scenes;
+
 
 
 import javafx.animation.AnimationTimer;
@@ -13,8 +15,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-public class StartMenu extends Application {
+//nfspgnsi
+public class Start extends Application {
 	static double W=800;
 	static double H=800;
 	static Group root ;

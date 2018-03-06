@@ -3,7 +3,7 @@
  */
 package at.spengergasse.test;
 
-import at.spengergasse.game.Game;
+import at.spengergasse.Scenes.Game;
 
 /**
  * @author Arthur Kiessling

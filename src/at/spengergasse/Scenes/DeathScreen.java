@@ -1,6 +1,5 @@
-package at.spengergasse.game;
-
-
+package at.spengergasse.Scenes;
+import at.spengergasse.Controls.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -29,35 +28,12 @@ public class DeathScreen extends Application {
 		Image picture= new Image("/img/blocks/DeathScreen.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
-		Stop(KeyCode.ENTER);
+		Controls.stopStage(KeyCode.ENTER,primaryStage,scene);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-    public void Stop(KeyCode StopKey) {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-        	KeyCode code = event.getCode();
-			if (code == StopKey) {
-			}
-        }
-      });
-        scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                KeyCode code = event.getCode();
-    			if (code == StopKey) {
-    				Stop();
-    			}
-            }
-        });
-    }
-    
-    private  void Stop() {
-    	stage.close();
-    }
+
 }
