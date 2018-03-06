@@ -10,7 +10,7 @@ import javafx.scene.Node;
  * @author Arthur Kiessling
  *
  */
-public class Physiks {
+public class Physics {
 	
 	
 	public static boolean checkBoundsDown(Node player) {
@@ -19,7 +19,7 @@ public class Physiks {
 				player.getBoundsInParent().getMaxY() < Game.block.get(idx).getBoundsInParent().getMaxY()&&
 				player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMaxX()+40&&
 			    player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX()-40) {
-				 return true;      //collision
+				   return true;
 			 } 
 		} 
 		return false;
@@ -59,6 +59,12 @@ public class Physiks {
 		 }
 		return false;
 	}
+	 public static boolean checkTwo(Node player,Node other) {
+	        if(player.getBoundsInParent().intersects(other.getBoundsInParent())){
+	        	return true;
+	        }
+return false;
+	}
 	 
 	 public static void moveHeroBy(double dx,double dy,Node player) {
 	        if (dx == 0&& dy==0) return;
@@ -72,7 +78,7 @@ public class Physiks {
 	    public static void moveHeroTo(double x,double y, Node player) {
 	        final double cx = player.getBoundsInLocal().getWidth()  / 2;
 	        final double cy = player.getBoundsInLocal().getHeight()  / 2;
-	        if (x - cx >= 0 && x + cx <= Game.W&&y- cy >= 40 && y + cy <= Game.H) {
+	        if (x - cx >= 0 && x + cx <= Game.W&&y- cy >= 0&& y + cy <= Game.H) {
 	            player.relocate(x - cx,y-cy);}
 	    }
 	    
