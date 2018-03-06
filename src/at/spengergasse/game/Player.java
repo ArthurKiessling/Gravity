@@ -81,7 +81,12 @@ public class Player{
          if (goEast&&!Physics.checkBoundsRight(player))  dx += 3;
          if (goWest&&!Physics.checkBoundsLeft(player))   dx -= 3;
          if(up&&jump==0&&Physics.checkBoundsDown(player)) {dy-=9;jump++; try {
-			Sound.playSound("src/sound/jump.wav");} catch (LineUnavailableException | InterruptedException | IOException | UnsupportedAudioFileException e) {e.printStackTrace();}}
+			try {
+				Sound.playSound("src/sound/jump.wav");
+			} catch (IOException | UnsupportedAudioFileException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}} catch (LineUnavailableException e) {e.printStackTrace();}}
          if(Physics.checkBoundsDown(player)) {x=(float) Blocks.speed; if(multi<0.9) {multi=1;}}
         if(player.getBoundsInParent().getMinY()>Game.H-player.getBoundsInParent().getHeight()-10) {life--;if(ID==2) {player.relocate(500, 0); } else {player.relocate(200,0);}}
            Physics.moveHeroBy(dx,dy+x,player);

@@ -49,17 +49,11 @@ public class Game extends Application {
 				player[1].handle(now);
 				Blocks.handle(now);
 				Weapon.handle(now);
-				if(player[0].life==0||player[1].life==0) {try {
-					Sound.playSound("src/sound/gameover.wav");
-				} catch (LineUnavailableException | InterruptedException | IOException| UnsupportedAudioFileException e) {
-					e.printStackTrace();
-				}DeathScreen d = new DeathScreen();
-				try {
+				if(player[0].life==0||player[1].life==0) {
+					try {try {Sound.playSound("src/sound/gameover.wav");} catch (IOException | UnsupportedAudioFileException e) {e.printStackTrace();	}} catch (LineUnavailableException e) {e.printStackTrace();}
+					DeathScreen d = new DeathScreen();
 					d.start(primaryStage);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}}
+					}
 			}
 		}.start();
 		primaryStage.setScene(scene);

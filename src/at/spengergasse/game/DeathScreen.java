@@ -20,20 +20,17 @@ public class DeathScreen extends Application {
 	static Group root ;
 	static Scene scene;
 	public  Image picture ;
+	static Stage stage;
 	
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		primaryStage.setTitle("SpaceJump");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
+		stage=primaryStage;
 		Image picture= new Image("/img/blocks/DeathScreen.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
-		Stop(KeyCode.ENTER,primaryStage);
-		new AnimationTimer() {
-			@Override
-			public void handle(long now){
-			}
-		}.start();
+		Stop(KeyCode.ENTER);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
@@ -41,17 +38,27 @@ public class DeathScreen extends Application {
 		launch(args);
 	}
 	
-    public void Stop(KeyCode StopKey, Stage primaryStage) {
-        Game.scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+    public void Stop(KeyCode StopKey) {
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
         	KeyCode code = event.getCode();
 			if (code == StopKey) {
-				primaryStage.close();
-
 			}
         }
       });
-}
-
+        scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                KeyCode code = event.getCode();
+    			if (code == StopKey) {
+    				Stop();
+    			}
+            }
+        });
+    }
+    
+    private  void Stop() {
+    	stage.close();
+    }
 }
