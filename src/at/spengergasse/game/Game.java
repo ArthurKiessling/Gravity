@@ -1,23 +1,18 @@
 package at.spengergasse.game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-import com.sun.prism.Image;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Game extends Application {
@@ -26,31 +21,40 @@ public class Game extends Application {
 	static double H=800;
 	static Group root ;
 	static Scene scene;
-	private Player player;
-	private Player player2;
-
+	static Player[] player;
+	
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.setTitle("Jump and Run");
+		primaryStage.setTitle("SpaceJump");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
 		block= new ArrayList<Node>();
-		player= new Player();
-		player2= new Player();
+		player= new Player[2];
+		Player player1= new Player();   
+		Player player2= new Player();
+		player[0]=(player1);
+		player[1]=(player2);
 		Blocks.Background(root);
 		Blocks.generate();
-		player.Scene(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, KeyCode.SHIFT);
-		player2.Scene(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.Q);
-		player.move(root,0);
-		player2.move(root,730);
-		Blocks.heart(root);
-		
+		primaryStage.getIcons().addAll(Blocks.icon);
+		player[0].Scene(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE);
+		player[1].Scene(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.DOWN);
+		player[0].move(root,1);
+		player[1].move(root,2);
+		Blocks.heart(root); 
+		Weapon.genWeapons(root);
 		new AnimationTimer() {
 			@Override
 			public void handle(long now){
-				player.handle(now);
-				player2.handle(now);
+				player[0].handle(now);
+				player[1].handle(now);
 				Blocks.handle(now);
-				if(player.life==0||player2.life==0)primaryStage.close();
+				Weapon.handle(now);
+				if(player[0].life==0||player[1].life==0) {try {
+					Sound.playSound("src/sound/gameover.wav");
+				} catch (LineUnavailableException | InterruptedException | IOException
+						| UnsupportedAudioFileException e) {
+					e.printStackTrace();
+				}primaryStage.close();}
 			}
 		}.start();
 		primaryStage.setScene(scene);
