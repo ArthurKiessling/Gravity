@@ -1,7 +1,5 @@
 package at.spengergasse.game;
 
-
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
