@@ -2,18 +2,17 @@
 package at.spengergasse.Scenes;
 
 
-
+import at.spengergasse.Controls.Controls;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+
 import javafx.stage.Stage;
 
 public class Start extends Application {
@@ -30,7 +29,8 @@ public class Start extends Application {
 		Image picture= new Image("/img/blocks/startmenu.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
-		startgame(KeyCode.ENTER,primaryStage);
+
+		Controls.startGame(KeyCode.ENTER,primaryStage,scene);
 		new AnimationTimer() {
 			@Override
 			public void handle(long now){
@@ -44,22 +44,6 @@ public class Start extends Application {
 		launch(args);
 	}
 	
-	public void startgame(KeyCode enter, Stage primaryStage) {
-		scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-	        @Override
-	        public void handle(KeyEvent event) {
-	        	KeyCode code = event.getCode();
-				if(enter == code) {
-					try {
-						Game game = new Game();
-						game.start(primaryStage);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-	        }
-	    });
-	}
+
 }
 
