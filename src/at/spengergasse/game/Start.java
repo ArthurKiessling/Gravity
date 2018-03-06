@@ -1,3 +1,4 @@
+
 package at.spengergasse.game;
 
 import java.awt.Event;
@@ -15,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 //nfspgnsi
-public class StartMenu extends Application {
+public class Start extends Application {
 	static double W=800;
 	static double H=800;
 	static Group root ;
