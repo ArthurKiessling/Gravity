@@ -1,4 +1,4 @@
-package at.spengergasse.game;
+ package at.spengergasse.game;
 
 import java.io.IOException;
 import java.util.ArrayList;
