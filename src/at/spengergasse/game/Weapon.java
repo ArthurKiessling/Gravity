@@ -29,7 +29,7 @@ public class Weapon {
 
 	 public static void handle(long now) {
 		 weaponsDown();	 
-		 if(count[0]>40||count[1]>40) shoot();
+		 if(count[0]>30||count[1]>30) shoot();
 		 bulletControl();
 		 bulletHit();
 		 count[0]++;count[1]++;
