@@ -67,20 +67,19 @@ public class Weapon {
 		 Game.root.getChildren().set(weaponsNb[nb-1], weapon);
 	 }
 	 
-	 public static void shoot() {
+	 public static void shoot()  {
 		 for(int idx=0;idx<Game.player.length;idx++) {
 		 if(Game.player[idx].shoot) {
 				 if(Game.player[idx].lastLeft) {
 					 newBullet(Game.player[idx].player.getBoundsInParent().getMinX()-50,Game.player[idx].player.getBoundsInParent().getMinY()+10,true);	bulletsLeft.add(false);}
 				 else {
 					 newBullet(Game.player[idx].player.getBoundsInParent().getMaxX()+70,Game.player[idx].player.getBoundsInParent().getMinY()+10,false);bulletsLeft.add(true);	} 
-				 try {
-					Sound.playSound("src/sound/laser.wav");
-				} catch (LineUnavailableException | InterruptedException | IOException
-						| UnsupportedAudioFileException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				Sound.playSound("src/sound/laser.wav");
+			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		 }
 	 }
 		 count[0]=0;count[1]=0;

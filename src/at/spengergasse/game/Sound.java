@@ -18,21 +18,20 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  */
 public class Sound {
+private static Clip clip;
 
-
-	public static void main(String[] args) throws LineUnavailableException, InterruptedException, IOException, UnsupportedAudioFileException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		 
-		playSound("src/laser.wav");
 
 
 	}
-	static void playSound(String File) throws LineUnavailableException, InterruptedException, IOException, UnsupportedAudioFileException {
+	static void playSound(String File) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		File Sound = new File(File);
-		   Clip clip =AudioSystem.getClip();
-		   clip.open(AudioSystem.getAudioInputStream(Sound));
+		   clip =AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
 		   clip.start();
+	}
+	static void stopSound() {
 		
-
 	}
 }
