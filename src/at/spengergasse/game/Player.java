@@ -34,8 +34,8 @@ public class Player{
    public boolean lastShootLeft;
    
 	public  void move(Group root,int ID) throws Exception {
-    	if(ID==2) { playerImage = new Image("img/playerSkins/Hero2-icon.png"); lastLeft=true;}
-    	else playerImage = new Image("img/playerSkins/Hero-icon.png");
+    	if(ID==2) { playerImage = new Image("/img/playerSkins/Hero2-icon.png"); lastLeft=true;}
+    	else playerImage = new Image("/img/playerSkins/Hero-icon.png");
         player = new ImageView(playerImage);
         if(ID==2)player.relocate(730, 50);
         else player.relocate(0, 50);
@@ -90,7 +90,7 @@ public class Player{
     public void displayUpdate() {
 		 for(int idx=0;idx<5;idx++) {
 			 if(idx>=life) {
-				 Image heartimage = new Image("img/blocks/heartX.png",32,32,false,false);
+				 Image heartimage = new Image("/img/blocks/heartX.png",32,32,false,false);
 				 Node newHeart=new ImageView(heartimage);
 				 if(ID==2) {newHeart.relocate(idx*30+650, 5);Game.root.getChildren().set(Blocks.lifes[5+idx], newHeart);}
 				 else { newHeart.relocate(idx*30, 5);Game.root.getChildren().set(Blocks.lifes[idx], newHeart);}

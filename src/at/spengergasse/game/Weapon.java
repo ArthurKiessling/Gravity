@@ -21,8 +21,8 @@ import javafx.scene.transform.Rotate;
  */
 public class Weapon {
 	private static int weaponsNb[];
-	private static Image weaponsImage2 = new Image("img/weapons/weapon2.png");
-	private static Image bulletImg=new Image("img/weapons/bullet.png",40,20,false,false);
+	private static Image weaponsImage2 = new Image("/img/weapons/weapon2.png");
+	private static Image bulletImg=new Image("/img/weapons/bullet.png",40,20,false,false);
 	private static ArrayList<Node>bullets;
 	private static ArrayList<Boolean>bulletsLeft;
 	private static int[] count;
@@ -43,7 +43,7 @@ public class Weapon {
 		 bullets= new ArrayList<Node>();
 		 bulletsLeft=new ArrayList<Boolean>();
 		 for(int i = 0; i<2;i++) {
-			 Image weaponsimage = new Image("img/weapons/weapon2.png");
+			 Image weaponsimage = new Image("/img/weapons/weapon2.png");
 			 Node weapon = new ImageView(weaponsimage);
 			 weapon.setRotationAxis(Rotate.Y_AXIS);
 			 if(i==1) {weapon.setRotate(180);Game.player[1].setWeapon(weapon);}

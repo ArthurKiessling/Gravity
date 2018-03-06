@@ -8,11 +8,11 @@ import javafx.scene.image.ImageView;
 
 public class Blocks {
 	public static float speed=0.6f;
-	private static String BACKGROUND_IMAGE_LOC ="img/blocks/Background.png";
+	private static String BACKGROUND_IMAGE_LOC ="/img/blocks/Background.png";
     private static Image backgroundImage;
     public static Node background;
     
-	private static final String BLOCK_IMAGE_LOC ="img/blocks/block.png";
+	private static final String BLOCK_IMAGE_LOC ="/img/blocks/block.png";
 	public static int[] lifes;
 	public static Image icon ;
 	
@@ -34,7 +34,7 @@ public class Blocks {
 					Game.block.add(r);
 				}
 			}
-			icon=new Image("img/playerSkins/icon.png");
+			icon=new Image("/img/playerSkins/icon.png");
 		}
 
 	 public static void check() {
