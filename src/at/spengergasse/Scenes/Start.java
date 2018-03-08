@@ -1,7 +1,6 @@
 
 package at.spengergasse.Scenes;
 
-
 import at.spengergasse.Controls.Controls;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;

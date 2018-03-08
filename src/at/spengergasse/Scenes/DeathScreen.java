@@ -1,4 +1,9 @@
 package at.spengergasse.Scenes;
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+
 import at.spengergasse.Controls.*;
 import javafx.application.Application;
 
@@ -35,5 +40,4 @@ public class DeathScreen extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 }
