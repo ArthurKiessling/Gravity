@@ -6,7 +6,11 @@ package at.spengergasse.Controls;
 import at.spengergasse.Scenes.Game;
 import at.spengergasse.game.Player;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -30,24 +34,30 @@ public class Controls {
 
     }
     
-
+	public static void ExitGame( Stage primaryStage, Button button,Group root) {
+		Image img = new Image("/buttonImg/ExitButton.png",300,150,true,true);
+		button.setGraphic(new ImageView(img));
+		button.relocate(240, 400);
+		root.getChildren().add(button);
+		 button.setOnAction(value ->  {
+			 primaryStage.close();
+	        });
+	}
     
-	public static void startGame(KeyCode enter, Stage primaryStage,Scene scene) {
-		scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-	        @Override
-	        public void handle(KeyEvent event) {
-	        	KeyCode code = event.getCode();
-				if(enter == code) {
-					try {
-						Game game = new Game();
-						game.start(primaryStage);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-	        }
-	    });
+	public static void startGame( Stage primaryStage, Button button,Group root) {
+		Image img = new Image("/buttonImg/StartButton.png",300,150,true,true);
+		button.setGraphic(new ImageView(img));
+		button.relocate(240, 200);
+		root.getChildren().add(button);
+		 button.setOnAction(value ->  {
+	           Game g= new Game();
+	           try {
+				g.start(primaryStage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        });
 	}
 	
     public void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey, Scene scene,Player player) {

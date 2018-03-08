@@ -1,8 +1,5 @@
 package at.spengergasse.Scenes;
-import java.net.InterfaceAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
+
 
 import at.spengergasse.Controls.*;
 import javafx.application.Application;
