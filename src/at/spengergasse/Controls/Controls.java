@@ -3,8 +3,8 @@
  */
 package at.spengergasse.Controls;
 
+import at.spengergasse.Model.Player;
 import at.spengergasse.Scenes.Game;
-import at.spengergasse.game.Player;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -34,7 +34,8 @@ public class Controls {
 
     }
     
-	public static void ExitGame( Stage primaryStage, Button button,Group root) {
+	public static void ExitGame( Stage primaryStage,Group root) {
+		Button button = new Button();
 		Image img = new Image("/buttonImg/ExitButton.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 400);
@@ -44,7 +45,8 @@ public class Controls {
 	        });
 	}
     
-	public static void startGame( Stage primaryStage, Button button,Group root) {
+	public static void startGame( Stage primaryStage,Group root) {
+		Button button = new Button();
 		Image img = new Image("/buttonImg/StartButton.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 200);

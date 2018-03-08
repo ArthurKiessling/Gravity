@@ -2,7 +2,7 @@
 /**
  * 
  */
-package at.spengergasse.game;
+package at.spengergasse.Model;
 
 import at.spengergasse.Scenes.Game;
 import javafx.scene.Node;

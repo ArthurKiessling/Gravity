@@ -29,9 +29,8 @@ public class Start extends Application {
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
 		Button button = new Button();
-		Controls.startGame(primaryStage, button, root);
-		Button button2 = new Button();
-		Controls.ExitGame(primaryStage, button2, root);
+		Controls.startGame(primaryStage,root);
+		Controls.ExitGame(primaryStage,root);
 		new AnimationTimer() {
 			@Override
 			public void handle(long now){

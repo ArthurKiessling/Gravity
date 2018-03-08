@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.game;
+package at.spengergasse.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;

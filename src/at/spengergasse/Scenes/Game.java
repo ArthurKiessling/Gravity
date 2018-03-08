@@ -6,10 +6,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import at.spengergasse.Controls.Controls;
-import at.spengergasse.game.Blocks;
-import at.spengergasse.game.Player;
-import at.spengergasse.game.Sound;
-import at.spengergasse.game.Weapon;
+import at.spengergasse.Model.Blocks;
+import at.spengergasse.Model.Player;
+import at.spengergasse.Model.Sound;
+import at.spengergasse.Model.Weapon;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
