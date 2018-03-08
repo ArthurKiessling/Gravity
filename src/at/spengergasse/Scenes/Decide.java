@@ -13,10 +13,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Decide extends Application {
-	static double W=800;
-	static double H=800;
-	static Group root ;
-	static Scene scene;
+	private double W=800;
+	private double H=800;
+	private Group root ;
+	private Scene scene;
 	public Image picture ;
 	
 	public void start(Stage primaryStage) throws Exception {

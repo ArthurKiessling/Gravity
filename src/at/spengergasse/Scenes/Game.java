@@ -24,7 +24,7 @@ public class Game extends Application {
 	public static double W=800;
 	public static double H=800;
 	public static Group root ;
-	static Scene scene;
+	public Scene scene;
 	public static Player[] player;
 	
 	public void start(Stage primaryStage,String Background,String Block,String Skin,String Skin2) throws Exception {
@@ -33,15 +33,14 @@ public class Game extends Application {
 		scene = new Scene(root, W, H, Color.WHITE);
 		block= new ArrayList<Node>();
 		player= new Player[2];
-		Controls cont=new Controls();
 		Player player1= new Player();   
 		Player player2= new Player();
 		player[0]=(player1);
 		player[1]=(player2);
-		Blocks.generate(Background,Block);
+		Blocks.generate(Background,Block,root);
 		primaryStage.getIcons().add(Blocks.icon);
-		cont.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,scene,player[0]);
-		cont.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.ENTER,scene,player[1]);
+		Controls.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],primaryStage);
+		Controls.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.ENTER,KeyCode.ESCAPE,scene,player[1],primaryStage);
 		player[0].move(root,1,Skin);
 		player[1].move(root,2,Skin2);
 		Blocks.heart(root); 

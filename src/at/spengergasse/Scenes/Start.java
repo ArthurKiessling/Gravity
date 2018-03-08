@@ -16,9 +16,8 @@ import javafx.stage.Stage;
 public class Start extends Application {
 	static double W=800;
 	static double H=800;
-	static Group root ;
-	static Scene scene;
-	public Image picture ;
+	public Group root ;
+	public Scene scene;
 	
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("SpaceJump");

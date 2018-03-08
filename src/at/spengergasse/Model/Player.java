@@ -19,10 +19,10 @@ import javafx.scene.image.*;
  */
 public class Player{
    private Image playerImage;
-   public  Node player;
+   public Node player;
    public int ID;
 
-   public boolean up;
+   private boolean up;
    public boolean goEast;
    public boolean goWest;
    private int jump;
@@ -32,7 +32,7 @@ public class Player{
    public boolean lastLeft;
    public boolean shoot;
    public boolean lastShootLeft;
-   
+
 	public  void move(Group root,int ID,String img) throws Exception {
 		playerImage = new Image(img);
         player = new ImageView(playerImage);
@@ -43,7 +43,7 @@ public class Player{
     }		
     
   
-    public void handle(long now) {
+    public void handle(long no) {
         float dx = 0, dy=0, x=4;
         if(Physics.checkBoundsUp(player))jump=0;
         if(jump>0&&jump<80&&!Physics.checkBoundsUp(player)) {dy-=9*multi;jump++;multi-=0.012;if(jump==72) {jump=0;multi=1;}  }
@@ -53,10 +53,9 @@ public class Player{
 			try {
 				Sound.playSound("src/sound/jump.wav");
 			} catch (IOException | UnsupportedAudioFileException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}} catch (LineUnavailableException e) {e.printStackTrace();}}
-         if(Physics.checkBoundsDown(player)) {x=(float) Blocks.speed; if(multi<0.9) {multi=1;}}
+         if(Physics.checkBoundsDown(player)) {x=0.6f; if(multi<0.9) {multi=1;}}
         if(player.getBoundsInParent().getMinY()>Game.H-player.getBoundsInParent().getHeight()-10) {life--;if(ID==2) {player.relocate(500, 0); } else {player.relocate(200,0);}}
            Physics.moveHeroBy(dx,dy+x,player);
            displayUpdate();

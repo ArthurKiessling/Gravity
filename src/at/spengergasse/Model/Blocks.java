@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Blocks {
-	public static float speed=0.6f;
     private static Image backgroundImage;
     public static Node background;
    
@@ -24,15 +23,15 @@ public class Blocks {
 	 }
 
 	    
-	 public static void generate(String Background,String BlockImg) {
-		 Background(Game.root,Background);
+	 public static void generate(String Background,String BlockImg,Group root) {
+		 Background(root,Background);
 		 BLOCK_IMAGE_LOC =BlockImg;
 		 Node r;
 			for(int idx=0, h=-80; idx<=5;idx++,h+=200){
 				for(int x=0, w=0;x<3;x++,w+=310) {
 					if(x==1)r= newBlock(w,h+80,BlockImg);
 					else r= newBlock(w,h,BlockImg);
-					Game.root.getChildren().addAll(r);
+					root.getChildren().addAll(r);
 					Game.block.add(r);
 				}
 			}
@@ -48,7 +47,7 @@ public class Blocks {
 	 }
 	 public static void down() {
 		 for(int idx=0; idx<Game.block.size();idx++){
-			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+speed;
+			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+0.6f;
 			 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),h);
 		 }
 	

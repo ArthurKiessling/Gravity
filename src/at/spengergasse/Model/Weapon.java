@@ -102,9 +102,9 @@ public class Weapon {
 				 Game.root.getChildren().removeAll(bullets.get(idx));
 			 }
 			 if(bulletsLeft.get(idx)) {
-				 bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()+5, bullets.get(idx).getBoundsInParent().getMinY()+Blocks.speed);
+				 bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()+5, bullets.get(idx).getBoundsInParent().getMinY()+0.6f);
 			 }
-			 else bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()-5, bullets.get(idx).getBoundsInParent().getMinY()+Blocks.speed);
+			 else bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()-5, bullets.get(idx).getBoundsInParent().getMinY()+0.6f);
 		 }
 	 }
 	 

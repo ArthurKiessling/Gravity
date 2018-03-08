@@ -15,11 +15,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class DeathScreen extends Application {
-	static double W=800;
-	static double H=800;
-	static Group root ;
-	static Scene scene;
-	public  Image picture ;
+	private double W=800;
+	private double H=800;
+	private Group root;
+	private Scene scene;
 	
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("SpaceJump");
@@ -27,7 +26,7 @@ public class DeathScreen extends Application {
 		scene = new Scene(root, W, H, Color.WHITE);
 		Image icon=new Image("/img/playerSkins/icon.png");
 		primaryStage.getIcons().addAll(icon);
-		Image picture= new Image("/img/ba/DeathScreen.png");
+		Image picture= new Image("/img/background/DeathScreen.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
 		Controls.stopStage(KeyCode.ENTER,primaryStage,scene);

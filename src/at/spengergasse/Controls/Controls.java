@@ -6,6 +6,7 @@ package at.spengergasse.Controls;
 import at.spengergasse.Model.Player;
 import at.spengergasse.Scenes.Decide;
 import at.spengergasse.Scenes.Game;
+import at.spengergasse.Scenes.Start;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -28,7 +29,13 @@ public class Controls {
         public void handle(KeyEvent event) {
         	KeyCode code = event.getCode();
 			if (code == StopKey) {
-				stage.close();
+				Start s= new Start();
+				try {
+					s.start(stage);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
         }
       });
@@ -37,7 +44,7 @@ public class Controls {
     
 	public static void decide(Stage primaryStage,Group root) {
 		Button button = new Button();
-		Image img = new Image("img//buttonImg/ButtonSpace.png",300,150,true,true);
+		Image img = new Image("img/buttonImg/ButtonSpace.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 400);
 		root.getChildren().add(button);
@@ -92,7 +99,7 @@ public class Controls {
 		        });
 	}
 	
-    public void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey, Scene scene,Player player) {
+    public static void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey,KeyCode ExitKey, Scene scene,Player player,Stage stage) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -120,7 +127,15 @@ public class Controls {
 				player.jumpStop();
 			} else if (code == shootKey) {
 				player.shootStop();
-			}
+        	} else if (code == ExitKey) {
+        		  Start d= new Start();
+    	           try {
+    				d.start(stage);
+    			} catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        	}
         }
     });
     
