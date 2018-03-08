@@ -28,7 +28,6 @@ public class Start extends Application {
 		Image picture= new Image("/img/blocks/startmenu.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
-		Button button = new Button();
 		Controls.startGame(primaryStage,root);
 		Controls.ExitGame(primaryStage,root);
 		new AnimationTimer() {
