@@ -26,7 +26,7 @@ public class Blocks {
 	    
 	 public static void generate(String Background,String BlockImg) {
 		 Background(Game.root,Background);
-		 BLOCK_IMAGE_LOC ="/img/blocks/Block.png";
+		 BLOCK_IMAGE_LOC =BlockImg;
 		 Node r;
 			for(int idx=0, h=-80; idx<=5;idx++,h+=200){
 				for(int x=0, w=0;x<3;x++,w+=310) {

@@ -27,7 +27,7 @@ public class Game extends Application {
 	static Scene scene;
 	public static Player[] player;
 	
-	public void start(Stage primaryStage,String Background,String Block) throws Exception {
+	public void start(Stage primaryStage,String Background,String Block,String Skin,String Skin2) throws Exception {
 		primaryStage.setTitle("SpaceJump");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
@@ -42,8 +42,8 @@ public class Game extends Application {
 		primaryStage.getIcons().add(Blocks.icon);
 		cont.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,scene,player[0]);
 		cont.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.ENTER,scene,player[1]);
-		player[0].move(root,1);
-		player[1].move(root,2);
+		player[0].move(root,1,Skin);
+		player[1].move(root,2,Skin2);
 		Blocks.heart(root); 
 		Weapon.genWeapons(root);
 		new AnimationTimer() {

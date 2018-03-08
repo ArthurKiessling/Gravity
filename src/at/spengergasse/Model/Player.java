@@ -33,9 +33,8 @@ public class Player{
    public boolean shoot;
    public boolean lastShootLeft;
    
-	public  void move(Group root,int ID) throws Exception {
-    	if(ID==2) { playerImage = new Image("/img/playerSkins/Hero2-icon.png"); lastLeft=true;}
-    	else playerImage = new Image("/img/playerSkins/Hero-icon.png");
+	public  void move(Group root,int ID,String img) throws Exception {
+		playerImage = new Image(img);
         player = new ImageView(playerImage);
         if(ID==2)player.relocate(730, 50);
         else player.relocate(0, 50);

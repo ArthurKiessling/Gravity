@@ -37,16 +37,15 @@ public class Controls {
     
 	public static void decide(Stage primaryStage,Group root) {
 		Button button = new Button();
-		Image img = new Image("img//buttonImg/ButtonLand.png",300,150,true,true);
+		Image img = new Image("img//buttonImg/ButtonSpace.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 400);
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
 	           Game g= new Game();
 	           try {
-				g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png","/img/playerSkins/Space-icon.png","/img/playerSkins/Space2-icon.png");
+			} catch (Exception e) {				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        });
@@ -59,7 +58,7 @@ public class Controls {
 			 button2.setOnAction(value ->  {
 			     Game g= new Game();
 		           try {
-					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png");
+					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player2.png","/img/playerSkins/Player.png");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -69,7 +68,7 @@ public class Controls {
     
 	public static void startMenu( Stage primaryStage,Group root) {
 		Button button = new Button();
-		Image img = new Image("/buttonImg/StartButton.png",300,150,true,true);
+		Image img = new Image("img/buttonImg/StartButton.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 200);
 		root.getChildren().add(button);
@@ -84,7 +83,7 @@ public class Controls {
 	        });
 		 
 			Button button2 = new Button();
-			Image img2 = new Image("/buttonImg/ExitButton.png",300,150,true,true);
+			Image img2 = new Image("img/buttonImg/ExitButton.png",300,150,true,true);
 			button2.setGraphic(new ImageView(img2));
 			button2.relocate(240, 400);
 			root.getChildren().add(button2);
