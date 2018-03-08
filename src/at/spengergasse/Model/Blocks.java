@@ -9,15 +9,14 @@ import javafx.scene.image.ImageView;
 
 public class Blocks {
 	public static float speed=0.6f;
-	private static String BACKGROUND_IMAGE_LOC ="/img/blocks/Background.png";
     private static Image backgroundImage;
     public static Node background;
-    
-	private static final String BLOCK_IMAGE_LOC ="/img/blocks/block.png";
+   
+	private static String BLOCK_IMAGE_LOC;
 	public static int[] lifes;
 	public static Image icon ;
 	
-	 public static Node newBlock(int x, int y) {
+	 public static Node newBlock(int x, int y,String BlockImg) {
 	 Image blockImg= new Image(BLOCK_IMAGE_LOC);
 	 Node block=new ImageView(blockImg);
 	 block.relocate(x, y);
@@ -25,12 +24,14 @@ public class Blocks {
 	 }
 
 	    
-	 public static void generate() {
+	 public static void generate(String Background,String BlockImg) {
+		 Background(Game.root,Background);
+		 BLOCK_IMAGE_LOC ="/img/blocks/Block.png";
 		 Node r;
 			for(int idx=0, h=-80; idx<=5;idx++,h+=200){
 				for(int x=0, w=0;x<3;x++,w+=310) {
-					if(x==1)r= newBlock(w,h+80);
-					else r= newBlock(w,h);
+					if(x==1)r= newBlock(w,h+80,BlockImg);
+					else r= newBlock(w,h,BlockImg);
 					Game.root.getChildren().addAll(r);
 					Game.block.add(r);
 				}
@@ -56,8 +57,8 @@ public class Blocks {
 		 down();
 		 check();
 	 }
-	 public static void Background(Group root) {
-			backgroundImage = new Image(BACKGROUND_IMAGE_LOC);
+	 public static void Background(Group root,String Background) {
+			backgroundImage = new Image(Background);
 	        background = new ImageView(backgroundImage);
 			root.getChildren().addAll(background);
 			background.relocate(0, 0);

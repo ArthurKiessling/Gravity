@@ -2,12 +2,11 @@
 package at.spengergasse.Scenes;
 
 import at.spengergasse.Controls.Controls;
-import javafx.animation.AnimationTimer;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -25,16 +24,12 @@ public class Start extends Application {
 		primaryStage.setTitle("SpaceJump");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
-		Image picture= new Image("/img/blocks/startmenu.png");
+		Image icon=new Image("/img/playerSkins/icon.png");
+		primaryStage.getIcons().addAll(icon);
+		Image picture= new Image("/img/background/startmenu.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
-		Controls.startGame(primaryStage,root);
-		Controls.ExitGame(primaryStage,root);
-		new AnimationTimer() {
-			@Override
-			public void handle(long now){
-			}
-		}.start();
+		Controls.startMenu(primaryStage,root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

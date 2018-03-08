@@ -4,6 +4,7 @@
 package at.spengergasse.Controls;
 
 import at.spengergasse.Model.Player;
+import at.spengergasse.Scenes.Decide;
 import at.spengergasse.Scenes.Game;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -34,32 +35,62 @@ public class Controls {
 
     }
     
-	public static void ExitGame( Stage primaryStage,Group root) {
+	public static void decide(Stage primaryStage,Group root) {
 		Button button = new Button();
-		Image img = new Image("/buttonImg/ExitButton.png",300,150,true,true);
+		Image img = new Image("/buttonImg/StartButton.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 400);
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
-			 primaryStage.close();
+	           Game g= new Game();
+	           try {
+				g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        });
+		 
+			Button button2 = new Button();
+			Image img2 = new Image("/buttonImg/ExitButton.png",300,150,true,true);
+			button2.setGraphic(new ImageView(img2));
+			button2.relocate(240, 200);
+			root.getChildren().add(button2);
+			 button2.setOnAction(value ->  {
+			     Game g= new Game();
+		           try {
+					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        });
 	}
     
-	public static void startGame( Stage primaryStage,Group root) {
+	public static void startMenu( Stage primaryStage,Group root) {
 		Button button = new Button();
 		Image img = new Image("/buttonImg/StartButton.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 200);
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
-	           Game g= new Game();
+	           Decide d= new Decide();
 	           try {
-				g.start(primaryStage);
+				d.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        });
+		 
+			Button button2 = new Button();
+			Image img2 = new Image("/buttonImg/ExitButton.png",300,150,true,true);
+			button2.setGraphic(new ImageView(img2));
+			button2.relocate(240, 400);
+			root.getChildren().add(button2);
+			 button2.setOnAction(value ->  {
+				 primaryStage.close();
+		        });
 	}
 	
     public void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey, Scene scene,Player player) {
