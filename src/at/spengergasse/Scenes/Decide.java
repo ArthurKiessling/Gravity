@@ -23,7 +23,7 @@ public class Decide extends Application {
 		primaryStage.setTitle("SpaceJump");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
-		Image picture= new Image("/img/background/startmenu.png");
+		Image picture= new Image("/img/background/MenuBackground.png");
 		Image icon=new Image("/img/playerSkins/icon.png");
 		primaryStage.getIcons().addAll(icon);
 		Node Background = new ImageView(picture);

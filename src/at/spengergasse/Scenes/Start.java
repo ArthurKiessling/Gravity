@@ -26,7 +26,7 @@ public class Start extends Application {
 		scene = new Scene(root, W, H, Color.WHITE);
 		Image icon=new Image("/img/playerSkins/icon.png");
 		primaryStage.getIcons().addAll(icon);
-		Image picture= new Image("/img/background/startmenu.png");
+		Image picture= new Image("/img/background/MenuBackground.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
 		Controls.startMenu(primaryStage,root);

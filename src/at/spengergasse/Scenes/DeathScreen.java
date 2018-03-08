@@ -27,7 +27,7 @@ public class DeathScreen extends Application {
 		scene = new Scene(root, W, H, Color.WHITE);
 		Image icon=new Image("/img/playerSkins/icon.png");
 		primaryStage.getIcons().addAll(icon);
-		Image picture= new Image("/img/blocks/DeathScreen.png");
+		Image picture= new Image("/img/ba/DeathScreen.png");
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
 		Controls.stopStage(KeyCode.ENTER,primaryStage,scene);
