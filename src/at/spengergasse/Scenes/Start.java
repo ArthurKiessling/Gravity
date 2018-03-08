@@ -27,9 +27,8 @@ public class Start extends Application {
 		primaryStage.getIcons().addAll(icon);
 		Image picture= new Image("/img/background/MenuBackground.png");
 		Node Background = new ImageView(picture);
-		Controls.startMenu(primaryStage,root);
 		root.getChildren().add(Background);
-		
+		Controls.startMenu(primaryStage,root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
