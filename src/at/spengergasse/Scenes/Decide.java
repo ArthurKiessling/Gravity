@@ -13,11 +13,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Decide extends Application {
-	private double W=800;
-	private double H=800;
+	public double W=Start.W;
+	public  double H=Start.H;
 	private Group root ;
 	private Scene scene;
-	public Image picture ;
 	
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("SpaceJump");

@@ -39,8 +39,6 @@ public class Weapon {
 	 public static void genWeapons(Group root) {
 		 weaponsNb=new int[2];
 		 count=new int[2];
-		 count[0]=40;
-		 count[1]=40;
 		 bullets= new ArrayList<Node>();
 		 bulletsLeft=new ArrayList<Boolean>();
 		 for(int i = 0; i<2;i++) {

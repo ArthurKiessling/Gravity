@@ -50,8 +50,8 @@ public class Controls {
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
 	           Game g= new Game();
-	           try {
-				g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png","/img/playerSkins/Space-icon.png","/img/playerSkins/Space2-icon.png");
+	           try { 
+	           g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png","/img/playerSkins/Space-icon.png","/img/playerSkins/Space2-icon.png");
 			} catch (Exception e) {				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -65,7 +65,7 @@ public class Controls {
 			 button2.setOnAction(value ->  {
 			     Game g= new Game();
 		           try {
-					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player2.png","/img/playerSkins/Player.png");
+					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player.png","/img/playerSkins/Player2.png");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -22,8 +22,8 @@ import javafx.stage.Stage;
 
 public class Game extends Application {
 	public static ArrayList<Node> block;
-	public static double W=800;
-	public static double H=800;
+	public static double W=Start.W;
+	public static double H=Start.H;
 	public static Group root ;
 	public Scene scene;
 	public static Player[] player;
@@ -41,7 +41,6 @@ public class Game extends Application {
 		Image icon=new Image(getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		primaryStage.getIcons().addAll(icon);
 		Blocks.generate(Background,Block,root);
-		primaryStage.getIcons().add(Blocks.icon);
 		Controls.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],primaryStage);
 		Controls.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.ENTER,KeyCode.ESCAPE,scene,player[1],primaryStage);
 		player[0].move(root,1,Skin);
@@ -69,7 +68,7 @@ public class Game extends Application {
 	@Override
 	public void start(Stage arg0) throws Exception {
 		// TODO Auto-generated method stub
-		
+	
 	}
 
 	
