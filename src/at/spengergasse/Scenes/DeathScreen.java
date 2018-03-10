@@ -24,9 +24,9 @@ public class DeathScreen extends Application {
 		primaryStage.setTitle("SpaceJump");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
-		Image icon=new Image("/img/playerSkins/icon.png");
+		Image icon=new Image(getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		primaryStage.getIcons().addAll(icon);
-		Image picture= new Image("/img/background/DeathScreen.png");
+		Image picture= new Image(getClass().getResourceAsStream("/img/background/DeathScreen.png"));
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
 		Controls.stopStage(KeyCode.ENTER,primaryStage,scene);

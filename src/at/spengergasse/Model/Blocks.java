@@ -35,7 +35,6 @@ public class Blocks {
 					Game.block.add(r);
 				}
 			}
-			icon=new Image("/img/playerSkins/icon.png");
 		}
 
 	 public static void check() {

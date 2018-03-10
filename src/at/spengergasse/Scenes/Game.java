@@ -15,6 +15,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -37,6 +38,8 @@ public class Game extends Application {
 		Player player2= new Player();
 		player[0]=(player1);
 		player[1]=(player2);
+		Image icon=new Image(getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+		primaryStage.getIcons().addAll(icon);
 		Blocks.generate(Background,Block,root);
 		primaryStage.getIcons().add(Blocks.icon);
 		Controls.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],primaryStage);
