@@ -1,14 +1,9 @@
  package at.spengergasse.Scenes;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 import at.spengergasse.Controls.Controls;
 import at.spengergasse.Model.Blocks;
 import at.spengergasse.Model.Player;
-import at.spengergasse.Model.Sound;
 import at.spengergasse.Model.Weapon;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -55,7 +50,6 @@ public class Game extends Application {
 				Blocks.handle(now);
 				Weapon.handle(now);
 				if(player[0].life==0||player[1].life==0) {
-					try {try {Sound.playSound("src/sound/gameover.wav");} catch (IOException | UnsupportedAudioFileException e) {e.printStackTrace();	}} catch (LineUnavailableException e) {e.printStackTrace();}
 					DeathScreen d = new DeathScreen();
 					d.start(primaryStage);
 					}

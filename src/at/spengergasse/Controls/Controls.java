@@ -43,6 +43,7 @@ public class Controls {
     }
     
 	public static void decide(Stage primaryStage,Group root) {
+		
 		Button button = new Button();
 		Image img = new Image("img/buttonImg/ButtonSpace.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
@@ -73,20 +74,21 @@ public class Controls {
 		        });
 	}
     
-	public static void startMenu( Stage primaryStage,Group root) {
+	public static void startMenu(Stage primaryStage,Group root) {
 		Button button = new Button();
 		Image img = new Image("img/buttonImg/StartButton.png",300,150,true,true);
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 200);
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
-	           try {
 	        	   Decide d= new Decide();
-				d.start(primaryStage);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				try {
+					d.start(primaryStage);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 	        });
 		 
 			Button button2 = new Button();
