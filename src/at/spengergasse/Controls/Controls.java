@@ -45,7 +45,7 @@ public class Controls {
 	public static void decide(Stage primaryStage,Group root) {
 		
 		Button button = new Button();
-		Image img = new Image("img/buttonImg/ButtonSpace.png",300,150,true,true);
+		Image img = new Image("img/buttonImg/SpaceButton.png");
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 400);
 		root.getChildren().add(button);
@@ -59,7 +59,7 @@ public class Controls {
 	        });
 		 
 			Button button2 = new Button();
-			Image img2 = new Image("img//buttonImg/ButtonLand.png",300,150,true,true);
+			Image img2 = new Image("img//buttonImg/EarthButton.png");
 			button2.setGraphic(new ImageView(img2));
 			button2.relocate(240, 200);
 			root.getChildren().add(button2);
@@ -76,23 +76,18 @@ public class Controls {
     
 	public static void startMenu(Stage primaryStage,Group root) {
 		Button button = new Button();
-		Image img = new Image("img/buttonImg/StartButton.png",300,150,true,true);
+		Image img = new Image("img/buttonImg/StartButton.png");
 		button.setGraphic(new ImageView(img));
 		button.relocate(240, 200);
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
 	        	   Decide d= new Decide();
-				try {
-					d.start(primaryStage);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		
+				try {d.start(primaryStage);
+				} catch (Exception e) {e.printStackTrace();}
 	        });
 		 
 			Button button2 = new Button();
-			Image img2 = new Image("img/buttonImg/ExitButton.png",300,150,true,true);
+			Image img2 = new Image("img/buttonImg/ExitButton.png");
 			button2.setGraphic(new ImageView(img2));
 			button2.relocate(240, 400);
 			root.getChildren().add(button2);

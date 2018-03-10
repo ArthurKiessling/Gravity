@@ -33,5 +33,5 @@ public class DeathScreen extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-
+	
 }
