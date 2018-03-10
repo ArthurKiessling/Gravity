@@ -66,15 +66,11 @@ public class Game extends Application {
 		primaryStage.show();
 	}
 
-	public static void main(String[] args) {
-		launch(args);
-		
-	}
-
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage arg0) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

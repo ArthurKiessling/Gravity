@@ -80,8 +80,8 @@ public class Controls {
 		button.relocate(240, 200);
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
-	           Decide d= new Decide();
 	           try {
+	        	   Decide d= new Decide();
 				d.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
