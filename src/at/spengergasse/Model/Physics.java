@@ -19,7 +19,7 @@ public class Physics {
 	public static boolean checkBoundsDown(Node player) {
 		for(int idx=0; idx <Game.block.size();idx++) {
 			if (checkIntersects(player,idx)&&
-				playerBounds(player).getMaxY() < blockBounds(idx).getMaxY()&& xCheck(player,idx)) {
+				playerBounds(player).getMaxY()<blockBounds(idx).getMaxY()&& xCheck(player,idx)) {
 				   return true;
 			 } 
 		} 
@@ -40,8 +40,7 @@ public class Physics {
 	 
 	 public static boolean checkBoundsLeft(Node player) {
 		 for(int idx =0; idx <Game.block.size();idx++) {
-	        if(yCheck(player,idx)&&
-	        	checkIntersects(player,idx)&&
+	        if(yCheck(player,idx)&&checkIntersects(player,idx)&&
 	            playerBounds(player).getMinX() >= blockBounds(idx).getMaxX()&&
 	            playerBounds(player).getMaxX()<= blockBounds(idx).getMaxX()+playerBounds(player).getWidth())
 	          return true;
@@ -73,8 +72,8 @@ public class Physics {
 	}
 	
 	private static boolean xCheck(Node player,int idx) {
-		if(playerBounds(player).getMinX() <=  blockBounds(idx).getMaxX()+40&&
-		 playerBounds(player).getMaxX() >=  blockBounds(idx).getMinX()-40) {
+		if(playerBounds(player).getMaxX() <=  blockBounds(idx).getMaxX()+40&&
+		 playerBounds(player).getMinX() >=  blockBounds(idx).getMinX()-40) {
 			return true;
 		}
 		return false;
