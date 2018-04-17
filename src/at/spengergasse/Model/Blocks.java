@@ -2,6 +2,7 @@ package at.spengergasse.Model;
 
 
 import at.spengergasse.Scenes.Game;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -33,24 +34,30 @@ public class Blocks {
 					else r= newBlock(w,h,BlockImg);
 					root.getChildren().addAll(r);
 					Game.block.add(r);
+					
 				}
 			}
 		}
 
 	 public static void check() {
 		 for(int idx=0; idx<Game.block.size();idx++){
-			 if(Game.block.get(idx).getBoundsInParent().getMinY()>=980) {
-				 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),-200);
+			 if(blockBounds(idx).getMinY()>=980) {
+				 Game.block.get(idx).relocate(blockBounds(idx).getMinX(),-200);
 			 }
 		 }
 	 }
 	 public static void down() {
 		 for(int idx=0; idx<Game.block.size();idx++){
-			 double h= Game.block.get(idx).getBoundsInParent().getMinY()+0.6f;
-			 Game.block.get(idx).relocate(Game.block.get(idx).getBoundsInParent().getMinX(),h);
+			 double h= blockBounds(idx).getMinY()+0.6f;
+			 Game.block.get(idx).relocate(blockBounds(idx).getMinX(),h);
 		 }
 	
 	 }
+
+
+	private static Bounds blockBounds(int idx) {
+		return Game.block.get(idx).getBoundsInParent();
+	}
 	 public static void handle(long now) {
 		 down();
 		 check();

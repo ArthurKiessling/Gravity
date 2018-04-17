@@ -5,6 +5,8 @@
 package at.spengergasse.Model;
 
 import at.spengergasse.Scenes.Game;
+import at.spengergasse.Scenes.Start;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 
 /**
@@ -16,34 +18,32 @@ public class Physics {
 	
 	public static boolean checkBoundsDown(Node player) {
 		for(int idx=0; idx <Game.block.size();idx++) {
-			if (player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent().getMinX() , Game.block.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
-				player.getBoundsInParent().getMaxY() < Game.block.get(idx).getBoundsInParent().getMaxY()&&
-				player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMaxX()+40&&
-			    player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX()-40) {
+			if (checkIntersects(player,idx)&&
+				playerBounds(player).getMaxY() < blockBounds(idx).getMaxY()&& xCheck(player,idx)) {
 				   return true;
 			 } 
 		} 
 		return false;
 	}
+
+	
 	
 	 public static boolean checkBoundsUp(Node player) {
 		 for(int idx =0; idx <Game.block.size();idx++) {
-	        if(player.getBoundsInParent().getMinY()>= Game.block.get(idx).getBoundsInParent().getMaxY()&&
-	        	player.getBoundsInParent().getMinY()<= Game.block.get(idx).getBoundsInParent().getMaxY()+6&&
-	            player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMaxX()+40&&
-	            player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX()-40)
-	          return true;
-		 }
+	        if(playerBounds(player).getMinY()>= blockBounds(idx).getMaxY()&&
+	        	playerBounds(player).getMinY()<= blockBounds(idx).getMaxY()+6&&
+	        	xCheck(player,idx))
+	        	return true;
+	        }
 		return false;
-	}
+		 }
 	 
 	 public static boolean checkBoundsLeft(Node player) {
 		 for(int idx =0; idx <Game.block.size();idx++) {
-	        if(player.getBoundsInParent().getMaxY()<= Game.block.get(idx).getBoundsInParent().getMaxY()+player.getBoundsInParent().getHeight()&&
-	        	player.getBoundsInParent().getMinY()>= Game.block.get(idx).getBoundsInParent().getMinY()-player.getBoundsInParent().getHeight()&&
-	        	player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent().getMinX() , Game.block.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
-	            player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMaxX()&&
-	            player.getBoundsInParent().getMaxX()<= Game.block.get(idx).getBoundsInParent().getMaxX()+player.getBoundsInParent().getWidth())
+	        if(yCheck(player,idx)&&
+	        	checkIntersects(player,idx)&&
+	            playerBounds(player).getMinX() >= blockBounds(idx).getMaxX()&&
+	            playerBounds(player).getMaxX()<= blockBounds(idx).getMaxX()+playerBounds(player).getWidth())
 	          return true;
 		 }
 		return false;
@@ -51,22 +51,48 @@ public class Physics {
 	 
 	 public static boolean checkBoundsRight(Node player) {
 		 for(int idx =0; idx <Game.block.size();idx++) {
-	        if(player.getBoundsInParent().getMaxY()<= Game.block.get(idx).getBoundsInParent().getMaxY()+player.getBoundsInParent().getHeight()&&
-	        	player.getBoundsInParent().getMinY()>= Game.block.get(idx).getBoundsInParent().getMinY()-player.getBoundsInParent().getHeight()&&
-	        	player.getBoundsInParent().intersects(Game.block.get(idx).getBoundsInParent().getMinX() ,Game.block.get(idx).getBoundsInParent().getMinY(), 180, 20)&&
-	            player.getBoundsInParent().getMaxX() <= Game.block.get(idx).getBoundsInParent().getMinX()&&
-	            player.getBoundsInParent().getMinX() >= Game.block.get(idx).getBoundsInParent().getMinX()-player.getBoundsInParent().getWidth())
+	        if(yCheck(player,idx)&&checkIntersects(player,idx)&&
+	            playerBounds(player).getMaxX() <= blockBounds(idx).getMinX()&&
+	            playerBounds(player).getMinX() >= blockBounds(idx).getMinX()-playerBounds(player).getWidth())
 	          return true;
 		 }
 		return false;
 	}
 	 public static boolean checkTwo(Node player,Node other) {
-	        if(player.getBoundsInParent().intersects(other.getBoundsInParent())){
+	        if(playerBounds(player).intersects(playerBounds(other))){
 	        	return true;
 	        }
-return false;
+	        return false;
 	}
-	 
+	 private static Bounds playerBounds(Node player) {
+		return player.getBoundsInParent();
+	}
+
+	private static Bounds blockBounds(int idx) {
+		return Game.block.get(idx).getBoundsInParent();
+	}
+	
+	private static boolean xCheck(Node player,int idx) {
+		if(playerBounds(player).getMinX() <=  blockBounds(idx).getMaxX()+40&&
+		 playerBounds(player).getMaxX() >=  blockBounds(idx).getMinX()-40) {
+			return true;
+		}
+		return false;
+	}
+	private static boolean yCheck(Node player,int idx) {
+		if(playerBounds(player).getMaxY()<= blockBounds(idx).getMaxY()+playerBounds(player).getHeight()&&
+        	playerBounds(player).getMinY()>= blockBounds(idx).getMinY()-playerBounds(player).getHeight()) {
+    			return true;
+    		}
+    		return false;
+    	}
+	
+	private static boolean checkIntersects(Node player,int idx) {
+		if(playerBounds(player).intersects( blockBounds(idx).getMinX() , blockBounds(idx).getMinY(), 180, 20)) {
+			return true;
+		}
+		return false;
+	}
 	 public static void moveHeroBy(double dx,double dy,Node player) {
 	        if (dx == 0&& dy==0) return;
 	        final double cx = player.getBoundsInLocal().getWidth()  / 2;
@@ -79,7 +105,7 @@ return false;
 	    public static void moveHeroTo(double x,double y, Node player) {
 	        final double cx = player.getBoundsInLocal().getWidth()  / 2;
 	        final double cy = player.getBoundsInLocal().getHeight()  / 2;
-	        if (x - cx >= 0 && x + cx <= Game.W&&y- cy >= 0&& y + cy <= Game.H) {
+	        if (x - cx >= 0 && x + cx <= Start.W&&y- cy >= 0&& y + cy <= Start.H) {
 	            player.relocate(x - cx,y-cy);}
 	    }
 	    

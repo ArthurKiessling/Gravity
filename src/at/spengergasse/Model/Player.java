@@ -9,7 +9,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import at.spengergasse.Scenes.Game;
-
+import at.spengergasse.Scenes.Start;
+import javafx.geometry.Bounds;
 import javafx.scene.*;
 import javafx.scene.image.*;
 
@@ -56,10 +57,16 @@ public class Player{
 				e.printStackTrace();
 			}} catch (LineUnavailableException e) {e.printStackTrace();}}
          if(Physics.checkBoundsDown(player)) {x=0.6f; if(multi<0.9) {multi=1;}}
-        if(player.getBoundsInParent().getMinY()>Game.H-player.getBoundsInParent().getHeight()-10) {life--;if(ID==2) {player.relocate(500, 0); } else {player.relocate(200,0);}}
+        if(playerBounds().getMinY()>Start.H-playerBounds().getHeight()-10) {life--;if(ID==2) {player.relocate(500, 0); } else {player.relocate(200,0);}}
            Physics.moveHeroBy(dx,dy+x,player);
            displayUpdate();
           }
+
+
+	private Bounds playerBounds() {
+		return player.getBoundsInParent();
+	}
+    
     public void displayUpdate() {
 		 for(int idx=0;idx<5;idx++) {
 			 if(idx>=life) {

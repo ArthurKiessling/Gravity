@@ -10,6 +10,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import at.spengergasse.Scenes.Game;
+import at.spengergasse.Scenes.Start;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -54,10 +56,18 @@ public class Weapon {
 	}
 	 public static void weaponsDown() {	
 		 for(int idx=0; idx<weaponsNb.length;idx++) {
-		 if(Game.player[idx].lastLeft) {Game.player[idx].weapon.relocate(Game.player[idx].player.getBoundsInParent().getMinX()-30,Game.player[idx].player.getBoundsInParent().getMinY()+10);}
-		 else {Game.player[idx].weapon.relocate(Game.player[idx].player.getBoundsInParent().getMinX()+30,Game.player[idx].player.getBoundsInParent().getMinY()+10);}	 
+		 if(Game.player[idx].lastLeft) {getPlayer(idx).relocate(playerBounds(idx).getMinX()-30,playerBounds(idx).getMinY()+10);}
+		 else {getPlayer(idx).relocate(playerBounds(idx).getMinX()+30,playerBounds(idx).getMinY()+10);}	 
 		 }
 	 }
+
+	private static Node getPlayer(int idx) {
+		return Game.player[idx].weapon;
+	}
+
+	private static Bounds playerBounds(int idx) {
+		return Game.player[idx].player.getBoundsInParent();
+	}
 	 public static void rotateItem(int nb, boolean lastLeft, Node weapon) {
 		weapon= new ImageView(weaponsImage2);
 		 weapon.setRotationAxis(Rotate.Y_AXIS);
@@ -70,9 +80,9 @@ public class Weapon {
 		 for(int idx=0;idx<Game.player.length;idx++) {
 		 if(Game.player[idx].shoot) {
 				 if(Game.player[idx].lastLeft) {
-					 newBullet(Game.player[idx].player.getBoundsInParent().getMinX()-50,Game.player[idx].player.getBoundsInParent().getMinY()+10,true);	bulletsLeft.add(false);}
+					 newBullet(playerBounds(idx).getMinX()-50,playerBounds(idx).getMinY()+10,true);	bulletsLeft.add(false);}
 				 else {
-					 newBullet(Game.player[idx].player.getBoundsInParent().getMaxX()+70,Game.player[idx].player.getBoundsInParent().getMinY()+10,false);bulletsLeft.add(true);	} 
+					 newBullet(playerBounds(idx).getMaxX()+70,playerBounds(idx).getMinY()+10,false);bulletsLeft.add(true);	} 
 			try {
 				Sound.playSound("src/sound/laser.wav");
 			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
@@ -96,15 +106,19 @@ public class Weapon {
 	 
 	 public static void bulletControl() {
 		 for(int idx=0;idx<bullets.size();idx++) {
-			 if(bullets.get(idx).getBoundsInParent().getMinX()>Game.W||bullets.get(idx).getBoundsInParent().getMinY()>Game.H) {
+			 if(bulletsBounds(idx).getMinX()>Start.W||bulletsBounds(idx).getMinY()>Start.H) {
 				 Game.root.getChildren().removeAll(bullets.get(idx));
 			 }
 			 if(bulletsLeft.get(idx)) {
-				 bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()+5, bullets.get(idx).getBoundsInParent().getMinY()+0.6f);
+				 bullets.get(idx).relocate(bulletsBounds(idx).getMinX()+5, bulletsBounds(idx).getMinY()+0.6f);
 			 }
-			 else bullets.get(idx).relocate(bullets.get(idx).getBoundsInParent().getMinX()-5, bullets.get(idx).getBoundsInParent().getMinY()+0.6f);
+			 else bullets.get(idx).relocate(bulletsBounds(idx).getMinX()-5, bulletsBounds(idx).getMinY()+0.6f);
 		 }
 	 }
+
+	private static Bounds bulletsBounds(int idx) {
+		return bullets.get(idx).getBoundsInParent();
+	}
 	 
 	 public static void bulletHit() {
 		 for(int id=0; id<Game.player.length;id++) {

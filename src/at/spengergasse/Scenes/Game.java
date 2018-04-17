@@ -17,11 +17,12 @@ import javafx.stage.Stage;
 
 public class Game extends Application {
 	public static ArrayList<Node> block;
-	public static double W=Start.W;
-	public static double H=Start.H;
+	public double W=Start.W;
+	public double H=Start.H;
 	public static Group root ;
 	public Scene scene;
 	public static Player[] player;
+	public static AnimationTimer timer;
 	
 	public void start(Stage primaryStage,String Background,String Block,String Skin,String Skin2) throws Exception {
 		primaryStage.setTitle("SpaceJump");
@@ -42,7 +43,7 @@ public class Game extends Application {
 		player[1].move(root,2,Skin2);
 		Blocks.heart(root); 
 		Weapon.genWeapons(root);
-		new AnimationTimer() {
+		timer = new AnimationTimer() {
 			@Override
 			public void handle(long now){
 				player[0].handle(now);
@@ -50,11 +51,11 @@ public class Game extends Application {
 				Blocks.handle(now);
 				Weapon.handle(now);
 				if(player[0].life==0||player[1].life==0) {
-					DeathScreen d = new DeathScreen();
-					d.start(primaryStage);
+					Controls.death(primaryStage, root);
 					}
 			}
-		}.start();
+		};
+		timer.start();
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

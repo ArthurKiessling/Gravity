@@ -14,8 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Start extends Application {
-	static double W=800;
-	static double H=800;
+	public static double W=800;
+	public static double H=800;
 	public Group root ;
 	public Scene scene;
 	

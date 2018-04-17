@@ -4,6 +4,7 @@
 package at.spengergasse.Controls;
 
 import at.spengergasse.Model.Player;
+import at.spengergasse.Scenes.DeathScreen;
 import at.spengergasse.Scenes.Decide;
 import at.spengergasse.Scenes.Game;
 import at.spengergasse.Scenes.Start;
@@ -43,7 +44,6 @@ public class Controls {
     }
     
 	public static void decide(Stage primaryStage,Group root) {
-		
 		Button button = new Button();
 		Image img = new Image("img/buttonImg/SpaceButton.png");
 		button.setGraphic(new ImageView(img));
@@ -96,6 +96,11 @@ public class Controls {
 		        });
 	}
 	
+	public static void death(Stage primaryStage,Group root) {
+		
+		DeathScreen d = new DeathScreen();
+		d.start(primaryStage);
+	}
     public static void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey,KeyCode ExitKey, Scene scene,Player player,Stage stage) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         @Override
@@ -126,6 +131,7 @@ public class Controls {
 				player.shootStop();
         	} else if (code == ExitKey) {
         		  Start d= new Start();
+        		  Game.timer.stop();
     	           try {
     				d.start(stage);
     			} catch (Exception e) {
