@@ -97,7 +97,6 @@ public class Controls {
 	}
 	
 	public static void death(Stage primaryStage,Group root) {
-		
 		DeathScreen d = new DeathScreen();
 		d.start(primaryStage);
 	}

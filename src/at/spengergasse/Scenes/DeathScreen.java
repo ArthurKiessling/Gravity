@@ -29,9 +29,9 @@ public class DeathScreen extends Application {
 		Image picture= new Image(getClass().getResourceAsStream("/img/background/DeathScreen.png"));
 		Node Background = new ImageView(picture);
 		root.getChildren().add(Background);
-		Controls.stopStage(KeyCode.ENTER,primaryStage,scene);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		Controls.stopStage(KeyCode.ENTER,primaryStage,scene);
 	}
 	
 }
