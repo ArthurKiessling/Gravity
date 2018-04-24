@@ -125,13 +125,15 @@ public class Controls {
 		        });
 	}
 	
-	public static void saveScreen(Stage primaryStage,Group root,Player[] player) {
-		Button button = new Button();
-		Image img = new Image("img/buttonImg/StartButton.png");
-		button.setGraphic(new ImageView(img));
-		button.relocate(240, 200);
-		root.getChildren().add(button);
+	public static void saveScreen(Stage primaryStage,Group root,Player[] player) { 
+		Game.timer.stop();
+		Button button = genButton(root,240, 25,"img/buttonImg/ExitButton.png");
 		 button.setOnAction(value ->  {
+			 System.out.println("return");
+	        });
+		 
+		 Button button1 = genButton(root,240,225,"img/buttonImg/StartButton.png");
+		 button1.setOnAction(value ->  {
 	           Start s= new Start();
 	           try { 
 	           s.start(primaryStage);
@@ -140,20 +142,34 @@ public class Controls {
 			}
 	        });
 		 
-			Button button2 = new Button();
-			Image img2 = new Image("img//buttonImg/SaveButton.png");
-			button2.setGraphic(new ImageView(img2));
-			button2.relocate(240, 400);
-			root.getChildren().add(button2);
+			Button button2 = genButton(root,240,425,"img//buttonImg/SaveButton.png");
 			button2.setOnAction(value ->  {
-			try {
-			save(player[0].life,player[1].life);
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		 }
-		 
-			});
+					Start s= new Start();
+					try {
+						save(player[0].life,player[1].life);
+						s.start(primaryStage);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace(); }
+				});
+			
+			Button button3 = genButton(root,240,625,"img/buttonImg/ExitButton.png");
+			 button3.setOnAction(value ->  {
+				 primaryStage.close();
+		        });
+	}
+
+	/**
+	 * @param root
+	 * @return
+	 */
+	public static Button genButton(Group root,int x,int y, String path) {
+		Button button = new Button();
+		Image img4= new Image(path);
+		button.setGraphic(new ImageView(img4));
+		button.relocate(x,y);
+		root.getChildren().add(button);
+		return button;
 	}
 	public static void death(Stage primaryStage,Group root) {
 		DeathScreen d = new DeathScreen();

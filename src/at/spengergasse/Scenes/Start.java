@@ -22,6 +22,7 @@ public class Start extends Application {
 	public Scene scene;
 	
 	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setResizable(true);
 		primaryStage.setTitle("Gravity");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
@@ -29,7 +30,6 @@ public class Start extends Application {
 		Controls.startMenu(primaryStage,root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		primaryStage.setResizable(false);
 		
 	}
 
