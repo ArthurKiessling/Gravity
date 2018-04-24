@@ -38,7 +38,7 @@ public class Game extends Application {
 		primaryStage.getIcons().addAll(icon);
 		Blocks.generate(Background,Block,root);
 		Controls.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],primaryStage);
-		Controls.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.ENTER,KeyCode.ESCAPE,scene,player[1],primaryStage);
+		Controls.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.DOWN,KeyCode.ESCAPE,scene,player[1],primaryStage);
 		player[0].move(root,1,Skin);
 		player[1].move(root,2,Skin2);
 		Blocks.heart(root); 
