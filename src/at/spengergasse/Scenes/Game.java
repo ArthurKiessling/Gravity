@@ -52,6 +52,7 @@ public class Game extends Application {
 				Weapon.handle(now);
 				if(player[0].life==0||player[1].life==0) {
 					Controls.death(primaryStage, root);
+					timer.stop();
 					}
 			}
 		};
