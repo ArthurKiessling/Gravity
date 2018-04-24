@@ -9,8 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Blocks {
-    private static Image backgroundImage;
-    public static Node background;
    
 	private static String BLOCK_IMAGE_LOC;
 	public static int[] lifes;
@@ -24,8 +22,7 @@ public class Blocks {
 	 }
 
 	    
-	 public static void generate(String Background,String BlockImg,Group root) {
-		 Background(root,Background);
+	 public static void generate(String BlockImg,Group root) {
 		 BLOCK_IMAGE_LOC =BlockImg;
 		 Node r;
 			for(int idx=0, h=-80; idx<=5;idx++,h+=200){
@@ -62,12 +59,7 @@ public class Blocks {
 		 down();
 		 check();
 	 }
-	 public static void Background(Group root,String Background) {
-			backgroundImage = new Image(Background);
-	        background = new ImageView(backgroundImage);
-			root.getChildren().addAll(background);
-			background.relocate(0, 0);
-		}
+
 	 public static void heart(Group root) {
 		 lifes = new int[10];
 		 for(int i = 0; i< 5;i++) {

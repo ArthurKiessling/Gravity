@@ -1,6 +1,8 @@
 
 package at.spengergasse.Scenes;
 
+import java.io.InputStream;
+
 import at.spengergasse.Controls.Controls;
 
 import javafx.application.Application;
@@ -20,17 +22,24 @@ public class Start extends Application {
 	public Scene scene;
 	
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.setTitle("SpaceJump");
+		primaryStage.setTitle("Gravity");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
-		Image icon=new Image(getClass().getResourceAsStream("/img/playerSkins/icon.png"));
-		primaryStage.getIcons().addAll(icon);
-		Image picture= new Image(getClass().getResourceAsStream("/img/background/MenuBackground.png"));
-		Node Background = new ImageView(picture);
-		root.getChildren().add(Background);
+		genStartOptions(primaryStage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		Controls.startMenu(primaryStage,root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+
+	/**
+	 * @param primaryStage
+	 */
+	public static void genStartOptions(Stage primaryStage,Group root,InputStream backgroundLink,InputStream iconLink) {
+		Image icon=new Image(iconLink);
+		primaryStage.getIcons().addAll(icon);
+		Image picture= new Image(backgroundLink);
+		Node Background = new ImageView(picture);
+		root.getChildren().add(Background);
 	}
 
 	public static void main(String[] args) {

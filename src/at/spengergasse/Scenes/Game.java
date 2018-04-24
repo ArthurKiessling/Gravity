@@ -10,7 +10,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -25,18 +24,17 @@ public class Game extends Application {
 	public static AnimationTimer timer;
 	
 	public void start(Stage primaryStage,String Background,String Block,String Skin,String Skin2) throws Exception {
-		primaryStage.setTitle("SpaceJump");
+		primaryStage.setTitle("Gravity");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
+		Start.genStartOptions(primaryStage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		block= new ArrayList<Node>();
+		Blocks.generate(Block, root);
 		player= new Player[2];
 		Player player1= new Player();   
 		Player player2= new Player();
 		player[0]=(player1);
 		player[1]=(player2);
-		Image icon=new Image(getClass().getResourceAsStream("/img/playerSkins/icon.png"));
-		primaryStage.getIcons().addAll(icon);
-		Blocks.generate(Background,Block,root);
 		Controls.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],primaryStage);
 		Controls.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.DOWN,KeyCode.ESCAPE,scene,player[1],primaryStage);
 		player[0].move(root,1,Skin);

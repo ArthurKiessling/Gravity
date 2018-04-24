@@ -3,14 +3,9 @@ package at.spengergasse.Scenes;
 
 import at.spengergasse.Controls.*;
 import javafx.application.Application;
-
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -21,14 +16,10 @@ public class DeathScreen extends Application {
 	private Scene scene;
 	
 	public void start(Stage primaryStage) {
-		primaryStage.setTitle("SpaceJump");
+		primaryStage.setTitle("Gravity");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
-		Image icon=new Image(getClass().getResourceAsStream("/img/playerSkins/icon.png"));
-		primaryStage.getIcons().addAll(icon);
-		Image picture= new Image(getClass().getResourceAsStream("/img/background/DeathScreen.png"));
-		Node Background = new ImageView(picture);
-		root.getChildren().add(Background);
+		Start.genStartOptions(primaryStage,root,getClass().getResourceAsStream("/img/background/DeathScreen.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		Controls.stopStage(KeyCode.ENTER,primaryStage,scene);

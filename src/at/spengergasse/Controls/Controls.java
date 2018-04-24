@@ -3,6 +3,14 @@
  */
 package at.spengergasse.Controls;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import at.spengergasse.Scenes.saveScreen;
 import at.spengergasse.Model.Player;
 import at.spengergasse.Scenes.DeathScreen;
 import at.spengergasse.Scenes.Decide;
@@ -96,6 +104,36 @@ public class Controls {
 		        });
 	}
 	
+	public static void saveScreen(Stage primaryStage,Group root,Player[] player) {
+		Button button = new Button();
+		Image img = new Image("img/buttonImg/StartButton.png");
+		button.setGraphic(new ImageView(img));
+		button.relocate(240, 200);
+		root.getChildren().add(button);
+		 button.setOnAction(value ->  {
+	           Start s= new Start();
+	           try { 
+	           s.start(primaryStage);
+			} catch (Exception e) {				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        });
+		 
+			Button button2 = new Button();
+			Image img2 = new Image("img//buttonImg/SaveButton.png");
+			button2.setGraphic(new ImageView(img2));
+			button2.relocate(240, 400);
+			root.getChildren().add(button2);
+			button2.setOnAction(value ->  {
+			try {
+			save(player[0].life,player[1].life);
+			} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		 }
+		 
+			});
+	}
 	public static void death(Stage primaryStage,Group root) {
 		DeathScreen d = new DeathScreen();
 		d.start(primaryStage);
@@ -129,18 +167,34 @@ public class Controls {
 			} else if (code == shootKey) {
 				player.shootStop();
         	} else if (code == ExitKey) {
-        		  Start d= new Start();
-        		  Game.timer.stop();
-    	           try {
-    				d.start(stage);
-    			} catch (Exception e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
+       		  saveScreen d= new saveScreen();
+        		 Player[] player =Game.player;
+       		  Game.timer.stop();
+   	           try {
+    				d.start(stage,player);
+   			} catch (Exception e) {
+   				// TODO Auto-generated catch block
+   				e.printStackTrace();
     			}
         	}
         }
     });
     
     }
-
+    public static int[] read() throws IOException {
+    	InputStream os= Files.newInputStream(Paths.get("Spielstand.dat"));
+    	DataInputStream dos = new DataInputStream(os);
+    	int[] personenLeben=new int[2];
+    	personenLeben[0]=dos.readInt();
+    	personenLeben[1]=dos.readInt();
+    	dos.close();
+    	return personenLeben;
+    }
+    public static void save(int statsP1,int statsP2) throws IOException {
+    	OutputStream os= Files.newOutputStream(Paths.get("Spielstand.dat"));
+    	DataOutputStream dos = new DataOutputStream(os);
+    	dos.writeInt(statsP1);
+    	dos.writeInt(statsP2);
+    	dos.close();
+    }
 }
