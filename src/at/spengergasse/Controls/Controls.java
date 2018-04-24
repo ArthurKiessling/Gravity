@@ -55,12 +55,12 @@ public class Controls {
 		Button button = new Button();
 		Image img = new Image("img/buttonImg/SpaceButton.png");
 		button.setGraphic(new ImageView(img));
-		button.relocate(240, 400);
+		button.relocate(240, 325);
 		root.getChildren().add(button);
 		 button.setOnAction(value ->  {
 	           Game g= new Game();
 	           try { 
-	           g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png","/img/playerSkins/Space-icon.png","/img/playerSkins/Space2-icon.png");
+	           g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png","/img/playerSkins/Space-icon.png","/img/playerSkins/Space2-icon.png",5,5);
 			} catch (Exception e) {				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -69,17 +69,38 @@ public class Controls {
 			Button button2 = new Button();
 			Image img2 = new Image("img//buttonImg/EarthButton.png");
 			button2.setGraphic(new ImageView(img2));
-			button2.relocate(240, 200);
+			button2.relocate(240, 100);
 			root.getChildren().add(button2);
 			 button2.setOnAction(value ->  {
 			     Game g= new Game();
 		           try {
-					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player.png","/img/playerSkins/Player2.png");
+					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player.png","/img/playerSkins/Player2.png",5,5);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		        });
+		       });
+			Button button3 = new Button();
+			Image img3 = new Image("img//buttonImg/OldGameButton.png");
+			button3.setGraphic(new ImageView(img3));
+			button3.relocate(240, 550);
+			root.getChildren().add(button3);
+			 button3.setOnAction(value ->  {
+				 int[] lifes =null;
+				try {
+					lifes = read();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			    Game g= new Game();
+		          try {
+				g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player.png","/img/playerSkins/Player2.png",lifes[0],lifes[1]);
+		         } catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+		         }
+		          });
 	}
     
 	public static void startMenu(Stage primaryStage,Group root) {

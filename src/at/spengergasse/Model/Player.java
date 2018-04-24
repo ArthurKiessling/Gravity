@@ -34,13 +34,14 @@ public class Player{
    public boolean shoot;
    public boolean lastShootLeft;
 
-	public  void move(Group root,int ID,String img) throws Exception {
+	public  void move(Group root,int ID,String img,int lifes) throws Exception {
 		playerImage = new Image(img);
         player = new ImageView(playerImage);
         if(ID==2)player.relocate(730, 50);
         else player.relocate(0, 50);
         root.getChildren().addAll(player);
         setID(ID);
+        this.life=lifes;
     }		
     
   
