@@ -31,9 +31,7 @@ public class Start extends Application {
 		primaryStage.show();
 	}
 
-	/**
-	 * @param primaryStage
-	 */
+
 	public static void genStartOptions(Stage primaryStage,Group root,InputStream backgroundLink,InputStream iconLink) {
 		Image icon=new Image(iconLink);
 		primaryStage.getIcons().addAll(icon);
