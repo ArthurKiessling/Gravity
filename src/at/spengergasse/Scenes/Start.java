@@ -29,6 +29,7 @@ public class Start extends Application {
 		Controls.startMenu(primaryStage,root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 
 	/**
