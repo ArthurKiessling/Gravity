@@ -52,29 +52,22 @@ public class Controls {
     }
     
 	public static void decide(Stage primaryStage,Group root) {
-		Button button = new Button();
-		Image img = new Image("img/buttonImg/SpaceButton.png");
-		button.setGraphic(new ImageView(img));
-		button.relocate(240, 325);
-		root.getChildren().add(button);
+		Button button=genButton(root,240,325,getSpaceButton());
 		 button.setOnAction(value ->  {
 	           Game g= new Game();
-	           try { 
-	           g.start(primaryStage,"/img/background/Background.png","/img/blocks/Block.png","/img/playerSkins/Space-icon.png","/img/playerSkins/Space2-icon.png",5,5);
+	           try { Game.WorldID=1;
+	           g.start(primaryStage,getBackground(Game.WorldID),getBlock(Game.WorldID),getSkins(Game.WorldID),5,5);
 			} catch (Exception e) {				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        });
 		 
-			Button button2 = new Button();
-			Image img2 = new Image("img//buttonImg/EarthButton.png");
-			button2.setGraphic(new ImageView(img2));
-			button2.relocate(240, 100);
-			root.getChildren().add(button2);
+			Button button2 =genButton(root,240,100,"img//buttonImg/EarthButton.png");
 			 button2.setOnAction(value ->  {
 			     Game g= new Game();
 		           try {
-					g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player.png","/img/playerSkins/Player2.png",5,5);
+		        	   Game.WorldID=2;
+					g.start(primaryStage,getBackground(Game.WorldID),getBlock(Game.WorldID),getSkins(Game.WorldID),5,5);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -86,50 +79,61 @@ public class Controls {
 			button3.relocate(240, 550);
 			root.getChildren().add(button3);
 			 button3.setOnAction(value ->  {
-				 int[] lifes =null;
+				 int[]info =null;
 				try {
-					lifes = read();
+					info = read();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			    Game g= new Game();
 		          try {
-				g.start(primaryStage,"/img/background/Background2.png","/img/blocks/Block2.png","/img/playerSkins/Player.png","/img/playerSkins/Player2.png",lifes[0],lifes[1]);
+				g.start(primaryStage,getBackground(info[2]),getBlock(info[2]),getSkins(info[2]),info[0],info[1]);
 		         } catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 		         }
 		          });
 	}
-    
+
+
+
 	public static void startMenu(Stage primaryStage,Group root) {
-		Button button = new Button();
-		Image img = new Image("img/buttonImg/StartButton.png");
-		button.setGraphic(new ImageView(img));
-		button.relocate(240, 200);
-		root.getChildren().add(button);
+		Button button =genButton(root,240,200,"img/buttonImg/StartButton.png");
 		 button.setOnAction(value ->  {
 	        	   Decide d= new Decide();
 				try {d.start(primaryStage);
 				} catch (Exception e) {e.printStackTrace();}
 	        });
 		 
-			Button button2 = new Button();
-			Image img2 = new Image("img/buttonImg/ExitButton.png");
-			button2.setGraphic(new ImageView(img2));
-			button2.relocate(240, 400);
-			root.getChildren().add(button2);
+			Button button2 =genButton(root,240,400,"img/buttonImg/ExitButton.png");
 			 button2.setOnAction(value ->  {
 				 primaryStage.close();
 		        });
 	}
 	
 	public static void saveScreen(Stage primaryStage,Group root,Player[] player) { 
+		int ID=Game.WorldID;
 		Game.timer.stop();
 		Button button = genButton(root,240, 25,"img/buttonImg/ExitButton.png");
 		 button.setOnAction(value ->  {
-			 System.out.println("return");
+			 Game g= new Game();
+			 switch(ID) {
+			 case 1:    try { 
+		           g.start(primaryStage,getBackground(ID),getBlock(ID),getSkins(ID),Game.player[0].life,Game.player[1].life);
+				} catch (Exception e) {				// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 break;
+			 case 2:   
+	          try {
+			g.start(primaryStage,getBackground(ID),getBlock(ID),getSkins(ID),Game.player[0].life,Game.player[1].life);
+	         } catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+	         }
+				 break;
+			 }
 	        });
 		 
 		 Button button1 = genButton(root,240,225,"img/buttonImg/StartButton.png");
@@ -146,7 +150,7 @@ public class Controls {
 			button2.setOnAction(value ->  {
 					Start s= new Start();
 					try {
-						save(player[0].life,player[1].life);
+						save(player[0].life,player[1].life,Game.WorldID);
 						s.start(primaryStage);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -221,17 +225,63 @@ public class Controls {
     public static int[] read() throws IOException {
     	InputStream os= Files.newInputStream(Paths.get("Spielstand.dat"));
     	DataInputStream dos = new DataInputStream(os);
-    	int[] personenLeben=new int[2];
-    	personenLeben[0]=dos.readInt();
-    	personenLeben[1]=dos.readInt();
+    	int[] info=new int[3];
+    	info[0]=dos.readInt();
+    	info[1]=dos.readInt();
+    	info[2]=dos.readInt();
     	dos.close();
-    	return personenLeben;
+    	return info;
     }
-    public static void save(int statsP1,int statsP2) throws IOException {
+    public static void save(int statsP1,int statsP2,int WorldID) throws IOException {
     	OutputStream os= Files.newOutputStream(Paths.get("Spielstand.dat"));
     	DataOutputStream dos = new DataOutputStream(os);
     	dos.writeInt(statsP1);
     	dos.writeInt(statsP2);
+    	dos.writeInt(WorldID);
     	dos.close();
     }
-}
+    
+
+	/**
+	 * @return
+	 */
+	public static String[] getSkins(int WorldID) {
+		String[] skins= new String[2];
+		switch(WorldID) {
+		case 1: {skins[0]="/img/playerSkins/Space-icon.png";
+		skins[1]="/img/playerSkins/Space2-icon.png";}
+		break;
+		case 2: {skins[0]="/img/playerSkins/Player.png";
+		skins[1]="/img/playerSkins/Player2.png";}
+		break;
+		}
+		return skins ;
+	}
+	/**
+	 * @return
+	 */
+	public static String getBlock(int WorldID) {
+		if(WorldID==1) {
+		return "/img/blocks/Block.png";
+		}else return "/img/blocks/Block2.png";
+	}
+
+	/**
+	 * @return
+	 */
+	public static String getSpaceButton() {
+		return "img/buttonImg/SpaceButton.png";
+	}
+	/**
+	 * @return
+	 */
+	public static String getBackground(int WorldID) {
+		switch(WorldID) {
+		case 1: return "/img/background/Background.png";
+
+		case 2: return "/img/background/Background2.png";
+		
+		default: return "s";
+		}
+	}
+   }

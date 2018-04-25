@@ -22,8 +22,9 @@ public class Game extends Application {
 	public Scene scene;
 	public static Player[] player;
 	public static AnimationTimer timer;
+	public static int WorldID;
 	
-	public void start(Stage primaryStage,String Background,String Block,String Skin,String Skin2,int lifesP1,int lifesP2) throws Exception {
+	public void start(Stage primaryStage,String Background,String Block,String[] Skin,int lifesP1,int lifesP2) throws Exception {
 		primaryStage.setTitle("Gravity");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
@@ -37,8 +38,8 @@ public class Game extends Application {
 		player[1]=(player2);
 		Controls.playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],primaryStage);
 		Controls.playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.DOWN,KeyCode.ESCAPE,scene,player[1],primaryStage);
-		player[0].move(root,1,Skin,lifesP1);
-		player[1].move(root,2,Skin2,lifesP2);
+		player[0].move(root,1,Skin[0],lifesP1);
+		player[1].move(root,2,Skin[1],lifesP2);
 		Blocks.heart(root); 
 		Weapon.genWeapons(root);
 		timer = new AnimationTimer() {
