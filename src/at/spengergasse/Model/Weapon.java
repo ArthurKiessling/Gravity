@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.Model.Weapons;
+package at.spengergasse.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.Model.Physics;
-import at.spengergasse.Model.Sound;
 import at.spengergasse.Scenes.Game;
 import at.spengergasse.Scenes.Start;
 import javafx.geometry.Bounds;

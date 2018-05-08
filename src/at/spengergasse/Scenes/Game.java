@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import at.spengergasse.Controls.Controls;
 import at.spengergasse.Model.Blocks;
 import at.spengergasse.Model.Player;
-import at.spengergasse.Model.Weapons.Weapon;
+import at.spengergasse.Model.Weapon;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
