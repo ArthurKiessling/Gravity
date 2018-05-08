@@ -115,7 +115,7 @@ public class Controls {
 	public static void saveScreen(Stage primaryStage,Group root,Player[] player) { 
 		int ID=Game.WorldID;
 		Game.timer.stop();
-		Button button = genButton(root,240, 25,"img/buttonImg/ExitButton.png");
+		Button button = genButton(root,240, 25,"img/buttonImg/ReturnButton.png");
 		 button.setOnAction(value ->  {
 			 Game g= new Game();
 			 switch(ID) {
