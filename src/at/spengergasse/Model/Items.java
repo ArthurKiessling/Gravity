@@ -13,14 +13,12 @@ import javafx.scene.image.ImageView;
  * @author Arthur Kiessling
  *
  */
-public class Show {
+public class Items{
 	
-	public Show(String path,int x,int y){
+	public Items(String path,int x,int y){
 		Image Img= new Image(path);
 		 Node node=new ImageView(Img);
 		 Game.root.getChildren().add(node);
 		 node.relocate(x, y);
 		 }
-	
-
 }

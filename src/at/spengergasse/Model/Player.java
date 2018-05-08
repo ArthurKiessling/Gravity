@@ -47,8 +47,7 @@ public class Player{
   
     public void handle(long no) {
         float dx = 0, dy=0, x=4;
-        if(Physics.checkBoundsUp(player))jump=0;
-        if(jump>0&&jump<80&&!Physics.checkBoundsUp(player)) {dy-=9*multi;jump++;multi-=0.012;if(jump==72) {jump=0;multi=1;}  }
+        if(jump>0&&jump<80) {dy-=10*multi;jump++;multi-=0.012;if(jump==72) {jump=0;multi=1;}  }
          if (goEast&&!Physics.checkBoundsRight(player))  dx += 3;
          if (goWest&&!Physics.checkBoundsLeft(player))   dx -= 3;
          if(up&&jump==0&&Physics.checkBoundsDown(player)) {dy-=9;jump++; try {
