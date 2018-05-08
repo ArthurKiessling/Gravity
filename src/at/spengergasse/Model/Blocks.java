@@ -9,7 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Blocks {
-   
+
+
 	private static String BLOCK_IMAGE_LOC;
 	public static int[] lifes;
 	public static Image icon ;
