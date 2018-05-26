@@ -31,11 +31,7 @@ import javafx.stage.Stage;
  * @author Arthur Kiessling
  *
  */
-public class Controls extends Stage{
-	final private Button first;
-	final private Button second;
-	final private Button third;
-	final private Button fourth;
+public class Controls {
 	
     public static void stopStage(KeyCode StopKey,Stage stage, Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
@@ -289,33 +285,4 @@ public class Controls extends Stage{
 		default: return "s";
 		}
 	}
-
-	/**
-	 * @return the first
-	 */
-	public Button getFirst() {
-		return first;
-	}
-
-	/**
-	 * @return the second
-	 */
-	public Button getSecond() {
-		return second;
-	}
-
-	/**
-	 * @return the third
-	 */
-	public Button getThird() {
-		return third;
-	}
-
-	/**
-	 * @return the fourth
-	 */
-	public Button getFourth() {
-		return fourth;
-	}
-	
    }
