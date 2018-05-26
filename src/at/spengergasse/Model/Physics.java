@@ -4,8 +4,8 @@
  */
 package at.spengergasse.Model;
 
-import at.spengergasse.Scenes.Game;
-import at.spengergasse.Scenes.Start;
+import at.spengergasse.Gui.Game;
+import at.spengergasse.Gui.Start;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 

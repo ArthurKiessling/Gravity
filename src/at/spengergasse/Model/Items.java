@@ -4,7 +4,7 @@
 package at.spengergasse.Model;
 
 
-import at.spengergasse.Scenes.Game;
+import at.spengergasse.Gui.Game;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

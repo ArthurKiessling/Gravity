@@ -10,12 +10,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import at.spengergasse.Scenes.saveScreen;
+
+import at.spengergasse.Gui.DeathScreen;
+import at.spengergasse.Gui.Decide;
+import at.spengergasse.Gui.Game;
+import at.spengergasse.Gui.Start;
+import at.spengergasse.Gui.saveScreen;
 import at.spengergasse.Model.Player;
-import at.spengergasse.Scenes.DeathScreen;
-import at.spengergasse.Scenes.Decide;
-import at.spengergasse.Scenes.Game;
-import at.spengergasse.Scenes.Start;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;

@@ -1,5 +1,5 @@
 
-package at.spengergasse.Scenes;
+package at.spengergasse.Gui;
 
 import at.spengergasse.Controls.Controls;
 import at.spengergasse.Model.Player;

@@ -8,8 +8,8 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.Scenes.Game;
-import at.spengergasse.Scenes.Start;
+import at.spengergasse.Gui.Game;
+import at.spengergasse.Gui.Start;
 import javafx.geometry.Bounds;
 import javafx.scene.*;
 import javafx.scene.image.*;
