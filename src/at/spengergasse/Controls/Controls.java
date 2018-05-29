@@ -11,8 +11,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-
 import at.spengergasse.Gui.DeathScreen;
 import at.spengergasse.Gui.Decide;
 import at.spengergasse.Gui.Game;
