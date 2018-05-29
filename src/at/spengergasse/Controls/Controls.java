@@ -54,6 +54,24 @@ public class Controls {
 
     }
     
+    public static void startMenu(Stage primaryStage,Group root) {
+		Button button =genButton(root,240,200,"img/buttonImg/StartButton.png");
+		 button.setOnAction(value ->  {
+	        	   Decide d= new Decide();
+			try {
+				d.start(primaryStage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		  });
+		 
+			Button button2 =genButton(root,240,400,"img/buttonImg/ExitButton.png");
+			 button2.setOnAction(value ->  {
+				 primaryStage.close();
+		        });
+	}
+    
 	public static void decide(Stage primaryStage,Group root) {
 		Button button=genButton(root,240,325,getSpaceButton());
 		 button.setOnAction(value ->  {
@@ -102,19 +120,7 @@ public class Controls {
 
 
 
-	public static void startMenu(Stage primaryStage,Group root) {
-		Button button =genButton(root,240,200,"img/buttonImg/StartButton.png");
-		 button.setOnAction(value ->  {
-	        	   Decide d= new Decide();
-				try {d.start(primaryStage);
-				} catch (Exception e) {e.printStackTrace();}
-	        });
-		 
-			Button button2 =genButton(root,240,400,"img/buttonImg/ExitButton.png");
-			 button2.setOnAction(value ->  {
-				 primaryStage.close();
-		        });
-	}
+	
 	
 	public static void saveScreen(Stage primaryStage,Group root,Player[] player) { 
 		int ID=Game.WorldID;

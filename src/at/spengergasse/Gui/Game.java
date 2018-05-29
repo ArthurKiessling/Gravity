@@ -36,7 +36,7 @@ public class Game extends Application {
 		Start.genStartOptions(primaryStage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		block= new ArrayList<Node>();
 		Blocks.generate(Block, root);
-		Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+		Sound.playBackgroundSound("/img/playerSkins/icon.png");
 		player= new Player[2];
 		Player player1= new Player();   
 		Player player2= new Player();
