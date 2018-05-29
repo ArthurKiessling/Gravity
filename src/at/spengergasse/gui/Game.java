@@ -1,15 +1,15 @@
- package at.spengergasse.Gui;
+ package at.spengergasse.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.Controls.Controls;
-import at.spengergasse.Model.Blocks;
-import at.spengergasse.Model.Player;
-import at.spengergasse.Model.Sound;
-import at.spengergasse.Model.Weapon;
+import at.spengergasse.controls.Controls;
+import at.spengergasse.model.Blocks;
+import at.spengergasse.model.Player;
+import at.spengergasse.model.Sound;
+import at.spengergasse.model.Weapon;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;

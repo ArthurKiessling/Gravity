@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.Controls;
+package at.spengergasse.controls;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -11,13 +11,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import at.spengergasse.Gui.DeathScreen;
-import at.spengergasse.Gui.Decide;
-import at.spengergasse.Gui.Game;
-import at.spengergasse.Gui.Start;
-import at.spengergasse.Gui.saveScreen;
-import at.spengergasse.Model.Player;
-import at.spengergasse.Model.Sound;
+
+import at.spengergasse.gui.DeathScreen;
+import at.spengergasse.gui.Decide;
+import at.spengergasse.gui.Game;
+import at.spengergasse.gui.Start;
+import at.spengergasse.gui.saveScreen;
+import at.spengergasse.model.Player;
+import at.spengergasse.model.Sound;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;

@@ -2,10 +2,10 @@
 /**
  * 
  */
-package at.spengergasse.Model;
+package at.spengergasse.model;
 
-import at.spengergasse.Gui.Game;
-import at.spengergasse.Gui.Start;
+import at.spengergasse.gui.Game;
+import at.spengergasse.gui.Start;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 

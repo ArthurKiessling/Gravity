@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.Controls;
+package at.spengergasse.controls;
 
 /**
  * @author Arthur Kiessling

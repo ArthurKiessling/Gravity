@@ -1,7 +1,7 @@
 
-package at.spengergasse.Gui;
+package at.spengergasse.gui;
 
-import at.spengergasse.Controls.Controls;
+import at.spengergasse.controls.Controls;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;

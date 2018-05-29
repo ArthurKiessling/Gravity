@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.Model;
+package at.spengergasse.model;
 
 import java.io.File;
 import java.io.IOException;

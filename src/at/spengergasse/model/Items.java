@@ -1,10 +1,10 @@
 /**
  * 
  */
-package at.spengergasse.Model;
+package at.spengergasse.model;
 
 
-import at.spengergasse.Gui.Game;
+import at.spengergasse.gui.Game;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
