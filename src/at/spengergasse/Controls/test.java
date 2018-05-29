@@ -4,10 +4,9 @@ import java.io.IOException;
 
 public class test {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, Fehler {
 		// TODO Auto-generated method stub
-		int[] i=Controls.read();
-		System.out.println(i[0]+" "+i[1]);
+		Controls.save(5, 5, 1);
 		}
 
 }

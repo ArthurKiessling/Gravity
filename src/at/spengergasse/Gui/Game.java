@@ -1,9 +1,14 @@
  package at.spengergasse.Gui;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import at.spengergasse.Controls.Controls;
 import at.spengergasse.Model.Blocks;
 import at.spengergasse.Model.Player;
+import at.spengergasse.Model.Sound;
 import at.spengergasse.Model.Weapon;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -31,6 +36,7 @@ public class Game extends Application {
 		Start.genStartOptions(primaryStage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		block= new ArrayList<Node>();
 		Blocks.generate(Block, root);
+		Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
 		player= new Player[2];
 		Player player1= new Player();   
 		Player player2= new Player();
@@ -50,6 +56,13 @@ public class Game extends Application {
 				Blocks.handle(now);
 				Weapon.handle(now);
 				if(player[0].life==0||player[1].life==0) {
+					Sound.close();
+					try {
+						Sound.playSound("src/sound/gameover.wav");
+					} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					Controls.death(primaryStage, root);
 					timer.stop();
 					}

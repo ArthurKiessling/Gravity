@@ -19,6 +19,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class Sound {
 
+	public static Clip background;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -30,5 +31,15 @@ public class Sound {
 			clip.open(AudioSystem.getAudioInputStream(Sound));
 		   clip.start();
 	}
-
+	public static void playBackgroundSound(String File) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+		File Sound = new File(File);
+		   Clip clip =AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
+		   clip.loop(1000000);
+		   background=clip;
+	}
+	
+	public static void close() {
+		background.close();
+	}
 }

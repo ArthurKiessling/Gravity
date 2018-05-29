@@ -5,6 +5,7 @@ package at.spengergasse.Controls;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,6 +18,7 @@ import at.spengergasse.Gui.Game;
 import at.spengergasse.Gui.Start;
 import at.spengergasse.Gui.saveScreen;
 import at.spengergasse.Model.Player;
+import at.spengergasse.Model.Sound;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -81,12 +83,13 @@ public class Controls {
 			root.getChildren().add(button3);
 			 button3.setOnAction(value ->  {
 				 int[]info =null;
-				try {
-					info = read();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+					try {
+						info = read();
+					} catch (Fehler | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			
 			    Game g= new Game();
 		          try {
 				g.start(primaryStage,getBackground(info[2]),getBlock(info[2]),getSkins(info[2]),info[0],info[1]);
@@ -209,6 +212,7 @@ public class Controls {
 			} else if (code == shootKey) {
 				player.shootStop();
         	} else if (code == ExitKey) {
+        		Sound.close();
        		  saveScreen d= new saveScreen();
         		 Player[] player =Game.player;
        		  Game.timer.stop();
@@ -223,7 +227,8 @@ public class Controls {
     });
     
     }
-    public static int[] read() throws IOException {
+    public static int[] read() throws  Fehler, IOException {
+    	if(!new File("Spielstand.dat").isFile())throw new Fehler("Geht nicht"); 
     	InputStream os= Files.newInputStream(Paths.get("Spielstand.dat"));
     	DataInputStream dos = new DataInputStream(os);
     	int[] info=new int[3];

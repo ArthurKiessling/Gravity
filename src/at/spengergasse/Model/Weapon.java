@@ -124,6 +124,12 @@ public class Weapon {
 		 for(int id=0; id<Game.player.length;id++) {
 			 for(int idx=0;idx<bullets.size();idx++) {
 				 if(Physics.checkTwo(Game.player[id].player,bullets.get(idx))){
+					 try {
+						Sound.playSound("src/sound/hit.wav");
+					} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					 Game.player[id].loseLife();
 					 Game.root.getChildren().remove(Game.root.getChildren().indexOf(bullets.get(idx)));
 					 bullets.remove(idx);
