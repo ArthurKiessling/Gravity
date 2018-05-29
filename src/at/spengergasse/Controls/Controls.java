@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import at.spengergasse.Gui.DeathScreen;
 import at.spengergasse.Gui.Decide;
@@ -29,12 +30,17 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+
 /**
  * @author Arthur Kiessling
  *
  */
-public class Controls {
+public class Controls extends Stage{
 	
+	/*
+	public Controls(List<String> args) {
+		this.args=args;
+	}*/
     public static void stopStage(KeyCode StopKey,Stage stage, Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         @Override

@@ -18,9 +18,11 @@ public class Start extends Application {
 	public static double H=800;
 	public Group root ;
 	public Scene scene;
+
 	
 	
 	public void start(Stage primaryStage) throws Exception {
+
 		primaryStage.setTitle("Gravity");
 		root = new Group();
 		scene = new Scene(root, W, H, Color.WHITE);
