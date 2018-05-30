@@ -7,34 +7,22 @@ import at.spengergasse.controls.Controls;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 
 import javafx.stage.Stage;
 
 public class Start extends Application {
 	public static double W=800;
 	public static double H=800;
-	public Group root ;
-	public Scene scene;
 
 	
-	
-	public void start(Stage primaryStage) throws Exception {
-
-		primaryStage.setTitle("Gravity");
-		root = new Group();
-		scene = new Scene(root, W, H, Color.WHITE);
-		primaryStage.setResizable(false);
-		genStartOptions(primaryStage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
-		Controls.startMenu(primaryStage,root);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+	@Override
+	public void start(Stage primaryStage){
+		new Controls(getParameters().getRaw());
 		
 	}
-
+ 
 
 	public static void genStartOptions(Stage primaryStage,Group root,InputStream backgroundLink,InputStream iconLink) {
 		Image icon=new Image(iconLink);

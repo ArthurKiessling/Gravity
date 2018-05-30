@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.gui.Game;
+import at.spengergasse.controls.Controls;
 import at.spengergasse.gui.Start;
 import javafx.geometry.Bounds;
 import javafx.scene.*;
@@ -33,13 +33,15 @@ public class Player{
    public boolean lastLeft;
    public boolean shoot;
    public boolean lastShootLeft;
-
-	public  void move(Group root,int ID,String img,int lifes) throws Exception {
+   private Controls cont;
+   
+	public  void move(int ID,String img,int lifes,Controls cont) throws Exception {
+		this.cont=cont;
 		playerImage = new Image(img);
         player = new ImageView(playerImage);
         if(ID==2)player.relocate(730, 50);
         else player.relocate(0, 50);
-        root.getChildren().addAll(player);
+        cont.getRoot().getChildren().addAll(player);
         setID(ID);
         this.life=lifes;
     }		
@@ -73,8 +75,8 @@ public class Player{
 			 if(idx>=life) {
 				 Image heartimage = new Image("/img/blocks/heartX.png",32,32,false,false);
 				 Node newHeart=new ImageView(heartimage);
-				 if(ID==2) {newHeart.relocate(idx*30+650, 5);Game.root.getChildren().set(Blocks.lifes[5+idx], newHeart);}
-				 else { newHeart.relocate(idx*30, 5);Game.root.getChildren().set(Blocks.lifes[idx], newHeart);}
+				 if(ID==2) {newHeart.relocate(idx*30+650, 5);cont.getRoot().getChildren().set(Blocks.lifes[5+idx], newHeart);}
+				 else { newHeart.relocate(idx*30, 5);cont.getRoot().getChildren().set(Blocks.lifes[idx], newHeart);}
 			 }
 		 } 
 	}
@@ -112,13 +114,13 @@ public class Player{
 	  public void rightStart() {
 			goEast  = true;
 			if(lastLeft==true) {lastLeft=false;
-			Weapon.rotateItem(ID,true,weapon);}
+			cont.getWea().rotateItem(ID,true,weapon);}
 		}
 
 	    public void leftStart() {
 			 goWest  = true;
 			 if(lastLeft==false) {lastLeft=true;
-			 Weapon.rotateItem(ID,false,weapon);}
+			 cont.getWea().rotateItem(ID,false,weapon);}
 		}
 	    public  void leftStop() {
 			goWest  = false;

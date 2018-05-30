@@ -4,7 +4,7 @@
  */
 package at.spengergasse.model;
 
-import at.spengergasse.gui.Game;
+import at.spengergasse.controls.Controls;
 import at.spengergasse.gui.Start;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -17,7 +17,7 @@ public class Physics {
 	
 	
 	public static boolean checkBoundsDown(Node player) {
-		for(int idx=0; idx <Game.block.size();idx++) {
+		for(int idx=0; idx <Controls.block.size();idx++) {
 			if (checkIntersects(player,idx)&&
 				playerBounds(player).getMaxY()<blockBounds(idx).getMaxY()&& xCheck(player,idx)) {
 				   return true;
@@ -29,7 +29,7 @@ public class Physics {
 	
 	
 	 public static boolean checkBoundsUp(Node player) {
-		 for(int idx =0; idx <Game.block.size();idx++) {
+		 for(int idx =0; idx <Controls.block.size();idx++) {
 	        if(playerBounds(player).getMinY()>= blockBounds(idx).getMaxY()&&
 	        	playerBounds(player).getMinY()<= blockBounds(idx).getMaxY()+6&&
 	        	xCheck(player,idx))
@@ -39,7 +39,7 @@ public class Physics {
 		 }
 	 
 	 public static boolean checkBoundsLeft(Node player) {
-		 for(int idx =0; idx <Game.block.size();idx++) {
+		 for(int idx =0; idx <Controls.block.size();idx++) {
 	        if(yCheck(player,idx)&&checkIntersects(player,idx)&&
 	            playerBounds(player).getMinX() >= blockBounds(idx).getMaxX()&&
 	            playerBounds(player).getMaxX()<= blockBounds(idx).getMaxX()+playerBounds(player).getWidth())
@@ -49,7 +49,7 @@ public class Physics {
 	}
 	 
 	 public static boolean checkBoundsRight(Node player) {
-		 for(int idx =0; idx <Game.block.size();idx++) {
+		 for(int idx =0; idx <Controls.block.size();idx++) {
 	        if(yCheck(player,idx)&&checkIntersects(player,idx)&&
 	            playerBounds(player).getMaxX() <= blockBounds(idx).getMinX()&&
 	            playerBounds(player).getMinX() >= blockBounds(idx).getMinX()-playerBounds(player).getWidth())
@@ -68,7 +68,7 @@ public class Physics {
 	}
 
 	private static Bounds blockBounds(int idx) {
-		return Game.block.get(idx).getBoundsInParent();
+		return Controls.block.get(idx).getBoundsInParent();
 	}
 	
 	private static boolean xCheck(Node player,int idx) {

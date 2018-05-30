@@ -1,7 +1,7 @@
 package at.spengergasse.model;
 
 
-import at.spengergasse.gui.Game;
+import at.spengergasse.controls.Controls;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -31,30 +31,30 @@ public class Blocks {
 					if(x==1)r= newBlock(w,h+80,BlockImg);
 					else r= newBlock(w,h,BlockImg);
 					root.getChildren().addAll(r);
-					Game.block.add(r);
+					Controls.block.add(r);
 					
 				}
 			}
 		}
 
 	 public static void check() {
-		 for(int idx=0; idx<Game.block.size();idx++){
+		 for(int idx=0; idx<Controls.block.size();idx++){
 			 if(blockBounds(idx).getMinY()>=980) {
-				 Game.block.get(idx).relocate(blockBounds(idx).getMinX(),-200);
+				 Controls.block.get(idx).relocate(blockBounds(idx).getMinX(),-200);
 			 }
 		 }
 	 }
 	 public static void down() {
-		 for(int idx=0; idx<Game.block.size();idx++){
+		 for(int idx=0; idx<Controls.block.size();idx++){
 			 double h= blockBounds(idx).getMinY()+0.6f;
-			 Game.block.get(idx).relocate(blockBounds(idx).getMinX(),h);
+			 Controls.block.get(idx).relocate(blockBounds(idx).getMinX(),h);
 		 }
 	
 	 }
 
 
 	private static Bounds blockBounds(int idx) {
-		return Game.block.get(idx).getBoundsInParent();
+		return Controls.block.get(idx).getBoundsInParent();
 	}
 	 public static void handle(long now) {
 		 down();

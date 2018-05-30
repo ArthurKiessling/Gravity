@@ -11,22 +11,33 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import at.spengergasse.gui.DeathScreen;
-import at.spengergasse.gui.Decide;
 import at.spengergasse.gui.Game;
+import at.spengergasse.gui.ActionListener;
 import at.spengergasse.gui.Start;
 import at.spengergasse.gui.saveScreen;
+import at.spengergasse.model.Blocks;
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Sound;
+import at.spengergasse.model.Weapon;
+import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -35,11 +46,52 @@ import javafx.stage.Stage;
  *
  */
 public class Controls extends Stage{
+	private Button startButton;
+	private Button closeButton;
+	private Button saveButton;
+	private Button returnButton;
+	private Button backButton;
+	private Button spaceButton;
+	private Button earthButton;
+	private Button oldGameButton;
 	
-	/*
+	public static ArrayList<Node> block;
+	private Player[] player;
+	private AnimationTimer timer;
+	private Weapon wea;
+	
+	private Scene scene;
+	private Group root;
+	private Stage stage;
+	private ActionListener listener;	
+	
+	// arguments to the frame
+	//private List<String> args;
+	
 	public Controls(List<String> args) {
-		this.args=args;
-	}*/
+		//this.args=args;
+		listener=new ActionListener(this);
+		stage=new Stage();
+		stage.setTitle("Gravity");
+		stage.setResizable(false);
+		root=new Group(); 
+		startMenu();
+	}
+	
+	   public void startMenu() {
+		root = new Group();
+		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+		
+		startButton =genButton(240,200,"img/buttonImg/StartButton.png");
+
+		closeButton=genButton(240,400,"img/buttonImg/ExitButton.png");
+
+
+		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
+		stage.setScene(scene);
+		stage.show();
+		}
+	   /*	
     public static void stopStage(KeyCode StopKey,Stage stage, Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         @Override
@@ -58,73 +110,82 @@ public class Controls extends Stage{
       });
 
     }
-    
-    public static void startMenu(Stage primaryStage,Group root) {
-		Button button =genButton(root,240,200,"img/buttonImg/StartButton.png");
-		 button.setOnAction(value ->  {
-	        	   Decide d= new Decide();
-			try {
-				d.start(primaryStage);
-			} catch (Exception e) {
+*/	    
+	   public void game(String Background,String Block,String[] Skin,int lifesP1,int lifesP2){
+			root = new Group();
+
+			Start.genStartOptions(stage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+			block= new ArrayList<Node>();
+			Blocks.generate(Block, root);
+			/*try {
+				Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e2.printStackTrace();
+			}*/
+			player= new Player[2];
+			Player player1= new Player();   
+			Player player2= new Player();
+			player[0]=(player1);
+			player[1]=(player2);
+			playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],stage);
+			playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.DOWN,KeyCode.ESCAPE,scene,player[1],stage);
+			try {
+				player[0].move(1,Skin[0],lifesP1,this);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-		  });
-		 
-			Button button2 =genButton(root,240,400,"img/buttonImg/ExitButton.png");
-			 button2.setOnAction(value ->  {
-				 primaryStage.close();
-		        });
-	}
-    
-	public static void decide(Stage primaryStage,Group root) {
-		Button button=genButton(root,240,325,getSpaceButton());
-		 button.setOnAction(value ->  {
-	           Game g= new Game();
-	           try { Game.WorldID=1;
-	           g.start(primaryStage,getBackground(Game.WorldID),getBlock(Game.WorldID),getSkins(Game.WorldID),5,5);
-			} catch (Exception e) {				// TODO Auto-generated catch block
-				e.printStackTrace();
+			try {
+				player[1].move(2,Skin[1],lifesP2,this);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-	        });
-		 
-			Button button2 =genButton(root,240,100,"img//buttonImg/EarthButton.png");
-			 button2.setOnAction(value ->  {
-			     Game g= new Game();
-		           try {
-		        	   Game.WorldID=2;
-					g.start(primaryStage,getBackground(Game.WorldID),getBlock(Game.WorldID),getSkins(Game.WorldID),5,5);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			Blocks.heart(root); 
+			wea=new Weapon();
+			wea.genWeapons(this);
+			timer = new AnimationTimer() {
+				@Override
+				public void handle(long now){
+					player[0].handle(now);
+					player[1].handle(now);
+					Blocks.handle(now);
+					wea.handle(now);
+					if(player[0].life==0||player[1].life==0) {
+						Sound.close();
+						try {
+							Sound.playSound("src/sound/gameover.wav");
+						} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						death(stage, root);
+						timer.stop();
+						}
 				}
-		       });
-			Button button3 = new Button();
-			Image img3 = new Image("img//buttonImg/OldGameButton.png");
-			button3.setGraphic(new ImageView(img3));
-			button3.relocate(240, 550);
-			root.getChildren().add(button3);
-			 button3.setOnAction(value ->  {
-				 int[]info =null;
-					try {
-						info = read();
-					} catch (Fehler | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-			
-			    Game g= new Game();
-		          try {
-				g.start(primaryStage,getBackground(info[2]),getBlock(info[2]),getSkins(info[2]),info[0],info[1]);
-		         } catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-		         }
-		          });
+			};
+			timer.start();
+			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
+			stage.setScene(scene);
+			stage.show();
+		}
+	public void decide() {
+		root=new Group(); 
+		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+		
+		
+		spaceButton=genButton(240,325,"img//buttonImg/SpaceButton.png");
+		earthButton=genButton(240,100,"img//buttonImg/EarthButton.png");
+		oldGameButton=genButton(240, 550,"img//buttonImg/OldGameButton.png");
+		
+		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 
-
+	/*	
 	
 	
 	public static void saveScreen(Stage primaryStage,Group root,Player[] player) { 
@@ -177,24 +238,25 @@ public class Controls extends Stage{
 				 primaryStage.close();
 		        });
 	}
-
+*/
 	/**
 	 * @param root
 	 * @return
 	 */
-	public static Button genButton(Group root,int x,int y, String path) {
+	public Button genButton(int x,int y, String path) {
 		Button button = new Button();
 		Image img4= new Image(path);
 		button.setGraphic(new ImageView(img4));
-		button.relocate(x,y);
+		button.relocate(x, y);
 		root.getChildren().add(button);
+		button.addEventHandler(ActionEvent.ACTION, listener);
 		return button;
 	}
-	public static void death(Stage primaryStage,Group root) {
+	public void death(Stage primaryStage,Group root) {
 		DeathScreen d = new DeathScreen();
 		d.start(primaryStage);
 	}
-    public static void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey,KeyCode ExitKey, Scene scene,Player player,Stage stage) {
+    public void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey,KeyCode ExitKey, Scene scene,Player player,Stage stage) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -238,7 +300,7 @@ public class Controls extends Stage{
     });
     
     }
-    public static int[] read() throws  Fehler, IOException {
+    public int[] read() throws  Fehler, IOException {
     	if(!new File("Spielstand.dat").isFile())throw new Fehler("Geht nicht"); 
     	InputStream os= Files.newInputStream(Paths.get("Spielstand.dat"));
     	DataInputStream dos = new DataInputStream(os);
@@ -249,7 +311,7 @@ public class Controls extends Stage{
     	dos.close();
     	return info;
     }
-    public static void save(int statsP1,int statsP2,int WorldID) throws IOException {
+    public void save(int statsP1,int statsP2,int WorldID) throws IOException {
     	OutputStream os= Files.newOutputStream(Paths.get("Spielstand.dat"));
     	DataOutputStream dos = new DataOutputStream(os);
     	dos.writeInt(statsP1);
@@ -262,7 +324,7 @@ public class Controls extends Stage{
 	/**
 	 * @return
 	 */
-	public static String[] getSkins(int WorldID) {
+	public String[] getSkins(int WorldID) {
 		String[] skins= new String[2];
 		switch(WorldID) {
 		case 1: {skins[0]="/img/playerSkins/Space-icon.png";
@@ -277,28 +339,118 @@ public class Controls extends Stage{
 	/**
 	 * @return
 	 */
-	public static String getBlock(int WorldID) {
+	public String getBlock(int WorldID) {
 		if(WorldID==1) {
 		return "/img/blocks/Block.png";
 		}else return "/img/blocks/Block2.png";
 	}
 
+
 	/**
 	 * @return
 	 */
-	public static String getSpaceButton() {
-		return "img/buttonImg/SpaceButton.png";
-	}
-	/**
-	 * @return
-	 */
-	public static String getBackground(int WorldID) {
+	public String getBackground(int WorldID) {
 		switch(WorldID) {
 		case 1: return "/img/background/Background.png";
 
 		case 2: return "/img/background/Background2.png";
 		
-		default: return "s";
+		default: return "1";
 		}
 	}
+
+	/**
+	 * @return the startButton
+	 */
+	public Button getStartButton() {
+		return startButton;
+	}
+
+	/**
+	 * @return the closeButton
+	 */
+	public Button getCloseButton() {
+		return closeButton;
+	}
+
+	/**
+	 * @return the saveButton
+	 */
+	public Button getSaveButton() {
+		return saveButton;
+	}
+
+	/**
+	 * @return the returnButton
+	 */
+	public Button getReturnButton() {
+		return returnButton;
+	}
+
+	/**
+	 * @return the backButton
+	 */
+	public Button getBackButton() {
+		return backButton;
+	}
+
+	/**
+	 * @return the stage
+	 */
+	public Stage getStage() {
+		return stage;
+	}
+
+	/**
+	 * @return the spaceButton
+	 */
+	public Button getSpaceButton() {
+		return spaceButton;
+	}
+
+	/**
+	 * @return the earthButton
+	 */
+	public Button getEarthButton() {
+		return earthButton;
+	}
+
+	/**
+	 * @return the oldGameButton
+	 */
+	public Button getOldGameButton() {
+		return oldGameButton;
+	}
+
+	/**
+	 * @return the root
+	 */
+	public Group getRoot() {
+		return root;
+	}
+
+
+
+	/**
+	 * @return the player
+	 */
+	public Player getPlayer(int playerNb) {
+		return player[playerNb];
+	}
+
+	/**
+	 * @return the player
+	 */
+	public Player[] getPlayerArr() {
+		return player;
+	}
+
+	/**
+	 * @return the wea
+	 */
+	public Weapon getWea() {
+		return wea;
+	}
+	
+	
    }

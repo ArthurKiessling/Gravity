@@ -3,8 +3,7 @@
  */
 package at.spengergasse.model;
 
-
-import at.spengergasse.gui.Game;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,10 +14,10 @@ import javafx.scene.image.ImageView;
  */
 public class Items{
 	
-	public Items(String path,int x,int y){
+	public Items(String path,int x,int y,Group root){
 		Image Img= new Image(path);
 		 Node node=new ImageView(Img);
-		 Game.root.getChildren().add(node);
+		 root.getChildren().add(node);
 		 node.relocate(x, y);
 		 }
 }
