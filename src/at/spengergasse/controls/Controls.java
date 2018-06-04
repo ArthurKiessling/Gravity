@@ -140,6 +140,7 @@ public class Controls extends Stage{
 			Blocks.heart(root); 
 			wea=new Weapon();
 			wea.genWeapons(this,"/img/weapons/weapon2.png","/img/weapons/bullet.png");
+			keyListener.handle();
 			timer = new AnimationTimer() {
 				@Override
 				public void handle(long now){

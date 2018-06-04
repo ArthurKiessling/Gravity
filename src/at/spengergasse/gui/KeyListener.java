@@ -51,7 +51,6 @@ public class KeyListener{
 		
 		this.ExitKey=ExitKey;
 		this.scene=scene;
-		handle();
 	}
 
 	public void handle() {
