@@ -1,4 +1,4 @@
-package at.spengergasse.controls;
+package at.spengergasse.test;
 
 import java.io.IOException;
 

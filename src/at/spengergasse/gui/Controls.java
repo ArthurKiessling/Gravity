@@ -17,11 +17,11 @@ import java.util.List;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.controls.Fehler;
 import at.spengergasse.model.Blocks;
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Sound;
 import at.spengergasse.model.Weapon;
+import at.spengergasse.test.Fehler;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 
