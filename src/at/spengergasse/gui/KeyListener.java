@@ -7,7 +7,6 @@ package at.spengergasse.gui;
 
 
 
-import at.spengergasse.controls.Controls;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;

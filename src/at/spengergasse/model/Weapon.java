@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.controls.Controls;
+import at.spengergasse.gui.Controls;
 import at.spengergasse.gui.Start;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;

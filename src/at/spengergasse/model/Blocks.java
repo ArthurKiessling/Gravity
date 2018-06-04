@@ -1,7 +1,7 @@
 package at.spengergasse.model;
 
 
-import at.spengergasse.controls.Controls;
+import at.spengergasse.gui.Controls;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Node;

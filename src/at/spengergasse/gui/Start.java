@@ -3,7 +3,6 @@ package at.spengergasse.gui;
 
 import java.io.InputStream;
 
-import at.spengergasse.controls.Controls;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;

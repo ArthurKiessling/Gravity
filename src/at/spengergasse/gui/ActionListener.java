@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.controls.Controls;
 import at.spengergasse.controls.Fehler;
 import at.spengergasse.model.Sound;
 import javafx.event.ActionEvent;

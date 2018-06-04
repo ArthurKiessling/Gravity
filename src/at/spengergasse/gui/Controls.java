@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.spengergasse.controls;
+package at.spengergasse.gui;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,11 +17,7 @@ import java.util.List;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
-import at.spengergasse.gui.KeyListener;
-import at.spengergasse.gui.ActionListener;
-import at.spengergasse.gui.Start;
-
+import at.spengergasse.controls.Fehler;
 import at.spengergasse.model.Blocks;
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Sound;
@@ -112,12 +108,12 @@ public class Controls extends Stage{
 			Start.genStartOptions(stage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 			block= new ArrayList<Node>();
 			Blocks.generate(Block, root);
-			try {
-				Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
-			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
+				try {
+					Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+				} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}	
 			player= new Player[2];
 			Player player1= new Player();   
 			Player player2= new Player();
