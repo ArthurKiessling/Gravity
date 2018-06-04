@@ -112,12 +112,12 @@ public class Controls extends Stage{
 			Start.genStartOptions(stage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 			block= new ArrayList<Node>();
 			Blocks.generate(Block, root);
-			/*try {
+			try {
 				Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
 			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
-			}*/
+			}
 			player= new Player[2];
 			Player player1= new Player();   
 			Player player2= new Player();
@@ -148,7 +148,7 @@ public class Controls extends Stage{
 					Blocks.handle(now);
 					wea.handle(now);
 					if(player[0].life==0||player[1].life==0) {
-						//Sound.close();
+						Sound.close();
 						try {
 							Sound.playSound("src/sound/gameover.wav");
 						} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
@@ -170,7 +170,7 @@ public class Controls extends Stage{
 	
 	public void saveScreen() { 
 		timer.stop();
-		
+		Sound.close();
 		returnButton = genButton(240, 25,"img/buttonImg/ReturnButton.png");
 		backButton= genButton(240,225,"img/buttonImg/StartButton.png");
 		saveButton = genButton(240,425,"img//buttonImg/SaveButton.png");

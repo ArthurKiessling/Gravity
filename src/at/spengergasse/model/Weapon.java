@@ -52,7 +52,6 @@ public class Weapon {
 			 else cont.getPlayer(0).setWeapon(weapon);
 			 weaponsNb[i]=cont.getRoot().getChildren().size();
 			 cont.getRoot().getChildren().add(weapon);
-			 weapon.relocate(630*i, 200);
 		 }
 	}
 	 private void weaponsDown() {	

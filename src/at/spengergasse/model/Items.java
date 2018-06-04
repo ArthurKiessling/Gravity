@@ -14,10 +14,10 @@ import javafx.scene.image.ImageView;
  */
 public class Items{
 	
-	public Items(String path,int x,int y,Group root){
+	public Items(String path,Group root){
 		Image Img= new Image(path);
 		 Node node=new ImageView(Img);
 		 root.getChildren().add(node);
-		 node.relocate(x, y);
+
 		 }
 }

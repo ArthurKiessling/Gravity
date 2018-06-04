@@ -7,8 +7,12 @@ package at.spengergasse.gui;
 
 import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import at.spengergasse.controls.Controls;
 import at.spengergasse.controls.Fehler;
+import at.spengergasse.model.Sound;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -47,11 +51,11 @@ public class ActionListener implements EventHandler<ActionEvent>{
 		if (source==cont.getSpaceButton()){
 				cont.game(cont.getBackground(1),cont.getBlock(1),cont.getSkins(1),5,5);
 				cont.setWorldID(1);
-		}else
+		}
 		if (source==cont.getEarthButton()){
 				cont.game(cont.getBackground(2),cont.getBlock(2),cont.getSkins(2),5,5);
 				cont.setWorldID(2);
-		}else
+		}
 		if (source==cont.getOldGameButton()){
 			 int[]info =null;
 			try {
@@ -69,6 +73,12 @@ public class ActionListener implements EventHandler<ActionEvent>{
 			cont.root.getChildren().remove(cont.getBackButton());
 			cont.root.getChildren().remove(cont.getSaveButton());
 			cont.root.getChildren().remove(cont.getCloseButton());
+			try {
+				Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			cont.timer.start();
 		}
 		if (source==cont.getBackButton()){

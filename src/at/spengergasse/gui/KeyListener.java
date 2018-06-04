@@ -59,21 +59,22 @@ public class KeyListener{
 		@Override
 		public void handle(KeyEvent event) {
 		        	KeyCode code = event.getCode();
+		        	
 					if (code == leftKey1)
 						cont.player[0].leftStart();
-					else if (code == rightKey1)
+					if (code == rightKey1)
 						cont.player[0].rightStart();
-					else if (code == jumpKey1)
+					if (code == jumpKey1)
 						cont.player[0].jumpStart();
-					else if (code == shootKey1)
+					if (code == shootKey1)
 						cont.player[0].shootStart();
-					else if (code == leftKey2)
+					if (code == leftKey2)
 						cont.player[1].leftStart();
-					else if (code == rightKey2)
+					if (code == rightKey2)
 						cont.player[1].rightStart();
-					else if (code == jumpKey2)
+					if (code == jumpKey2)
 						cont.player[1].jumpStart();
-					else if (code == shootKey2)
+					if (code == shootKey2)
 						cont.player[1].shootStart();
 		        	
 				}
@@ -85,21 +86,21 @@ public class KeyListener{
 		        	KeyCode code = event.getCode();
 					if (code == leftKey1)
 						cont.player[0].leftStop();
-					else if (code == rightKey1)
+					if (code == rightKey1)
 						cont.player[0].rightStop();
-					else if (code == jumpKey1)
+					if (code == jumpKey1)
 						cont.player[0].jumpStop();
-					else if (code == shootKey1)
+					if (code == shootKey1)
 						cont.player[0].shootStop();
-					else if (code == leftKey2)
+					if (code == leftKey2)
 						cont.player[1].leftStop();
-					else if (code == rightKey2)
+					if (code == rightKey2)
 						cont.player[1].rightStop();
-					else if (code == jumpKey2)
+					if (code == jumpKey2)
 						cont.player[1].jumpStop();
-					else if (code == shootKey2)
+					if (code == shootKey2)
 						cont.player[1].shootStop();
-					else if (code == ExitKey)
+					if (code == ExitKey)
 						cont.saveScreen();
 					
 				}
