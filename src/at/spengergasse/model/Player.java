@@ -35,12 +35,12 @@ public class Player{
    public boolean lastShootLeft;
    private Controls cont;
    
-	public  void move(int ID,String img,int lifes,Controls cont) throws Exception {
+	public void move(int ID,String img,int lifes,Controls cont) throws Exception {
 		this.cont=cont;
 		playerImage = new Image(img);
         player = new ImageView(playerImage);
-        if(ID==2)player.relocate(730, 50);
-        else player.relocate(0, 50);
+        if(ID==2) {player.relocate(730, 50);}
+        else { player.relocate(0, 50);}
         cont.getRoot().getChildren().addAll(player);
         setID(ID);
         this.life=lifes;

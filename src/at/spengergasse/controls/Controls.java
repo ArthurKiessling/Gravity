@@ -17,18 +17,18 @@ import java.util.List;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.gui.DeathScreen;
-import at.spengergasse.gui.Game;
+
+import at.spengergasse.gui.KeyListener;
 import at.spengergasse.gui.ActionListener;
 import at.spengergasse.gui.Start;
-import at.spengergasse.gui.saveScreen;
+
 import at.spengergasse.model.Blocks;
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Sound;
 import at.spengergasse.model.Weapon;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -36,7 +36,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -56,21 +55,24 @@ public class Controls extends Stage{
 	private Button oldGameButton;
 	
 	public static ArrayList<Node> block;
-	private Player[] player;
-	private AnimationTimer timer;
+	public Player[] player;
+	public AnimationTimer timer;
 	private Weapon wea;
+	private int WorldID;
 	
 	private Scene scene;
-	private Group root;
-	private Stage stage;
-	private ActionListener listener;	
+	public Group root;
+	public Stage stage;
+	private ActionListener actionListener;	
+	private KeyListener keyListener;
 	
 	// arguments to the frame
 	//private List<String> args;
 	
 	public Controls(List<String> args) {
 		//this.args=args;
-		listener=new ActionListener(this);
+		actionListener=new ActionListener(this);
+
 		stage=new Stage();
 		stage.setTitle("Gravity");
 		stage.setResizable(false);
@@ -83,37 +85,30 @@ public class Controls extends Stage{
 		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 		
 		startButton =genButton(240,200,"img/buttonImg/StartButton.png");
-
 		closeButton=genButton(240,400,"img/buttonImg/ExitButton.png");
-
 
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 		stage.setScene(scene);
 		stage.show();
 		}
-	   /*	
-    public static void stopStage(KeyCode StopKey,Stage stage, Scene scene) {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-        	KeyCode code = event.getCode();
-			if (code == StopKey) {
-				Start s= new Start();
-				try {
-					s.start(stage);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-        }
-      });
-
-    }
-*/	    
+	   
+		public void decide() {
+			root=new Group(); 
+			Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+			
+			
+			spaceButton=genButton(240,325,"img//buttonImg/SpaceButton.png");
+			earthButton=genButton(240,100,"img//buttonImg/EarthButton.png");
+			oldGameButton=genButton(240, 550,"img//buttonImg/OldGameButton.png");
+			
+			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
+			stage.setScene(scene);
+			stage.show();
+		}
+		
 	   public void game(String Background,String Block,String[] Skin,int lifesP1,int lifesP2){
 			root = new Group();
-
+			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 			Start.genStartOptions(stage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 			block= new ArrayList<Node>();
 			Blocks.generate(Block, root);
@@ -128,8 +123,8 @@ public class Controls extends Stage{
 			Player player2= new Player();
 			player[0]=(player1);
 			player[1]=(player2);
-			playerControls(KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.ESCAPE,scene,player[0],stage);
-			playerControls(KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.DOWN,KeyCode.ESCAPE,scene,player[1],stage);
+			keyListener=new KeyListener();
+			keyListener.setKeys(this,KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.SPACE,KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP,KeyCode.DOWN,KeyCode.ESCAPE,scene);
 			try {
 				player[0].move(1,Skin[0],lifesP1,this);
 			} catch (Exception e1) {
@@ -144,7 +139,7 @@ public class Controls extends Stage{
 			}
 			Blocks.heart(root); 
 			wea=new Weapon();
-			wea.genWeapons(this);
+			wea.genWeapons(this,"/img/weapons/weapon2.png","/img/weapons/bullet.png");
 			timer = new AnimationTimer() {
 				@Override
 				public void handle(long now){
@@ -153,92 +148,44 @@ public class Controls extends Stage{
 					Blocks.handle(now);
 					wea.handle(now);
 					if(player[0].life==0||player[1].life==0) {
-						Sound.close();
+						//Sound.close();
 						try {
 							Sound.playSound("src/sound/gameover.wav");
 						} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						death(stage, root);
 						timer.stop();
+						DeathScreen();
 						}
 				}
 			};
 			timer.start();
-			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 			stage.setScene(scene);
 			stage.show();
 		}
-	public void decide() {
+
+
+
+	
+	public void saveScreen() { 
+		timer.stop();
+		
+		returnButton = genButton(240, 25,"img/buttonImg/ReturnButton.png");
+		backButton= genButton(240,225,"img/buttonImg/StartButton.png");
+		saveButton = genButton(240,425,"img//buttonImg/SaveButton.png");
+		closeButton = genButton(240,625,"img/buttonImg/ExitButton.png");
+	}
+	public void DeathScreen() {
 		root=new Group(); 
-		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
-		
-		
-		spaceButton=genButton(240,325,"img//buttonImg/SpaceButton.png");
-		earthButton=genButton(240,100,"img//buttonImg/EarthButton.png");
-		oldGameButton=genButton(240, 550,"img//buttonImg/OldGameButton.png");
-		
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
+		
+		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/DeathScreen.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+
 		stage.setScene(scene);
 		stage.show();
+		backButton= genButton(240,640,"img/buttonImg/ReturnButton.png");
 	}
-
-
-	/*	
-	
-	
-	public static void saveScreen(Stage primaryStage,Group root,Player[] player) { 
-		int ID=Game.WorldID;
-		Game.timer.stop();
-		Button button = genButton(root,240, 25,"img/buttonImg/ReturnButton.png");
-		 button.setOnAction(value ->  {
-			 Game g= new Game();
-			 switch(ID) {
-			 case 1:    try { 
-		           g.start(primaryStage,getBackground(ID),getBlock(ID),getSkins(ID),Game.player[0].life,Game.player[1].life);
-				} catch (Exception e) {				// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				 break;
-			 case 2:   
-	          try {
-			g.start(primaryStage,getBackground(ID),getBlock(ID),getSkins(ID),Game.player[0].life,Game.player[1].life);
-	         } catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-	         }
-				 break;
-			 }
-	        });
-		 
-		 Button button1 = genButton(root,240,225,"img/buttonImg/StartButton.png");
-		 button1.setOnAction(value ->  {
-	           Start s= new Start();
-	           try { 
-	           s.start(primaryStage);
-			} catch (Exception e) {				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        });
-		 
-			Button button2 = genButton(root,240,425,"img//buttonImg/SaveButton.png");
-			button2.setOnAction(value ->  {
-					Start s= new Start();
-					try {
-						save(player[0].life,player[1].life,Game.WorldID);
-						s.start(primaryStage);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace(); }
-				});
-			
-			Button button3 = genButton(root,240,625,"img/buttonImg/ExitButton.png");
-			 button3.setOnAction(value ->  {
-				 primaryStage.close();
-		        });
-	}
-*/
 	/**
 	 * @param root
 	 * @return
@@ -249,57 +196,10 @@ public class Controls extends Stage{
 		button.setGraphic(new ImageView(img4));
 		button.relocate(x, y);
 		root.getChildren().add(button);
-		button.addEventHandler(ActionEvent.ACTION, listener);
+		button.addEventHandler(ActionEvent.ACTION, actionListener);
 		return button;
 	}
-	public void death(Stage primaryStage,Group root) {
-		DeathScreen d = new DeathScreen();
-		d.start(primaryStage);
-	}
-    public void playerControls(KeyCode leftKey, KeyCode rightKey, KeyCode jumpKey, KeyCode shootKey,KeyCode ExitKey, Scene scene,Player player,Stage stage) {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-        	KeyCode code = event.getCode();
-			if (code == leftKey)
-				player.leftStart();
-			else if (code == rightKey)
-				player.rightStart();
-			else if (code == jumpKey)
-				player.jumpStart();
-			else if (code == shootKey) {
-				player.shootStart();
-			}
-        }
-    });
-    scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            KeyCode code = event.getCode();
-			if (code == leftKey) {
-				player.leftStop();
-			} else if (code == rightKey) {
-				player.rightStop();
-			} else if (code == jumpKey) {
-				player.jumpStop();
-			} else if (code == shootKey) {
-				player.shootStop();
-        	} else if (code == ExitKey) {
-        		Sound.close();
-       		  saveScreen d= new saveScreen();
-        		 Player[] player =Game.player;
-       		  Game.timer.stop();
-   	           try {
-    				d.start(stage,player);
-   			} catch (Exception e) {
-   				// TODO Auto-generated catch block
-   				e.printStackTrace();
-    			}
-        	}
-        }
-    });
-    
-    }
+
     public int[] read() throws  Fehler, IOException {
     	if(!new File("Spielstand.dat").isFile())throw new Fehler("Geht nicht"); 
     	InputStream os= Files.newInputStream(Paths.get("Spielstand.dat"));
@@ -449,7 +349,21 @@ public class Controls extends Stage{
 	 * @return the wea
 	 */
 	public Weapon getWea() {
-		return wea;
+		return wea ;
+	}
+
+	/**
+	 * @param worldID the worldID to set
+	 */
+	public void setWorldID(int worldID) {
+		WorldID = worldID;
+	}
+
+	/**
+	 * @return the worldID
+	 */
+	public int getWorldID() {
+		return WorldID;
 	}
 	
 	
