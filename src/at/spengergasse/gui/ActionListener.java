@@ -20,19 +20,21 @@ import javafx.event.EventHandler;
  *
  */
 public class ActionListener implements EventHandler<ActionEvent>{
-	
-	// reference to panel
+
 	final private Controls cont;
+
 	/**
-	 * 
-	 * @param simpleFrame
+	 * Controler Object wird zwischengespeichert
+	 * @param cont
 	 */
 	public ActionListener(Controls cont){
 		this.cont=cont;
 	}
 
-	/* (non-Javadoc)
-	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+
+	/**
+	 * Alle ButtonEvents werden hier kontrolliert
+	 * @param arg0
 	 */
 	@Override
 	public void handle(ActionEvent arg0) {
@@ -94,7 +96,7 @@ public class ActionListener implements EventHandler<ActionEvent>{
 		
 		
 		
-	}// handle
+	}
 
 	
 

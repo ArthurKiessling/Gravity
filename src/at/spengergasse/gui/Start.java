@@ -28,10 +28,7 @@ public class Start extends Application {
  
 	/**
 	 * Standart Konfiguration für den Background
-	 * @param primaryStage 
-	 * @param root
-	 * @param backgroundLink
-	 * @param iconLink
+	 * @param primaryStage,root,backgroundLink,iconLink
 	 **/
 	public static void genStartOptions(Stage primaryStage,Group root,InputStream backgroundLink,InputStream iconLink) {
 		Image icon=new Image(iconLink);
@@ -41,6 +38,10 @@ public class Start extends Application {
 		root.getChildren().add(Background);
 	}
 
+	/**
+	 * Zum starten
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 			

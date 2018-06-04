@@ -20,12 +20,27 @@ public class Sound {
 
 	public static Clip background;
 
+	/**
+	 * Clip wird abgespielt
+	 * @param File
+	 * @throws LineUnavailableException
+	 * @throws IOException
+	 * @throws UnsupportedAudioFileException
+	 */
 	public static void playSound(String File) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		File Sound = new File(File);
 		   Clip clip =AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Sound));
 		   clip.start();
 	}
+	
+	/**
+	 * Backgroundmusik wird abgespielt und öfters nach dem Ende wiederholt
+	 * @param File
+	 * @throws LineUnavailableException
+	 * @throws IOException
+	 * @throws UnsupportedAudioFileException
+	 */
 	public static void playBackgroundSound(String File) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		File Sound = new File(File);
 		   Clip clip =AudioSystem.getClip();
@@ -37,7 +52,9 @@ public class Sound {
 
 		   background=clip;
 	}
-	
+	/** 
+	 * Backgroundmusik wird geschlossen
+	 */
 	public static void close() {
 		background.close();
 	}

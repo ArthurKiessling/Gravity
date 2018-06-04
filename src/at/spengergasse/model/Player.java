@@ -35,6 +35,16 @@ public class Player{
    public boolean lastShootLeft;
    private Controls cont;
    
+   /**
+    * Nodes werden erstellt und richtig relocatet
+    * Group hinzugefügt
+    * leben werden gesetzt
+    * @param ID
+    * @param img
+    * @param lifes
+    * @param cont
+    * @throws Exception
+    */
 	public void move(int ID,String img,int lifes,Controls cont) throws Exception {
 		this.cont=cont;
 		playerImage = new Image(img);
@@ -46,8 +56,16 @@ public class Player{
         this.life=lifes;
     }		
     
-  
-    public void handle(long no) {
+  /**
+   * Geschaut ob man springen darf
+   * die Springphysik
+   * ob man nach links oder nach rechts gehen darf
+   * Sound wird beim springen abgespielt
+   * wenn jemand runterfällt leben abgezogen 
+   * relocatet
+   * @param now
+   */
+    public void handle(long now) {
         float dx = 0, dy=0, x=4;
         if(Physics.checkBoundsUp(player))jump=0;
         if(jump>0&&jump<80&&!Physics.checkBoundsUp(player)) {dy-=9*multi;jump++;multi-=0.012;if(jump==72) {jump=0;multi=1;}  }
@@ -65,11 +83,17 @@ public class Player{
            displayUpdate();
           }
 
-
+/**
+ * PlayerBounds werden gegetet
+ * @return
+ */
 	private Bounds playerBounds() {
 		return player.getBoundsInParent();
 	}
-    
+    /** 
+     * Herzen werden in die Group eingefügt
+     * immer aktualliesirt
+     */
     public void displayUpdate() {
 		 for(int idx=0;idx<5;idx++) {
 			 if(idx>=life) {
@@ -111,34 +135,65 @@ public class Player{
 	public void setID(int iD) {
 		ID = iD;
 	}
+	
+	/**
+	 * wird nach Rechts gegangen
+	 * Waffe wird richtig gedreht
+	 */
 	  public void rightStart() {
 			goEast  = true;
 			if(lastLeft==true) {lastLeft=false;
 			cont.getWea().rotateItem(ID,true,weapon);}
 		}
 
+	  /**
+		 * wird nach Links gegangen
+		 * Waffe wird richtig gedreht
+		 */
 	    public void leftStart() {
 			 goWest  = true;
 			 if(lastLeft==false) {lastLeft=true;
 			 cont.getWea().rotateItem(ID,false,weapon);}
 		}
+	    
+	    /**
+	     * Gehen wird nach Links gestoppt
+	     */
 	    public  void leftStop() {
 			goWest  = false;
 		}
+	    
+	    /**
+	     * Gehen wird nach Rechts gestoppt
+	     */
 	    public void rightStop() {
 			goEast  = false;
 		}
-
+	    
+	    /**
+	     * Es wird gesprungen
+	     */
 	     public  void jumpStart() {
 	    	 up=true;
 	     }
+	     
+	     /**
+	      * der Sprung wird gestoppt
+	      */
 	     public void jumpStop() {
 	    	 up=false;
 	     }
 	     
+	     /**
+	      * das Schiessen wird gestartet
+	      */
 	     public void shootStart() {
 			 shoot = true;
 		}
+	     
+	     /** 
+	      * das Schiessen wird gestoppt
+	      */
 	    public  void shootStop() {
 			shoot  = false;
 		}

@@ -32,9 +32,20 @@ public class KeyListener{
 	private KeyCode ExitKey;
 	private Scene scene;
 	private Controls cont;
+
 	/**
-	 * 
-	 * @param simpleFrame
+	 * Alle ButtonCodes und Controler-Objekt werden gespeichert
+	 * @param cont
+	 * @param leftKey1
+	 * @param rightKey1
+	 * @param jumpKey1
+	 * @param shootKey1
+	 * @param leftKey2
+	 * @param rightKey2
+	 * @param jumpKey2
+	 * @param shootKey2
+	 * @param ExitKey
+	 * @param scene
 	 */
 	public void setKeys(Controls cont,KeyCode leftKey1, KeyCode rightKey1, KeyCode jumpKey1, KeyCode shootKey1,KeyCode leftKey2, KeyCode rightKey2, KeyCode jumpKey2, KeyCode shootKey2,KeyCode ExitKey,Scene scene) {
 		this.cont=cont;
@@ -52,6 +63,9 @@ public class KeyListener{
 		this.scene=scene;
 	}
 
+	/**
+	 * Alle KeyCodes werden kontrolliert 
+	 */
 	public void handle() {
 	scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 		@Override

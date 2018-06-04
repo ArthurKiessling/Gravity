@@ -53,7 +53,7 @@ public class Controls extends Stage{
 	public static ArrayList<Node> block;
 	public Player[] player;
 	public AnimationTimer timer;
-	private Weapon wea;
+	private Weapon weapon;
 	private int WorldID;
 	
 	private Scene scene;
@@ -62,13 +62,17 @@ public class Controls extends Stage{
 	private ActionListener actionListener;	
 	private KeyListener keyListener;
 	
-	// arguments to the frame
-	//private List<String> args;
-	
-	public Controls(List<String> args) {
-		//this.args=args;
-		actionListener=new ActionListener(this);
 
+	/**
+	 * Erstellt einen neuen ActionListener
+	 * eine neue Stage setzt den Titel Gravity
+	 * nicht Resizable
+	 * neue Group
+	 * startMenu() wird gestartet
+	 * @param args
+	 */
+	public Controls(List<String> args) {
+		actionListener=new ActionListener(this);
 		stage=new Stage();
 		stage.setTitle("Gravity");
 		stage.setResizable(false);
@@ -76,6 +80,16 @@ public class Controls extends Stage{
 		startMenu();
 	}
 	
+	/**
+	 * neue Group erstellt
+	 * genStartOptions wird ausgeführt
+	 * Buttons mit genButton(x,y,Path) erstellt
+	 * neuer startButton
+	 * neuer close Button
+	 * 
+	 * neue scene
+	 * stage wird gezeigt
+	 */
 	   public void startMenu() {
 		root = new Group();
 		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
@@ -88,7 +102,18 @@ public class Controls extends Stage{
 		stage.show();
 		}
 	   
-		public void decide() {
+    /**
+     * neue Group
+     * genStartOptions wird ausgeführt
+	 * Buttons mit genButton(x,y,Path) erstellt
+	 * neuer spaceButton
+	 * neuer earthButton
+	 * neuer oldGameButton
+	 * 
+	 * neue scene
+	 * stage wird gezeigt
+     */
+	   public void decide() {
 			root=new Group(); 
 			Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
 			
@@ -101,7 +126,35 @@ public class Controls extends Stage{
 			stage.setScene(scene);
 			stage.show();
 		}
-		
+	   
+	   /**
+	     * neue Group
+	     * neue scene
+	     * genStartOptions wird ausgeführt
+		 * neue Block ArrayList
+		 * Blocks werden generiert 
+		 * Die Hintergrundmusik wird abgespielt
+		 * neues Player Array
+		 * Player werden erstellt und zum Array hinzugefügt
+		 * 
+		 * stage wird gezeigt
+		 * neuer KeyListener wird erstellt und alles gesetet
+		 * 
+		 * Player werden zur richtigen Position gemoved
+		 * Herzen werden angezeigt von den Spielern
+		 * neues Weapon-Object und die Waffen werden erstellt
+		 * keyListener handle() gestartet
+		 * neuer AnimationTimer wird erstellt und gestartet
+		 * 
+		 * player handle() 
+		 * Blocks handle()
+		 * weapon handle()
+		 * 
+		 * geprüft ob jemand stirbt, wenn deathScreen gestartet
+		 * 
+		 * timer wird gestartet und stage wird geshowed
+		 * @param Background,block,Skin,lifesP1,lifesP2
+	     */
 	   public void game(String Background,String Block,String[] Skin,int lifesP1,int lifesP2){
 			root = new Group();
 			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
@@ -134,8 +187,8 @@ public class Controls extends Stage{
 				e1.printStackTrace();
 			}
 			Blocks.heart(root); 
-			wea=new Weapon();
-			wea.genWeapons(this,"/img/weapons/weapon2.png","/img/weapons/bullet.png");
+			weapon=new Weapon();
+			weapon.genWeapons(this,"/img/weapons/weapon2.png","/img/weapons/bullet.png");
 			keyListener.handle();
 			timer = new AnimationTimer() {
 				@Override
@@ -143,7 +196,7 @@ public class Controls extends Stage{
 					player[0].handle(now);
 					player[1].handle(now);
 					Blocks.handle(now);
-					wea.handle(now);
+					weapon.handle(now);
 					if(player[0].life==0||player[1].life==0) {
 						Sound.close();
 						try {
@@ -164,7 +217,15 @@ public class Controls extends Stage{
 
 
 
-	
+	/**
+	 * timer wird gestoppt
+	 * Sound wird abgeschaltet
+	 *  Buttons mit genButton(x,y,Path) erstellt
+	 * neuer returnButton
+	 * neuer backButton
+	 * neuer saveButton
+	 * neuer closeButton
+	 */
 	public void saveScreen() { 
 		timer.stop();
 		Sound.close();
@@ -173,6 +234,15 @@ public class Controls extends Stage{
 		saveButton = genButton(240,425,"img//buttonImg/SaveButton.png");
 		closeButton = genButton(240,625,"img/buttonImg/ExitButton.png");
 	}
+	
+	
+	/**
+	 * neue Group
+	 * neue Scene 
+	 * genStartOptions wird ausgeführt
+	 * stage wird geshowed
+	 * neuer backButton
+	 */
 	public void DeathScreen() {
 		root=new Group(); 
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
@@ -184,7 +254,13 @@ public class Controls extends Stage{
 		backButton= genButton(240,640,"img/buttonImg/ReturnButton.png");
 	}
 	/**
-	 * @param root
+	 * Buttons werden erstellt
+	 * neuer button 
+	 * neues Image mit Path
+	 * wird relocatet mit x und y
+	 * wird zu root hinzugefügt
+	 * actionListener hinzugefügt
+	 * @param x,y,path
 	 * @return
 	 */
 	public Button genButton(int x,int y, String path) {
@@ -196,7 +272,12 @@ public class Controls extends Stage{
 		button.addEventHandler(ActionEvent.ACTION, actionListener);
 		return button;
 	}
-
+/**
+ * Zum lesen von dem Spielstand
+ * @return
+ * @throws Fehler
+ * @throws IOException
+ */
     public int[] read() throws  Fehler, IOException {
     	if(!new File("Spielstand.dat").isFile())throw new Fehler("Geht nicht"); 
     	InputStream os= Files.newInputStream(Paths.get("Spielstand.dat"));
@@ -208,6 +289,14 @@ public class Controls extends Stage{
     	dos.close();
     	return info;
     }
+    
+    /**
+     *speichern von dem Spielstand
+     * @param statsP1
+     * @param statsP2
+     * @param WorldID
+     * @throws IOException
+     */
     public void save(int statsP1,int statsP2,int WorldID) throws IOException {
     	OutputStream os= Files.newOutputStream(Paths.get("Spielstand.dat"));
     	DataOutputStream dos = new DataOutputStream(os);
@@ -218,9 +307,11 @@ public class Controls extends Stage{
     }
     
 
-	/**
-	 * @return
-	 */
+/**
+ * um bestimmte Skins zu bekommen
+ * @param WorldID
+ * @return
+ */
 	public String[] getSkins(int WorldID) {
 		String[] skins= new String[2];
 		switch(WorldID) {
@@ -233,7 +324,10 @@ public class Controls extends Stage{
 		}
 		return skins ;
 	}
+
 	/**
+	 * BlocksImg zu bekommen
+	 * @param WorldID
 	 * @return
 	 */
 	public String getBlock(int WorldID) {
@@ -244,6 +338,8 @@ public class Controls extends Stage{
 
 
 	/**
+	 * BackgroundImg zu bekommen
+	 * @param WorldID
 	 * @return
 	 */
 	public String getBackground(int WorldID) {
@@ -343,10 +439,10 @@ public class Controls extends Stage{
 	}
 
 	/**
-	 * @return the wea
+	 * @return the weapon
 	 */
 	public Weapon getWea() {
-		return wea ;
+		return weapon ;
 	}
 
 	/**

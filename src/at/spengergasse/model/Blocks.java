@@ -15,6 +15,13 @@ public class Blocks {
 	public static int[] lifes;
 	public static Image icon ;
 	
+	/**
+	 * Neuer Block wird erstelt mit BlockImg und relocatet
+	 * @param x
+	 * @param y
+	 * @param BlockImg
+	 * @return block
+	 */
 	 public static Node newBlock(int x, int y,String BlockImg) {
 	 Image blockImg= new Image(BLOCK_IMAGE_LOC);
 	 Node block=new ImageView(blockImg);
@@ -22,7 +29,12 @@ public class Blocks {
      return block;
 	 }
 
-	    
+	/**
+	 * Blöcke werden erstellt
+	 * Die ganzen Blöcke werden in eine ArrayLit hinzugefügt    
+	 * @param BlockImg
+	 * @param root
+	 */
 	 public static void generate(String BlockImg,Group root) {
 		 BLOCK_IMAGE_LOC =BlockImg;
 		 Node r;
@@ -36,7 +48,11 @@ public class Blocks {
 				}
 			}
 		}
-
+	 
+	 /**
+	  * Wird gecheckt wenn ein Block unter
+	  * unter dem Fenster ist wird er relocatet
+	  */
 	 public static void check() {
 		 for(int idx=0; idx<Controls.block.size();idx++){
 			 if(blockBounds(idx).getMinY()>=980) {
@@ -44,6 +60,10 @@ public class Blocks {
 			 }
 		 }
 	 }
+	 
+	 /**
+	  * Blöcke werden runter relocatet
+	  */
 	 public static void down() {
 		 for(int idx=0; idx<Controls.block.size();idx++){
 			 double h= blockBounds(idx).getMinY()+0.6f;
@@ -52,15 +72,28 @@ public class Blocks {
 	
 	 }
 
-
+	 /**
+	  * Bounds von einem Block werden gegetet
+	  * @param idx
+	  * @return
+	  */
 	private static Bounds blockBounds(int idx) {
 		return Controls.block.get(idx).getBoundsInParent();
 	}
+	
+	/**
+	 * block und check werden gehandelt
+	 * @param now
+	 */
 	 public static void handle(long now) {
 		 down();
 		 check();
 	 }
 
+	 /**
+	  * Herzen werden erstellt, angezeigt und immer aktualliesiert
+	  * @param root
+	  */
 	 public static void heart(Group root) {
 		 lifes = new int[10];
 		 for(int i = 0; i< 5;i++) {
