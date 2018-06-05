@@ -121,7 +121,8 @@ public class KeyListener{
 					if (code == shootKey2)
 						cont.player[1].shootStop();
 					if (code == ExitKey) {
-						if(!saveScreen) {cont.saveScreen(); saveScreen=true;}
+						if(!saveScreen) {
+						cont.saveScreen(); saveScreen=true; cont.timer.stop(); Sound.close();}
 						else {
 						cont.root.getChildren().remove(cont.getReturnButton());
 						cont.root.getChildren().remove(cont.getBackButton());

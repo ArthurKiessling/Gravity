@@ -202,6 +202,8 @@ public class Controls extends Stage{
 					Blocks.handle(now);
 					weapon.handle(now);
 					if(player[0].life==0||player[1].life==0) {
+						timer.stop();
+						DeathScreen();
 						Sound.close();
 						try {
 							Sound.playSound("src/sound/gameover.wav");
@@ -209,8 +211,7 @@ public class Controls extends Stage{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						timer.stop();
-						DeathScreen();
+						
 						}
 				}
 			};
@@ -230,9 +231,7 @@ public class Controls extends Stage{
 	 * neuer saveButton
 	 * neuer closeButton
 	 */
-	public void saveScreen() { 
-		timer.stop();
-		Sound.close();
+	public void saveScreen() { 	
 		returnButton = genButton(240, 25,"/img/buttonImg/ReturnButton.png");
 		backButton= genButton(240,225,"/img/buttonImg/StartButton.png");
 		saveButton = genButton(240,425,"/img/buttonImg/SaveButton.png");
@@ -252,7 +251,7 @@ public class Controls extends Stage{
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 		
 		Start.genStartOptions(stage,root,"/img/background/DeathScreen.png","/img/playerSkins/icon.png");
-		backButton= genButton(240,640,"/img/buttonImg/ReturnButton.png");
+		
 		winner=new Label();
 		winner.setFont(new Font("04b_30",25));
 		winner.setTextFill(Color.WHITE);
@@ -262,9 +261,10 @@ public class Controls extends Stage{
 		else text="Spieler Nr.2 hat das Spiel gewonnen!!!";
 		winner.setText(text);
 		root.getChildren().add(winner);
+		
+		backButton= genButton(240,640,"/img/buttonImg/ReturnButton.png");
 		stage.setScene(scene);
 		stage.show();
-		
 	}
 	/**
 	 * Buttons werden erstellt

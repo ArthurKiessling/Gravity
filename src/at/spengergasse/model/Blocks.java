@@ -97,7 +97,7 @@ public class Blocks {
 	 public static void heart(Group root) {
 		 lifes = new int[10];
 		 for(int i = 0; i< 5;i++) {
-			 Image heartimage = new Image("img/blocks/heart.png",32,32,false,false);
+			 Image heartimage = new Image("/img/blocks/heart.png",32,32,false,false);
 			 Node heart = new ImageView(heartimage);
 			 lifes[i]=root.getChildren().size();
 			 root.getChildren().add(heart);
@@ -105,7 +105,7 @@ public class Blocks {
 			 
 		 }
 		 for(int i = 0; i< 5;i++) {
-			 Image heartimage = new Image("img/blocks/heart.png",32,32,false,false);
+			 Image heartimage = new Image("/img/blocks/heart.png",32,32,false,false);
 			 Node heart = new ImageView(heartimage);
 			 lifes[5+i]=root.getChildren().size();
 			 root.getChildren().add(heart);

@@ -1,7 +1,6 @@
 
 package at.spengergasse.gui;
 
-import java.io.InputStream;
 
 import javafx.application.Application;
 import javafx.scene.Group;
