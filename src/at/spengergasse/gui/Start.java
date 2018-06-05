@@ -23,7 +23,6 @@ public class Start extends Application {
 	@Override
 	public void start(Stage primaryStage){
 		new Controls(getParameters().getRaw());
-		
 	}
  
 	/**
@@ -44,7 +43,7 @@ public class Start extends Application {
 	 */
 	public static void main(String[] args) {
 		launch(args);
-			
+
 	}
 
 }

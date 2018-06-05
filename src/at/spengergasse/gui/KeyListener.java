@@ -7,6 +7,12 @@ package at.spengergasse.gui;
 
 
 
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import at.spengergasse.model.Sound;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -32,6 +38,7 @@ public class KeyListener{
 	private KeyCode ExitKey;
 	private Scene scene;
 	private Controls cont;
+	private boolean saveScreen;
 
 	/**
 	 * Alle ButtonCodes und Controler-Objekt werden gespeichert
@@ -61,6 +68,8 @@ public class KeyListener{
 		
 		this.ExitKey=ExitKey;
 		this.scene=scene;
+		
+		saveScreen=false;
 	}
 
 	/**
@@ -88,7 +97,6 @@ public class KeyListener{
 						cont.player[1].jumpStart();
 					if (code == shootKey2)
 						cont.player[1].shootStart();
-		        	
 				}
 
 	 	});
@@ -112,8 +120,24 @@ public class KeyListener{
 						cont.player[1].jumpStop();
 					if (code == shootKey2)
 						cont.player[1].shootStop();
-					if (code == ExitKey)
-						cont.saveScreen();
+					if (code == ExitKey) {
+						if(!saveScreen) {cont.saveScreen(); saveScreen=true;}
+						else {
+						cont.root.getChildren().remove(cont.getReturnButton());
+						cont.root.getChildren().remove(cont.getBackButton());
+						cont.root.getChildren().remove(cont.getSaveButton());
+						cont.root.getChildren().remove(cont.getCloseButton());
+						try {
+							Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+						} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						cont.timer.start();
+						saveScreen=false;
+					}
+					}
+					
 					
 				}
 
