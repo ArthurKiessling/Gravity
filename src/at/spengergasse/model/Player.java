@@ -97,7 +97,7 @@ public class Player{
     public void displayUpdate() {
 		 for(int idx=0;idx<5;idx++) {
 			 if(idx>=life) {
-				 Image heartimage = new Image("/img/blocks/heartX.png",32,32,false,false);
+				 Image heartimage = new Image("img/blocks/heartX.png",32,32,false,false);
 				 Node newHeart=new ImageView(heartimage);
 				 if(ID==2) {newHeart.relocate(idx*30+650, 5);cont.getRoot().getChildren().set(Blocks.lifes[5+idx], newHeart);}
 				 else { newHeart.relocate(idx*30, 5);cont.getRoot().getChildren().set(Blocks.lifes[idx], newHeart);}

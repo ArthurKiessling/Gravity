@@ -96,7 +96,7 @@ public class Controls extends Stage{
 	 */
 	   public void startMenu() {
 		root = new Group();
-		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+		Start.genStartOptions(stage,root,"/img/background/MenuBackground.png","/img/playerSkins/icon.png");
 		
 		startButton =genButton(240,200,"img/buttonImg/StartButton.png");
 		closeButton=genButton(240,400,"img/buttonImg/ExitButton.png");
@@ -119,12 +119,12 @@ public class Controls extends Stage{
      */
 	   public void decide() {
 			root=new Group(); 
-			Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/MenuBackground.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+			Start.genStartOptions(stage,root,"/img/background/MenuBackground.png","/img/playerSkins/icon.png");
 			
 			
-			spaceButton=genButton(240,325,"img//buttonImg/SpaceButton.png");
-			earthButton=genButton(240,100,"img//buttonImg/EarthButton.png");
-			oldGameButton=genButton(240, 550,"img//buttonImg/OldGameButton.png");
+			spaceButton=genButton(240,325,"img/buttonImg/SpaceButton.png");
+			earthButton=genButton(240,100,"img/buttonImg/EarthButton.png");
+			oldGameButton=genButton(240, 550,"img/buttonImg/OldGameButton.png");
 			
 			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 			stage.setScene(scene);
@@ -162,7 +162,7 @@ public class Controls extends Stage{
 	   public void game(String Background,String Block,String[] Skin,int lifesP1,int lifesP2){
 			root = new Group();
 			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
-			Start.genStartOptions(stage,root,getClass().getResourceAsStream(Background),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+			Start.genStartOptions(stage,root,Background,"/img/playerSkins/icon.png");
 			block= new ArrayList<Node>();
 			Blocks.generate(Block, root);
 				try {
@@ -235,7 +235,7 @@ public class Controls extends Stage{
 		Sound.close();
 		returnButton = genButton(240, 25,"img/buttonImg/ReturnButton.png");
 		backButton= genButton(240,225,"img/buttonImg/StartButton.png");
-		saveButton = genButton(240,425,"img//buttonImg/SaveButton.png");
+		saveButton = genButton(240,425,"img/buttonImg/SaveButton.png");
 		closeButton = genButton(240,625,"img/buttonImg/ExitButton.png");
 	}
 	
@@ -251,7 +251,7 @@ public class Controls extends Stage{
 		root=new Group(); 
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 		
-		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/DeathScreen.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
+		Start.genStartOptions(stage,root,"/img/background/DeathScreen.png","/img/playerSkins/icon.png");
 		
 		winner=new Label();
 		winner.setFont(new Font("04b_30",25));
@@ -346,7 +346,7 @@ public class Controls extends Stage{
 	public String getBlock(int WorldID) {
 		if(WorldID==1) {
 		return "/img/blocks/Block.png";
-		}else return "/img/blocks/Block2.png";
+		}else return "/img/blocks/Block2.png" ;
 	}
 
 
