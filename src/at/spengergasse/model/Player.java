@@ -49,7 +49,7 @@ public class Player{
 		this.cont=cont;
 		playerImage = new Image(img);
         player = new ImageView(playerImage);
-        if(ID==2) {player.relocate(730, 50);}
+        if(ID==2) {player.relocate(730, 50);lastLeft=true;}
         else { player.relocate(0, 50);}
         cont.getRoot().getChildren().addAll(player);
         setID(ID);

@@ -29,10 +29,12 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
@@ -49,6 +51,8 @@ public class Controls extends Stage{
 	private Button spaceButton;
 	private Button earthButton;
 	private Button oldGameButton;
+	
+	private Label winner;
 	
 	public static ArrayList<Node> block;
 	public Player[] player;
@@ -248,7 +252,16 @@ public class Controls extends Stage{
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 		
 		Start.genStartOptions(stage,root,getClass().getResourceAsStream("/img/background/DeathScreen.png"),getClass().getResourceAsStream("/img/playerSkins/icon.png"));
-
+		
+		winner=new Label();
+		winner.setFont(new Font("04b_30",25));
+		winner.setTextFill(Color.WHITE);
+		winner.relocate(30, 200);
+		String text="";
+		if(player[1].life==0)text="Spieler Nr.1 hat das Spiel gewonnen!!!";
+		else text="Spieler Nr.2 hat das Spiel gewonnen!!!";
+		winner.setText(text);
+		root.getChildren().add(winner);
 		stage.setScene(scene);
 		stage.show();
 		backButton= genButton(240,640,"img/buttonImg/ReturnButton.png");
