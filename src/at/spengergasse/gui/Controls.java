@@ -98,8 +98,8 @@ public class Controls extends Stage{
 		root = new Group();
 		Start.genStartOptions(stage,root,"/img/background/MenuBackground.png","/img/playerSkins/icon.png");
 		
-		startButton =genButton(240,200,"img/buttonImg/StartButton.png");
-		closeButton=genButton(240,400,"img/buttonImg/ExitButton.png");
+		startButton =genButton(240,200,"/img/buttonImg/StartButton.png");
+		closeButton=genButton(240,400,"/img/buttonImg/ExitButton.png");
 
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 		stage.setScene(scene);
@@ -122,9 +122,9 @@ public class Controls extends Stage{
 			Start.genStartOptions(stage,root,"/img/background/MenuBackground.png","/img/playerSkins/icon.png");
 			
 			
-			spaceButton=genButton(240,325,"img/buttonImg/SpaceButton.png");
-			earthButton=genButton(240,100,"img/buttonImg/EarthButton.png");
-			oldGameButton=genButton(240, 550,"img/buttonImg/OldGameButton.png");
+			spaceButton=genButton(240,325,"/img/buttonImg/SpaceButton.png");
+			earthButton=genButton(240,100,"/img/buttonImg/EarthButton.png");
+			oldGameButton=genButton(240, 550,"/img/buttonImg/OldGameButton.png");
 			
 			scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 			stage.setScene(scene);
@@ -233,10 +233,10 @@ public class Controls extends Stage{
 	public void saveScreen() { 
 		timer.stop();
 		Sound.close();
-		returnButton = genButton(240, 25,"img/buttonImg/ReturnButton.png");
-		backButton= genButton(240,225,"img/buttonImg/StartButton.png");
-		saveButton = genButton(240,425,"img/buttonImg/SaveButton.png");
-		closeButton = genButton(240,625,"img/buttonImg/ExitButton.png");
+		returnButton = genButton(240, 25,"/img/buttonImg/ReturnButton.png");
+		backButton= genButton(240,225,"/img/buttonImg/StartButton.png");
+		saveButton = genButton(240,425,"/img/buttonImg/SaveButton.png");
+		closeButton = genButton(240,625,"/img/buttonImg/ExitButton.png");
 	}
 	
 	
@@ -252,7 +252,7 @@ public class Controls extends Stage{
 		scene = new Scene(root, Start.W, Start.H, Color.WHITE);
 		
 		Start.genStartOptions(stage,root,"/img/background/DeathScreen.png","/img/playerSkins/icon.png");
-		
+		backButton= genButton(240,640,"/img/buttonImg/ReturnButton.png");
 		winner=new Label();
 		winner.setFont(new Font("04b_30",25));
 		winner.setTextFill(Color.WHITE);
@@ -264,7 +264,7 @@ public class Controls extends Stage{
 		root.getChildren().add(winner);
 		stage.setScene(scene);
 		stage.show();
-		backButton= genButton(240,640,"img/buttonImg/ReturnButton.png");
+		
 	}
 	/**
 	 * Buttons werden erstellt
