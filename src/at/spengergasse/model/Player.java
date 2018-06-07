@@ -35,6 +35,7 @@ public class Player{
    public boolean lastShootLeft;
    private Controls cont;
    
+   private Sound sound;
    /**
     * Nodes werden erstellt und richtig relocatet
     * Group hinzugefügt
@@ -46,6 +47,7 @@ public class Player{
     * @throws Exception
     */
 	public void move(int ID,String img,int lifes,Controls cont) throws Exception {
+		sound= new Sound();
 		this.cont=cont;
 		playerImage = new Image(img);
         player = new ImageView(playerImage);
@@ -73,7 +75,7 @@ public class Player{
          if (goWest&&!Physics.checkBoundsLeft(player))   dx -= 3;
          if(up&&jump==0&&Physics.checkBoundsDown(player)) {dy-=9;jump++; try {
 			try {
-				Sound.playSound("src/sound/jump.wav");
+				sound.playSound("src/sound/jump.wav");
 			} catch (IOException | UnsupportedAudioFileException e) {
 				e.printStackTrace();
 			}} catch (LineUnavailableException e) {e.printStackTrace();}}

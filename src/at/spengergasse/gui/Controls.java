@@ -66,7 +66,8 @@ public class Controls extends Stage{
 	private ActionListener actionListener;	
 	private KeyListener keyListener;
 	
-
+	public Sound sound;
+	
 	/**
 	 * Erstellt einen neuen ActionListener
 	 * eine neue Stage setzt den Titel Gravity
@@ -82,6 +83,7 @@ public class Controls extends Stage{
 		stage.setResizable(false);
 		root=new Group(); 
 		startMenu();
+		sound= new Sound();
 	}
 	
 	/**
@@ -166,13 +168,13 @@ public class Controls extends Stage{
 			block= new ArrayList<Node>();
 			Blocks.generate(Block, root);
 				try {
-					Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+					sound.playBackgroundSound("src/sound/backgroundmusic.wav");
 				} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}	
 			player= new Player[2];
-			Player player1= new Player();   
+			Player player1= new Player();  
 			Player player2= new Player();
 			player[0]=(player1);
 			player[1]=(player2);
@@ -204,9 +206,9 @@ public class Controls extends Stage{
 					if(player[0].life==0||player[1].life==0) {
 						timer.stop();
 						DeathScreen();
-						Sound.close();
+						sound.close();
 						try {
-							Sound.playSound("src/sound/gameover.wav");
+							sound.playSound("src/sound/gameover.wav");
 						} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

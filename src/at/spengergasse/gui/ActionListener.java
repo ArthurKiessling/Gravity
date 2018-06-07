@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.model.Sound;
 import at.spengergasse.test.Fehler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -75,7 +74,7 @@ public class ActionListener implements EventHandler<ActionEvent>{
 			cont.root.getChildren().remove(cont.getSaveButton());
 			cont.root.getChildren().remove(cont.getCloseButton());
 			try {
-				Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+				cont.sound.playBackgroundSound("src/sound/backgroundmusic.wav");
 			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();

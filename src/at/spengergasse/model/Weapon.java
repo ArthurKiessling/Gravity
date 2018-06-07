@@ -29,7 +29,7 @@ public class Weapon {
 	private ArrayList<Boolean>bulletsLeft;
 	private int[] count;
 	private Controls cont;
-	
+	private Sound sound;
 	/**
 	 * weaponsDown()
 	 * shoot()
@@ -55,6 +55,7 @@ public class Weapon {
 	  * @param bulletImg
 	  */
 	 public void genWeapons(Controls cont,String weaponImg,String bulletImg) {
+		 sound= new Sound();
 		 this.cont=cont;
 		 weaponsImage=new Image(weaponImg);
 		 bulletImage=new Image(bulletImg);
@@ -125,7 +126,7 @@ public class Weapon {
 				 else {
 					 newBullet(playerBounds(idx).getMaxX()+70,playerBounds(idx).getMinY()+10,false);bulletsLeft.add(true);	} 
 			try {
-				Sound.playSound("src/sound/laser.wav");
+				sound.playSound("src/sound/laser.wav");
 			} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -188,7 +189,7 @@ public class Weapon {
 			 for(int idx=0;idx<bullets.size();idx++) {
 				 if(Physics.checkTwo(cont.getPlayer(id).player,bullets.get(idx))){
 					 try {
-						Sound.playSound("src/sound/hit.wav");
+						sound.playSound("src/sound/hit.wav");
 					} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -12,7 +12,6 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import at.spengergasse.model.Sound;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -122,14 +121,14 @@ public class KeyListener{
 						cont.player[1].shootStop();
 					if (code == ExitKey) {
 						if(!saveScreen) {
-						cont.saveScreen(); saveScreen=true; cont.timer.stop(); Sound.close();}
+						cont.saveScreen(); saveScreen=true; cont.timer.stop(); cont.sound.close();}
 						else {
 						cont.root.getChildren().remove(cont.getReturnButton());
 						cont.root.getChildren().remove(cont.getBackButton());
 						cont.root.getChildren().remove(cont.getSaveButton());
 						cont.root.getChildren().remove(cont.getCloseButton());
 						try {
-							Sound.playBackgroundSound("src/sound/backgroundmusic.wav");
+							cont.sound.playBackgroundSound("src/sound/backgroundmusic.wav");
 						} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e2) {
 							// TODO Auto-generated catch block
 							e2.printStackTrace();
