@@ -109,7 +109,7 @@ public class Blocks {
 			 Node heart = new ImageView(heartimage);
 			 lifes[5+i]=root.getChildren().size();
 			 root.getChildren().add(heart);
-			 heart.relocate(650+i*30, 5);
+			 heart.relocate(770-i*30, 5);
 		 }
 	}
 
